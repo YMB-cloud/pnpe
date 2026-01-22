@@ -1,0 +1,148 @@
+.login-body {
+    background-size: 100% 50%;
+    background-repeat: no-repeat;
+    background-image: url(/siberia/javax.faces.resource/images/exceptions/mask-login.png.xhtml?ln=siberia-layout);
+
+    .login-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+
+        > img {
+            width: 100%;
+            height: auto;
+        }
+
+        .logo-wrapper{
+            width: 100%;
+            @include flex();
+            @include flex-justify-center();
+            position: absolute;
+            top: 34px;
+            cursor: pointer;
+            z-index: 999;
+
+             img {
+                width: auto;
+                height: 50px;
+            }
+        }
+
+        .login-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            @include flex();
+            @include flex-align-center();
+            @include flex-justify-center();
+
+            .login-content {
+                @include flex();
+                @include flex-align-start();
+                @include flex-justify-between(); 
+                border-radius: 4px;
+                box-shadow: 0 1px 12px 0 rgba(0, 0, 0, 0.24);
+                background-color: #ffffff;
+                width: 500px;
+                padding-left: 32px;
+                max-height: 90%;
+                overflow: auto;
+
+                .content-text {
+                    width: 65%;
+
+                    > h4 {
+                        font-size: 15px;
+                        font-weight: 600;
+                        color: #191a1c;
+                        margin: 0;
+                        margin-bottom: 4px;
+                        margin-top: 24px;
+                    }
+
+                    > span {
+                        font-size: 13px;
+                        font-weight: normal;
+                        color: #525557;
+                        display: block;
+                        margin-bottom: 50px;
+                    }
+
+                    > button {
+                        margin-top: 16px;
+                        margin-bottom: 32px;
+                        width: 118px;
+                        height: 32px;
+                        border-radius: 2px;
+                        background-color: #21b5ad;
+                        border: none;
+
+                        &:hover {
+                            background-color: #27d2c9;
+                            @include transition(background-color $transitionDuration);
+                        }
+                    }
+
+                    .login-input {
+                        position: relative;
+
+                        > input {
+                            width: 100%;
+                            margin-bottom: 24px;
+                        }
+
+                        > i {
+                            position: absolute;
+                            right: 8px;
+                            top: 8px;
+                            &.lock {
+                                right: 10px;
+                            }
+                        }
+                    }
+
+                    a {
+                        font-size: 13px;
+                        color: #21b5ad; 
+                        margin-top: 16px; 
+                        display: block;
+                        
+                        &:hover {
+                            color: #27d2c9;
+                            @include transition(color $transitionDuration);
+                        }
+                    }
+
+                }
+
+                > img {
+                    width: 124px;
+                    height: 125px;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:992px) {
+    .login-body {
+        background-image: url(/siberia/javax.faces.resource/images/exceptions/mask-mobile-login.png.xhtml?ln=siberia-layout);
+        .login-wrapper {
+            > img {
+                width: 100%;
+                height: auto;
+            }
+
+            .login-wrapper {
+                .login-content {
+                    > img {
+                        width: 114px;
+                        height: 115px;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      lang="en">
+
+    <h:head>
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+            <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/siberia-layout/images/favicon.ico" />
+        </f:facet>
+        <title><ui:insert name="title">Autosur</ui:insert></title>
+        <h:outputScript name="js/layout.js" library="siberia-layout" />
+        <h:outputScript name="js/prism.js" library="siberia-layout"/>
+        <h:outputScript name="js/sections.js" library="demo" />
+        <ui:insert name="head"/>
+    </h:head>
+
+    <h:body styleClass="#{guestPreferences.inputStyleClass}">
+        <div class="layout-wrapper #{guestPreferences.menuMode} layout-#{guestPreferences.layout}
+        #{guestPreferences.menuMode eq 'layout-static' ? 'layout-static-active' : ''}">
+         
+            <ui:include src="./topbar.xhtml"/>
+            <ui:include src="./rightpanel.xhtml"/>
+
+            <div class="layout-main">     
+
+        
+            
+                <div class="layout-content">
+
+					<h:form>
+			            <div class="grid ui-fluid">
+			                <div class="col-12">
+			                    <div >
+			                        <p:menubar autoDisplay="false">
+			                        
+			                        	<p:menuitem value="Accueil" action="#{projetService.versHome()}"  icon="pi pi-home"/>
+			                        	
+										<p:menuitem value="Servir une ordonnance" action="#{priseChargeService.versServirFeuille()}" icon="pi pi-copy"/>
+										
+										<p:menuitem value="Ordonnances en attente" action="#{priseChargeService.versSoinssAttente()}"  icon="pi pi-users"/>
+										
+										<p:menuitem value="Régistre" action="#{priseChargeService.versFeuillePh()}" icon="pi pi-book"/>
+			                            
+			                            <p:menuitem value="Déconnexion" action="#{login.logout()}"  icon="pi pi-sign-out"/>
+			
+			                            
+			                        </p:menubar>
+			                    </div>
+			                </div>
+			                
+			            </div>
+			        </h:form>  
+			                                    
+                	<p:tooltip />
+
+        			<p:growl id="growl" showDetail="false"/> 
+                    <ui:insert name="content"/>
+                </div>
+
+                <ui:include src="./footer.xhtml"/>
+                <div class="layout-mask"></div>
+            </div>
+         
+            <p:ajaxStatus style="width:32px;height:32px;position:fixed;right:7px;bottom:7px">
+                <f:facet name="start">
+                    <i class="pi pi-spin pi-spinner layout-ajax-loader-icon" aria-hidden="true"/>
+                </f:facet>
+
+                <f:facet name="complete">
+                    <h:outputText value=""/>
+                </f:facet>
+            </p:ajaxStatus>
+        </div>
+        
+        <p:dialog header="SESSION INACTIVE" widgetVar="sessionTimeOut" modal="true" closable="false" responsive="true" width="350" showEffect="fade" hideEffect="fade">
+            <h:form>
+	            <p>
+	                Votre session est inactive. Vous allez être déconnecté!
+	            </p>
+	            
+	            <p:commandButton  value="Re-connexion" type="button" icon="pi pi-lock-open" styleClass="ui-button-secondary" onclick="PF('sessionTimeOut').hide();location.reload();" />
+            </h:form>
+        </p:dialog>         
+
+        <h:outputStylesheet name="css/primeicons.css" library="siberia-layout"/>
+        <h:outputStylesheet name="css/primeflex.min.css" library="siberia-layout"/>
+        <h:outputStylesheet name="css/demo.css" library="demo"/>
+        <h:outputStylesheet name="css/layout-#{guestPreferences.layout}.css" library="siberia-layout" />
+        
+        <script>
+		  	  function apercuPrint() {
+			       $('#pmedia').load(location.href + ' #pmedia');
+			 	  // $('#popApercu').modal('show');
+			 	  PF('preview').show();
+		      } 
+
+
+		   	var resetTime_int;
+			function resetTimer(){
+			    if(resetTime_int) window.clearTimeout(resetTime_int)
+			    resetTime_int=window.setTimeout(
+					function (){
+						PF('sessionTimeOut').show();
+				    }
+			    , 1000*60*4)
+			}
+
+			resetTimer();
+			//document.onmousemove=resetTimer;
+			document.onkeyup=resetTimer;		      
+        </script>        
+    </h:body>
+
+</html>

@@ -1,0 +1,111 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="title">Gestion des rendez-vous</ui:define>
+
+    <ui:define name="content">
+
+
+
+ <p:commandButton icon="pi pi-trash" title="Ajouter"
+                                     action="#{rendezVousBean.versCreateRendezVous()}"
+                                     styleClass="rounded-button ui-button-success"/>
+    <h:form id="formRdv">
+    
+    
+    
+  <p:panel styleClass="p-shadow-2 p-p-3 p-mb-4" header="Liste des Rendez-Vous" toggleable="false">
+
+        <p:dataTable id="availableRdv" var="rdv" value="#{rendezVousBean.listeRendeVous}"
+                     styleClass="p-datatable-gridlines p-shadow-2"
+                     responsive="true" paginator="true" rows="10"
+                     rowHover="true" emptyMessage="Aucun rendez-vous trouvé">
+
+            <!-- Colonne Drag -->
+            <p:column style="width:40px" exportable="false">
+                <h:outputText id="dragIcon" styleClass="ui-icon pi pi-arrows-alt"/>
+                <p:draggable for="dragIcon" revert="true" helper="clone"/>
+            </p:column>
+
+            <!-- ID du rendez-vous -->
+            <p:column headerText="ID" style="text-align:center; width:80px">
+                <h:outputText value="#{rdv.id}"/>
+            </p:column>
+
+            <!-- Date de création -->
+            <p:column headerText="Date Création" style="text-align:center; width:150px">
+                <h:outputText value="#{rdv.dateCreation}">
+                    
+                </h:outputText>
+            </p:column>
+
+            <!-- Date du rendez-vous -->
+            <p:column headerText="Date RDV" style="text-align:center; width:150px">
+                <h:outputText value="#{rdv.dateHeureRdv}">
+                    
+                </h:outputText>
+            </p:column>
+
+            <!-- Lieu -->
+            <p:column headerText="Lieu" style="text-align:left; width:200px">
+                <h:outputText value="#{rdv.lieu}"/>
+            </p:column>
+
+
+                <!-- COLONNE ACTIONS CRUD -->
+                <p:column headerText="Actions" style="text-align:center; width:150px">
+                    <p:commandButton icon="pi pi-pencil" title="Modifier" 
+                                    update="formRdv"
+                                    action="#{rendezVousBean.prepareEdit(rdv)}" 
+                                    oncomplete="PF('rdvDialog').show()"
+                                    styleClass="rounded-button ui-button-primary"/>
+                    
+                    <p:commandButton icon="pi pi-trash" title="Annuler"
+                                     update="formRdv"
+                                     action="#{rendezVousBean.annuler(rdv)}"
+                                     styleClass="rounded-button ui-button-danger"/>
+                </p:column>
+       		 </p:dataTable>
+          </p:panel>
+          
+                  <!-- DIALOG MODAL POUR AJOUT / MODIFICATION -->
+        <p:dialog header="Rendez-Vous" id="rdvDialog"  widgetVar="rdvDialog" modal="true" resizable="false" draggable="true">
+            <h:panelGrid columns="2" columnClasses="label,value" styleClass="p-fluid p-formgrid p-grid">
+
+                <h:outputLabel for="dateCreation" value="Date Création:"/>
+                <p:calendar id="dateCreation" value="#{rendezVousBean.selectedRdv.dateCreation}" 
+                            showTime="true" />
+
+                <h:outputLabel for="dateHeureRdv" value="Date RDV:"/>
+                <p:calendar id="dateHeureRdv" value="#{rendezVousBean.selectedRdv.dateHeureRdv}" 
+                            showTime="true" />
+
+                <h:outputLabel for="lieu" value="Lieu:"/>
+              
+
+                <h:outputLabel for="observation" value="Observation:"/>
+                <p:inputTextarea id="observation" value="#{rendezVousBean.selectedRdv.observation}" rows="3"/>
+
+            </h:panelGrid>
+
+            <p:separator/>
+
+            <p:commandButton value="Enregistrer" icon="pi pi-check" 
+                             update="formRdv:rdvDialog"
+                             oncomplete="PF('rdvDialog').hide()" 
+                             styleClass="p-mr-2"/>
+            
+            <p:commandButton value="Annuler" icon="pi pi-times" 
+                             onclick="PF('rdvDialog').hide()" type="button"/>
+        </p:dialog>
+       
+    </h:form>
+
+</ui:define>
+
+
+</ui:composition>

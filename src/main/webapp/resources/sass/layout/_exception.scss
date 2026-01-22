@@ -1,0 +1,123 @@
+.exception-body {
+    background-size: 100% 50%;
+    background-repeat: no-repeat;
+
+    &.notfound {
+        background-image: url(/siberia/javax.faces.resource/images/exceptions/mask-404.png.xhtml?ln=siberia-layout);
+    }
+    &.access {
+        background-image: url(/siberia/javax.faces.resource/images/exceptions/mask-denied.png.xhtml?ln=siberia-layout);
+    }
+    &.error {
+        background-image: url(/siberia/javax.faces.resource/images/exceptions/mask-error.png.xhtml?ln=siberia-layout);
+    }
+
+    .exception-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+
+        > img {
+            width: 100%;
+            height: auto;
+        }
+
+        .logo-wrapper{
+            width: 100%;
+            @include flex();
+            @include flex-justify-center();
+            position: absolute;
+            top: 34px;
+            cursor: pointer;
+            z-index: 999;
+            
+             img {
+                width: auto;
+                height: 50px;
+            }
+        }
+
+        .exception-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            @include flex();
+            @include flex-align-center();
+            @include flex-justify-center();
+
+            .exception-content {
+                @include flex();
+                @include flex-align-start();
+                @include flex-justify-between(); 
+                border-radius: 4px;
+                box-shadow: 0 1px 12px 0 rgba(0, 0, 0, 0.24);
+                background-color: #ffffff;
+                width: 500px;
+                padding-left: 32px;
+                max-height: 90%;
+                overflow: auto;
+
+                .content-text {
+                    > h4 {
+                        font-size: 15px;
+                        font-weight: 600;
+                        color: #191a1c;
+                        margin: 0;
+                        margin-bottom: 4px;
+                        margin-top: 24px;
+                    }
+
+                    > span {
+                        font-size: 13px;
+                        font-weight: normal;
+                        color: #525557;
+                        display: block;
+                    }
+
+                    > button {
+                        margin-top: 58px;
+                        margin-bottom: 32px;
+                    }
+
+                }
+
+                > img {
+                    width: 124px;
+                    height: 125px;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:992px) {
+    .exception-body {
+        &.notfound {
+            background-image: url(/siberia/javax.faces.resource/images/exceptions/mask-404-mobile.png.xhtml?ln=siberia-layout);
+        }
+        &.access {
+            background-image: url(/siberia/javax.faces.resource/images/exceptions/mask-access-mobile.png.xhtml?ln=siberia-layout);
+        }
+        &.error {
+            background-image: url(/siberia/javax.faces.resource/images/exceptions/mask-error-mobile.png.xhtml?ln=siberia-layout);
+        }
+
+        .exception-wrapper {
+            > img {
+                width: 100%;
+                height: auto;
+            }
+
+            .exception-wrapper {
+                .exception-content {
+                    > img {
+                        width: 114px;
+                        height: 115px;
+                    }
+                }
+            }
+        }
+    }
+}

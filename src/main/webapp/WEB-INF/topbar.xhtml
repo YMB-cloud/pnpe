@@ -1,0 +1,66 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" >
+
+    <div class="layout-topbar">
+        <div class="layout-topbar-wrapper">
+            <div class="layout-topbar-left">
+            
+            	<div style="padding: 20px;height: 60px;left: 13px;">
+		        	<p:commandLink  id="dynaButton" style="color:#ffffff;" ><i class="pi pi-bars" style="font-size: 1.5rem"></i></p:commandLink>
+		        </div>
+		        <p:menu model="#{menuBean.model}" overlay="true" trigger="dynaButton" my="left top" at="left bottom" toggleable="true" style="width: 200px !important;"/>
+		    
+                <h:link id="logolink"  class="layout-topbar-logo">
+                    <p:graphicImage
+                            name="images/logo-white.png"
+                            library="siberia-layout"/>
+                </h:link>
+            </div>
+
+            <ui:include src="./menu.xhtml"/>
+
+            <h:form class="layout-topbar-right">
+                <ul class="layout-topbar-actions">
+                    
+                    
+                    <li class="topbar-item profile-item">
+                        <a href="#">
+                            <span class="profile-image-wrapper">
+                                <p:graphicImage name="images/topbar/noimage.png" library="siberia-layout"/>
+                            </span>
+                            <div class="profile-info-wrapper">
+                                <h3>#{loginBean.username}</h3>
+                                <span></span>
+                            </div>
+                        </a>
+                        <ul>
+                            <li class="layout-submenu-header">
+                                <h4>#{loginBean.username}</h4>
+                            </li>
+                            <li class="layout-submenu-item">
+                                <p:commandLink action="#{loginBean.versCompte()}" class="menu-text" style="text-decoration:none;color:#000000">
+                                    <i class="pi pi-user"/>
+                                    <p><strong>Profile</strong></p>
+                                    <i class="pi pi-angle-right angle-icon"/>
+                                </p:commandLink>
+                            </li>
+                          
+                            <li class="layout-submenu-item">
+                                <p:commandLink action="#{loginBean.logout()}" class="menu-text" style="text-decoration:none;color:#000000">
+                                    <i class="pi pi-sign-out"/>
+                                    <p><strong>Déconnexion</strong></p>
+                                    <i class="pi pi-angle-right angle-icon"/>
+                                </p:commandLink>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </h:form>
+           
+        </div>
+    </div>
+
+</ui:composition>

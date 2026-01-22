@@ -1,0 +1,105 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <a tabindex="0" id="layout-config-button" class="layout-config-button">
+        <i class="pi pi-cog"/>
+    </a>
+
+    <div id="layout-config" class="layout-config">
+        <h:form id="config-form">
+            <h5>Menu Mode</h5>
+            <p:selectOneRadio value="#{guestPreferences.menuMode}" layout="pageDirection"
+                              onchange="PrimeFaces.SiberiaConfigurator.changeMenuMode(event.target.value)">
+                <f:selectItem itemLabel="Static" itemValue="layout-static"/>
+                <f:selectItem itemLabel="Overlay" itemValue="layout-overlay"/>
+                <f:selectItem itemLabel="Horizontal" itemValue="layout-horizontal"/>
+                <f:selectItem itemLabel="Megamenu" itemValue="layout-megamenu"/>
+                <p:ajax update="config-form menuform"/>
+            </p:selectOneRadio>
+
+            <hr/>
+
+            <h5>Menu Type</h5>
+            <p:selectOneRadio value="#{guestPreferences.groupedMenu}" layout="pageDirection">
+                <f:selectItem itemLabel="Grouped" itemValue="true"/>
+                <f:selectItem itemLabel="Ungrouped" itemValue="false"/>
+                <p:ajax update="config-form menuform"/>
+            </p:selectOneRadio>
+
+            <hr/>
+
+            <h5>Input Style</h5>
+            <p:selectOneRadio value="#{guestPreferences.inputStyle}" layout="pageDirection"
+                              onchange="PrimeFaces.SiberiaConfigurator.updateInputStyle(event.target.value)">
+                <f:selectItem itemLabel="Outlined" itemValue="outlined"/>
+                <f:selectItem itemLabel="Filled" itemValue="filled"/>
+                <p:ajax/>
+            </p:selectOneRadio>
+
+            <hr/>
+
+            <h5>Dark Menu Layouts</h5>
+            <div class="layout-themes">
+                <ui:repeat value="#{guestPreferences.layoutThemesDark}" var="layout">
+                    <div>
+                        <p:commandLink update="config-form logolink" title="#{layout.name}" process="@this"
+                                actionListener="#{guestPreferences.setLayout(layout.file, layout.theme, layout.logo)}"
+                                onstart="PrimeFaces.SiberiaConfigurator.beforeResourceChange()"
+                                oncomplete="PrimeFaces.SiberiaConfigurator.changeLayoutsTheme('#{layout.file}','#{layout.theme}')">
+                            <p:graphicImage name="images/configurator/layouts/#{layout.image}" library="siberia-layout"
+                                            title="#{layout.name}"/>
+                            <ui:fragment rendered="#{layout.file eq guestPreferences.layout}">
+                                <i class="pi pi-check"/>
+                            </ui:fragment>
+                        </p:commandLink>
+                    </div>
+                </ui:repeat>
+            </div>
+
+            <hr/>
+
+            <h5>Light Menu Layouts</h5>
+            <div class="layout-themes">
+                <ui:repeat value="#{guestPreferences.layoutThemesLight}" var="layout">
+                    <div>
+                        <p:commandLink update="config-form logolink" title="#{layout.name}" process="@this"
+                                actionListener="#{guestPreferences.setLayout(layout.file, layout.theme, layout.logo)}"
+                                onstart="PrimeFaces.SiberiaConfigurator.beforeResourceChange()"
+                                oncomplete="PrimeFaces.SiberiaConfigurator.changeLayoutsTheme('#{layout.file}','#{layout.theme}')">
+                            <p:graphicImage name="images/configurator/layouts/#{layout.image}" library="siberia-layout"
+                                            title="#{layout.name}"/>
+                            <ui:fragment rendered="#{layout.file eq guestPreferences.layout}">
+                                <i class="pi pi-check"/>
+                            </ui:fragment>
+                        </p:commandLink>
+                    </div>
+                </ui:repeat>
+            </div>
+
+            <hr/>
+
+            <h5>Themes</h5>
+            <div class="layout-themes">
+                <ui:repeat value="#{guestPreferences.componentThemes}" var="theme">
+                    <div>
+                        <p:commandLink actionListener="#{guestPreferences.setTheme(theme.file)}"
+                                       update="config-form logolink"
+                                       title="#{theme.name}" process="@this"
+                                       onstart="PrimeFaces.SiberiaConfigurator.beforeResourceChange()"
+                                       oncomplete="PrimeFaces.SiberiaConfigurator.changeComponentsTheme('#{theme.file}')">
+                            <p:graphicImage name="images/configurator/themes/#{theme.image}" library="siberia-layout"
+                                            title="#{theme.name}"/>
+                            <ui:fragment rendered="#{theme.file eq guestPreferences.theme}">
+                                <i class="pi pi-check"/>
+                            </ui:fragment>
+                        </p:commandLink>
+                    </div>
+                </ui:repeat>
+            </div>
+
+        </h:form>
+    </div>
+</ui:composition>

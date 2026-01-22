@@ -1,0 +1,245 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="title">Gestion des evenements</ui:define>
+
+    <ui:define name="content">
+
+    <h:form id="formRdv">
+    
+      <p:panel styleClass="p-shadow-2 p-p-3 p-mb-4" header="Gestion des evenement" toggleable="false">
+
+                    
+                     <div class="ui-fluid formgrid grid">
+                       
+						 
+                         
+
+    <!-- Date du rendez-vous -->
+    <div class="field col-12 md:col-3">
+        <b>Date debut :</b>
+        <p:calendar 
+            value="#{evenementBean.dateDebut}"
+            pattern="dd/MM/yyyy"
+            showIcon="true"
+        />
+    </div>
+<div class="field col-12 md:col-3">
+        <b>Date fin :</b>
+        <p:calendar 
+            value="#{evenementBean.dateFin}"
+            pattern="dd/MM/yyyy"
+            showIcon="true"
+        />
+    </div>
+    
+
+
+    <!-- Lieu -->
+    <div class="field col-12 md:col-6">
+        <b>Lieu :</b>
+        <p:inputText 
+            value="#{evenementBean.lieu}"
+            placeholder="Lieu "
+        />
+    </div>
+
+    <!-- Objectif -->
+    <div class="field col-12 md:col-12">
+        <b>Objectif :</b>
+        <p:inputTextarea 
+            value="#{evenementBean.objectif}"
+            rows="3"
+            autoResize="true"
+        />
+    </div>
+
+</div>
+                     
+                            
+
+                           
+                        <div  style="text-align:right">
+                        <p:commandButton value="Choisir les participants"
+                                         icon="pi pi-users"
+                                         styleClass="rounded-button ui-button-primary"  oncomplete="PF('rdvDialog').show()"/>
+                                         
+                           
+                            
+                              
+                        <p:commandButton action="#{evenementBean.versListeEvenement()}"  value="Annuler"  icon="pi pi-bars" styleClass="rounded-button ui-button-danger mr-2 mb-2" />
+                    
+                     
+                              <p:commandButton value="Créer l'evenement"
+                         action="#{evenementBean.creeEvenement()}" styleClass="rounded-button ui-button-success"/>
+                    </div>
+
+                            
+                              
+
+                        </p:panel>
+          
+                        
+
+                 <p:dialog header="Participant évènement"
+          widgetVar="rdvDialog"
+          modal="true"
+          width="80%">
+
+    <p:tabView dynamic="true" cache="true" id="tabview">
+
+        <!-- ================= ONGLET DEMANDEURS ================= -->
+        <p:tab title="Demandeurs">
+
+            <div class="ui-fluid formgrid grid">
+
+                <!-- Liste Demandeurs -->
+                <div class="field col-12 md:col-6">
+                    <p:dataTable id="listaDemandeur"
+                                 var="obj"
+                                 value="#{evenementBean.listeDemandeur}"
+                                 rows="10"
+                                 scrollable="true"
+                                 scrollHeight="300"
+                                 paginator="true"
+                                 paginatorPosition="bottom"
+                                 styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines"
+                                 reflow="true">
+
+                        <p:column headerText="Nom et prénom"
+                                  sortBy="#{obj.demandeur.personne.nom}"
+                                  filterBy="#{obj.demandeur.personne.nom}">
+                            <h:outputText
+                                value="#{obj.demandeur.personne.nom} #{obj.demandeur.personne.prenom}"/>
+                        </p:column>
+
+                        <p:column style="text-align:center; width:150px">
+                            <p:commandButton icon="pi pi-plus"
+                                             value="Ajouter"
+                                             update="formRdv:tabview:listbDemandeur"
+                                             action="#{evenementBean.ajouterDemandeur(obj)}"
+                                             styleClass="rounded-button ui-button-primary"/>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+
+                <!-- Liste Demandeurs conviés -->
+                <div class="field col-12 md:col-6">
+                    <p:dataTable id="listbDemandeur"
+                                 var="obj"
+                                 value="#{evenementBean.listeDemandeurConvies}"
+                                 rows="10"
+                                 scrollable="true"
+                                 scrollHeight="300"
+                                 paginator="true"
+                                 paginatorPosition="bottom"
+                                 styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines"
+                                 reflow="true">
+
+                        <p:column headerText="Nom et prénom"
+                                  sortBy="#{obj.demandeur.personne.nom}"
+                                  filterBy="#{obj.demandeur.personne.nom}">
+                            <h:outputText
+                                value="#{obj.demandeur.personne.nom} #{obj.demandeur.personne.prenom}"/>
+                        </p:column>
+
+                        <p:column style="text-align:center; width:150px">
+                            <p:commandButton icon="pi pi-minus"
+                                             value="Retirer"
+                                             update="formRdv:tabview:listbDemandeur"
+                                             action="#{evenementBean.retirerDemandeur(obj)}"
+                                             styleClass="rounded-button ui-button-danger"/>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+
+            </div>
+        </p:tab>
+
+        <!-- ================= ONGLET PARTENAIRES ================= -->
+        <p:tab title="Partenaires">
+
+            <div class="ui-fluid formgrid grid">
+
+                <!-- Liste Partenaires -->
+                <div class="field col-12 md:col-6">
+                    <p:dataTable id="listaPartenaire"
+                                 var="obj"
+                                 value="#{evenementBean.listePartenaie}"
+                                 rows="10"
+                                 scrollable="true"
+                                 scrollHeight="300"
+                                 paginator="true"
+                                 paginatorPosition="bottom"
+                                 styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines"
+                                 reflow="true">
+
+                        <p:column headerText="Nom et prénom"
+                                  sortBy="#{obj.personne.nom}"
+                                  filterBy="#{obj.personne.nom}">
+                            <h:outputText
+                                value="#{obj.personne.nom} #{obj.personne.prenom}"/>
+                        </p:column>
+
+                        <p:column style="text-align:center; width:150px">
+                            <p:commandButton icon="pi pi-plus"
+                                             value="Ajouter"
+                                             update="formRdv:tabview:listbPartenaire"
+                                             action="#{evenementBean.ajouterPartenaire(obj)}"
+                                             styleClass="rounded-button ui-button-primary"/>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+
+                <!-- Liste Partenaires conviés -->
+                <div class="field col-12 md:col-6">
+                    <p:dataTable id="listbPartenaire"
+                                 var="obj"
+                                 value="#{evenementBean.listePartenaireConvie}"
+                                 rows="10"
+                                 scrollable="true"
+                                 scrollHeight="300"
+                                 paginator="true"
+                                 paginatorPosition="bottom"
+                                 styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines"
+                                 reflow="true">
+
+                        <p:column headerText="Nom et prénom"
+                                  sortBy="#{obj.personne.nom}"
+                                  filterBy="#{obj.personne.nom}">
+                            <h:outputText
+                                value="#{obj.personne.nom} #{obj.personne.prenom}"/>
+                        </p:column>
+
+                        <p:column style="text-align:center; width:150px">
+                            <p:commandButton icon="pi pi-minus"
+                                             value="Retirer"
+                                             update="formRdv:tabview:listbPartenaire"
+                                             action="#{evenementBean.retirerPartenaire(obj)}"
+                                             styleClass="rounded-button ui-button-danger"/>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+
+            </div>
+        </p:tab>
+
+    </p:tabView>
+
+</p:dialog>
+                    
+         
+    
+  
+        
+       
+    </h:form>
+
+</ui:define>
+
+
+</ui:composition>

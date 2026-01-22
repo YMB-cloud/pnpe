@@ -1,0 +1,172 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="title">Gestion des rendez-vous</ui:define>
+
+    <ui:define name="content">
+
+    <h:form id="formRdv">
+    
+      <p:panel styleClass="p-shadow-2 p-p-3 p-mb-4" header="Gestion des rendez-vous" toggleable="false">
+
+                    
+                     <div class="ui-fluid formgrid grid">
+
+    <!-- Date du rendez-vous -->
+    <div class="field col-12 md:col-3">
+        <b>Date :</b>
+        <p:calendar 
+            value="#{rendezVousBean.dateRdv}"
+            pattern="dd/MM/yyyy"
+            showIcon="true"
+        />
+    </div>
+
+    <!-- Heure début -->
+    <div class="field col-12 md:col-3">
+        <b>Heure début :</b>
+        <p:calendar 
+            value="#{rendezVousBean.heureDebutRdv}"
+            pattern="HH:mm"
+            timeOnly="true"
+        />
+    </div>
+
+    <!-- Heure fin -->
+    <div class="field col-12 md:col-3">
+        <b>Heure fin :</b>
+        <p:calendar 
+            value="#{rendezVousBean.heureFinRdv}"
+            pattern="HH:mm"
+            timeOnly="true"
+        />
+    </div>
+
+    <!-- Lieu -->
+    <div class="field col-12 md:col-3">
+        <b>Lieu :</b>
+        <p:inputText 
+            value="#{rendezVousBean.lieu}"
+            placeholder="Lieu du rendez-vous"
+        />
+    </div>
+
+    <!-- Objectif -->
+    <div class="field col-12 md:col-12">
+        <b>Objectif :</b>
+        <p:inputTextarea 
+            value="#{rendezVousBean.objectif}"
+            rows="3"
+            autoResize="true"
+        />
+    </div>
+
+</div>
+                     
+                            
+
+                           
+                
+                          <div class="flex align-items-center justify-content-between">
+                            <p:commandButton value="Choisir les participants"
+                                         icon="pi pi-check"
+                                         styleClass="rounded-button ui-button-primary"  oncomplete="PF('rdvDialog').show()"/>
+                                         
+                            <p:commandButton action="#{rendezVousBean.versRendezVous}"  value="Liste des rendez-vous"  icon="pi pi-bars" styleClass="rounded-button ui-button-primary mr-2 mb-2" />
+                             
+                              <p:commandButton value="Créer le rendez-vous"
+                         action="#{rendezVousBean.creeRdv}" styleClass="rounded-button ui-button-primary"/>
+                              
+                           </div>    
+
+                        </p:panel>
+          
+                        
+
+                    
+         
+          
+               		<p:dialog header="Participant au rendez-vous" widgetVar="rdvDialog" modal="true" width="80%">
+		    
+		          
+                    <div class="ui-fluid formgrid grid" >
+                    
+                               <div class="field col-12 md:col-6">   
+		                     
+						
+						       <p:dataTable id="lista"  var="obj" value="#{rendezVousBean.listeParticipRdv}"    rows="10" paginatorPosition="bottom" 
+                         scrollable="true"   
+             scrollHeight="300"  styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines" reflow="true">
+
+                            <p:column headerText="Nom et prénom" sortBy="#{obj.personne.nom}" filterBy="#{obj.personne.nom}">
+                                <h:outputText value="#{obj.personne.nom}  #{obj.personne.nom}" />
+                            </p:column>
+                         
+                             
+                            
+                           
+                                <p:column style="text-align:center; width:150px">
+                    <p:commandButton icon="pi pi-plus" value="Ajouter" 
+                                   update="formRdv:listb"
+                                    action="#{rendezVousBean.ajouterListeParticipantRdv(obj)}"
+                                    styleClass="rounded-button ui-button-primary"/>
+                    
+                    
+              
+                            </p:column>                             
+                            
+                          
+                        </p:dataTable> 
+		              
+		                            
+		                             
+                            
+                           </div> 
+                              <div class="field col-12 md:col-6">   
+		                     
+						
+						       <p:dataTable id="listb"  var="obj" value="#{rendezVousBean.listeParticipReelRdv}"   rows="10" paginatorPosition="bottom" 
+                       scrollable="true"   
+             scrollHeight="300" styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines" reflow="true">
+
+                            <p:column headerText="Nom et prénom" sortBy="#{obj.personne.nom}" filterBy="#{obj.personne.nom}">
+                                <h:outputText value="#{obj.personne.nom}  #{obj.personne.nom}" />
+                            </p:column>
+                         
+                             
+                            
+                           
+                                <p:column style="text-align:center; width:150px">
+                    <p:commandButton icon="pi pi-minus" value="Retirer" 
+                                     update="formRdv:listb"
+                                    action="#{rendezVousBean.retirerListeParticipantRdv(obj)}"
+                                    styleClass="rounded-button ui-button-danger"/>
+                    
+                    
+              
+                            </p:column>                             
+                            
+                          
+                        </p:dataTable> 
+		              
+		                            
+		                             
+                            
+                           </div>
+                                                                                       
+                    </div>		    
+		    		
+		    
+		       </p:dialog>   
+        
+       
+    </h:form>
+
+</ui:define>
+
+
+</ui:composition>

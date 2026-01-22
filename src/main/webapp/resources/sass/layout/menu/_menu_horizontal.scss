@@ -1,0 +1,278 @@
+
+@media (min-width:993px) {
+    .layout-wrapper {
+        &.layout-horizontal {
+            .layout-topbar{
+                .layout-topbar-wrapper{
+                    .layout-topbar-right {
+                        flex-grow: 0;
+                    }
+                }
+                .menu-wrapper {
+                    top: 0;
+                    flex-grow: 1;
+                    height: 100%;
+                    transform: none;
+                    position: relative;
+                    display: block;
+                    border: none;
+
+        
+                    .layout-menu-container {
+                        overflow: visible;
+                        height: 100%;
+        
+                        .layout-menu {
+                            list-style-type: none;
+                            margin: 0px 15px;
+                            padding: 0;
+                            @include flex();
+                            @include flex-direction-row();
+
+                            li {
+                                &.active-menuitem {
+                                    > a {                    
+                                        i.layout-submenu-toggler {
+                                            @include rotate(-180deg);
+                                        }
+                                    }
+
+                                    > ul {
+                                        display: block;
+                                    }
+                                }
+                            }
+                
+                            > li {
+                                width: auto;
+                                padding: 0;
+                                position: relative;
+                                border: none;
+                                border-bottom: 2px solid transparent;
+                                height: 60px;
+        
+                                .layout-menu-tooltip {
+                                    display: none;
+                                }
+                
+                                > a {
+                                    height: 60px;
+                                    margin: 0px 8px;
+                                    padding: 10px;
+                                    @include flex();
+                                    @include flex-align-center();
+                                    @include flex-justify-between();
+                                    @include border-radius(0);
+                                    @include transition(all $transitionDuration);
+                                    position: relative;
+                                    border: none;
+                                    
+                                    .layout-menuitem-text {
+                                        vertical-align: middle;
+                                        margin-left: 0;
+                                        margin-right: 8px;
+                                    }
+                
+                                    i {
+                                        position: static;
+                                        vertical-align: middle;
+                                        margin-top: 0;
+                                        top: auto;
+                                        right: auto;
+                                        width: 17px;
+                                        height: 17px;
+                                        font-size: 17px;
+                                        margin-right: 8px;
+        
+                                        &.layout-submenu-toggler {
+                                            @include transition(all $transitionDuration);
+                                            font-size: 18px;
+                                            display: inline-block;
+                                            margin-top: 2px;
+                                            margin-right: 0;
+                                            margin-left: 0px;
+                                            margin-right: 0;
+                                        }
+                                    }
+                
+                                    .menuitem-badge {
+                                        display: none;
+                                        margin-left: auto;
+                                    }
+                                }
+
+                                &.layout-root-menuitem {
+                                    > div {
+                                        display: none;
+                                    }
+                                }
+                
+                                > ul {
+                                    display: none;
+                                    list-style-type: none;
+                                    top: 60px;
+                                    left: 0px;
+                                    width: 230px;
+                                    position: absolute;
+                                    padding: 8px 0;
+                                    margin: 0;
+                                    z-index: 100;
+                                    overflow: auto;
+                                    max-height: 450px;
+                                    @include border-radius-bottom(4px);
+                                    box-shadow: 0 1px 8px 0 rgba(82, 85, 87, 0.16);
+                
+                                    > li {
+                                        padding: 0;
+                                        border-bottom: none;
+                                        vertical-align: center;
+                
+                                        a {
+                                            padding-left: 12px;
+                                            justify-content: flex-start;
+                                            padding-left: 12px;
+        
+                                            .layout-menuitem-text {
+                                                vertical-align: middle;
+                                                margin-left: 0;
+                                            }
+        
+                                            i {
+                                                position: relative;
+                                                left: 0;
+                                            }
+        
+                                            .layout-submenu-toggler {
+                                                display: block;
+                                                left: auto;
+                                                right: 10px;
+                                                position: absolute;
+                                                top: 50%;
+                                                margin-top: -.5em;
+                                            }
+                                        }
+                
+                                        ul {
+                                            li {
+                                                a {
+                                                    padding-left: 24px;
+                                                }
+                
+                                                ul {
+                                                    li {
+                                                        a {
+                                                            padding-left: 36px;
+                                                        }
+                                                    }
+                
+                                                    ul {
+                                                        li {
+                                                            a {
+                                                                padding-left: 48px;
+                                                            }
+                                                        }
+                
+                                                        ul {
+                                                            li {
+                                                                a {
+                                                                    padding-left: 60px;
+                                                                }
+                                                            }
+                
+                                                            ul {
+                                                                li {
+                                                                    a {
+                                                                        padding-left: 72px;
+                                                                    }
+                                                                }
+                
+                                                                ul {
+                                                                    li {
+                                                                        a {
+                                                                            padding-left: 84px;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                
+                            .menuitem-badge {
+                                display: inline-block;
+                                width: 16px;
+                                height: 16px;
+                                margin-right: 6px;
+                                text-align: center;
+                                font-size: $fontSize - 2;
+                                font-weight: 700;
+                                line-height: 16px;
+                                @include border-radius(50%);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width:993px) and (max-width:1500px){
+    .layout-wrapper {
+        &.layout-horizontal {
+            .layout-topbar {
+                .layout-topbar-wrapper{
+                    flex-wrap: wrap;
+                    height: auto;
+
+                    .layout-topbar-left {
+                        order: 1;
+                        width: 15%;
+                        height: 60px;
+                    }
+                    .menu-wrapper {
+                        border-top: solid 1px $topbarBorderColor;
+                        padding-left: 2%;
+                        flex-grow: 1;
+                        flex-shrink: 1;
+                        flex-basis: auto;
+                        order: 4;
+                        width: 100%;
+                    }
+                    .layout-topbar-right {
+                        order: 2;
+                        @include flex();
+                        @include flex-justify-end();
+                        width: 72%;
+                    }
+                    .layout-rightpanel-button {
+                        order: 3;
+                        width: 5%;
+                    }
+                   
+                }
+            }
+
+            .layout-main {
+                padding-top: 120px;
+
+                .layout-config{
+                    top: 120px;
+                }
+            }
+            
+            .layout-rightpanel {
+                top: 120px;
+                height: calc(100% - 120px);
+            }
+        }
+    }
+}
+
+
+

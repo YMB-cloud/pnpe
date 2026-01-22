@@ -1,0 +1,14 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:sb="http://primefaces.org/siberia">
+
+    <sb:menu  widgetVar="SiberiaMenuWidget"  >
+        <p:submenu id="m_homepage" label="Main Menu" icon="pi pi-fw pi-home" >
+            <p:menuitem id="m_dashboard" value="Dashboard" icon="pi pi-fw pi-home" action="#{profileBean.versProfiles}" />
+         </p:submenu>
+    </sb:menu>
+
+</ui:composition>

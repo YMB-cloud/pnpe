@@ -1,0 +1,128 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="title">Dashboard Administratif</ui:define>
+
+    <ui:define name="content">
+        <div class="grid" style="margin-bottom:2rem;">
+
+            <!-- ================= KPI CARDS ================= -->
+            
+           
+
+           
+
+            
+
+        </div>
+             <!-- ================= FORMULAIRE PERSONNEL ================= -->
+            <div class="col-12 xl:col-12">
+                <h:form>
+                    <p:panel header="Formulaire Personnel" style="background:white;" styleClass="p-shadow-3">
+                        <div class="ui-fluid formgrid grid">
+
+                            <div class="col-12 md:col-6">
+                             <p:outputLabel value="Nom" />
+                                <p:inputText  label="Nom"/>
+                            </div>
+                            <div class="col-12 md:col-6">
+                               <p:outputLabel value="Prenom" />
+                                <p:inputText  label="Prénom"/>
+                            </div>
+                            <div class="col-12 md:col-6">
+                              <p:outputLabel value="Matricule" />
+                                <p:inputText  label="Matricule"/>
+                            </div>
+                            <div class="col-12 md:col-6">
+                             <p:outputLabel value="Fonction" />
+                                <p:selectOneMenu>
+                                    <f:selectItem itemLabel="Agent administratif" itemValue="Agent administratif"/>
+                                    <f:selectItem itemLabel="Chargé RH" itemValue="Chargé RH"/>
+                                    <f:selectItem itemLabel="Directeur" itemValue="Directeur"/>
+                                    <f:selectItem itemLabel="Comptable" itemValue="Comptable"/>
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="col-12 md:col-6">
+                            <p:outputLabel value="Departement" />
+                                <p:selectOneMenu>
+                                    <f:selectItem itemLabel="RH" itemValue="RH"/>
+                                    <f:selectItem itemLabel="Finance" itemValue="Finance"/>
+                                    <f:selectItem itemLabel="Informatique" itemValue="Informatique"/>
+                                    <f:selectItem itemLabel="Admin" itemValue="Admin"/>
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="col-12 md:col-6">
+                            <p:outputLabel value="Date embauche" />
+                                <p:calendar value="01/01/2020" label="Date d'embauche" showIcon="true" pattern="dd/MM/yyyy"/>
+                            </div>
+                            <div class="col-12 md:col-6">
+                            <p:outputLabel value="Salaire" />
+                                <p:inputNumber value="350000" label="Salaire" mode="decimal"/>
+                            </div>
+                            <div class="col-12">
+                           <p:outputLabel value="Observations" />
+                                <p:inputTextarea value="Employé permanent" label="Observations" rows="3"/>
+                            </div>
+
+                        </div>
+                        <p:separator/>
+                        <div class="grid">
+                            <div class="col-6">
+                                <p:button value="Enregistrer" icon="pi pi-save" styleClass="p-button-success"/>
+                            </div>
+                            <div class="col-6">
+                                <p:button value="Annuler" icon="pi pi-times" styleClass="p-button-secondary"/>
+                            </div>
+                        </div>
+                    </p:panel>
+                </h:form>
+            </div>
+
+        <!-- ================= LISTE DU PERSONNEL ================= -->
+        <div class="grid" style="margin-bottom:2rem;">
+            <div class="col-12 xl:col-12">
+                <p:panel header="Liste du Personnel" style="background:white;" styleClass="p-shadow-3">
+                    <p:dataTable styleClass="p-datatable-gridlines p-datatable-sm" scrollable="true" scrollHeight="300px">
+
+                        <p:column headerText="Matricule">
+                            <h:outputText value="EMP001"/>
+                        </p:column>
+
+                        <p:column headerText="Nom">
+                            <h:outputText value="Jean"/>
+                        </p:column>
+
+                        <p:column headerText="Prénom">
+                            <h:outputText value="Dupont"/>
+                        </p:column>
+
+                        <p:column headerText="Poste">
+                            <h:outputText value="Agent administratif"/>
+                        </p:column>
+
+                        <p:column headerText="Département">
+                            <h:outputText value="Ressources Humaines"/>
+                        </p:column>
+
+                        <p:column headerText="Date d'embauche">
+                            <h:outputText value="01/01/2020"/>
+                        </p:column>
+
+                        <p:column headerText="Salaire">
+                            <h:outputText value="350 000"/>
+                        </p:column>
+
+                    </p:dataTable>
+                </p:panel>
+            </div>
+
+       
+
+        </div>
+
+    </ui:define>
+</ui:composition>

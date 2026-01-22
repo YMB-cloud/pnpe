@@ -1,0 +1,234 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+                
+
+    <ui:define name="title">Dashboard</ui:define>
+
+    <ui:define name="head">
+    
+        <h:outputScript name="js/chart.js" library="demo"/>
+        
+        <script type="text/javascript">
+        
+		$(function () {
+		    new Chart(document.getElementById("dashboard-chart"), {
+		        type: 'bubble',
+		        data: {
+		            datasets: [
+		                {
+		                    label: "Demandeurs d'emploi",
+		                    backgroundColor: "#36a2eb",
+		                    borderColor: "#36a2eb",
+		                    data: [
+		                        { x: 1, y: 12450, r: 15 } // r = taille de la bulle
+		                    ]
+		                },
+		                {
+		                    label: "Offres d'emploi",
+		                    backgroundColor: "#4bc0c0",
+		                    borderColor: "#4bc0c0",
+		
+		                    data: [
+		                        { x: 2, y: 3215, r: 10 }
+		                    ]
+		                },
+		                {
+		                    label: "Placements réussis",
+		                    backgroundColor: "#ffce56",
+		                    borderColor: "#ffce56",
+		                    data: [
+		                        { x: 3, y: 1020, r: 8 }
+		                    ]
+		                },
+		                {
+		                    label: "Formations suivies",
+		                    backgroundColor: "#ff6384",
+		                    borderColor: "#ff6384",
+		                    data: [
+		                        { x: 4, y: 450, r: 6 }
+		                    ]
+		                }
+		            ]
+		        },
+		        options: {
+		            responsive: true,
+		            plugins: {
+		                legend: {
+		                    display: true,
+		                    position: 'bottom'
+		                },
+		                title: {
+		                    display: true,
+		                    text: 'Tableau de performance des indicateurs',
+		                    font: {
+		                        size: 16
+		                    }
+		                }
+		            },
+		            scales: {
+		                x: {
+		                    title: {
+		                        display: true,
+		                        text: 'Indicateurs'
+		                    },
+		                    ticks: {
+		                        callback: function(value, index) {
+		                            const labels = ["Demandeurs", "Offres", "Placements", "Formations"];
+		                            return labels[index] || '';
+		                        }
+		                    }
+		                },
+		                y: {
+		                    title: {
+		                        display: true,
+		                        text: 'Nombre'
+		                    },
+		                    beginAtZero: true
+		                }
+		            },
+		            layout: {
+		                padding: 20
+		            }
+		        }
+		    });
+		});
+</script>
+        
+    </ui:define>
+
+    <ui:define name="content">
+    
+        
+    
+    
+        <div class="grid layout-dashboard">
+        
+            <div class="col-12">
+                <div class="card status">
+                    <div class="status-header">
+                        <div class="title">
+                            Bienvenu #{securityContextImpl.utilisateur.nomprenom}
+                        </div>
+                        <div class="icons">
+                            <div class="icon">
+                                <i class="pi pi-comments"/>
+                            </div>
+                            <div class="icon">
+                                <i class="pi pi-window-maximize"/>
+                            </div>
+                            <div class="icon">
+                                <i class="pi pi-bookmark"/>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            
+             <div class="col-12 xl:col-3 md:col-6">
+                <div class="grid grid-nogutter status-box status-box-3">
+                    <div class="col-4 status-box-image">
+                        <p:graphicImage name="images/dashboard/icon-checkins.png" library="siberia-layout"/>
+                    </div>
+                    <div class="col-6 status-box-text">
+                        <h5>Demandeurs inscrits</h5>
+                        <span>12 450</span>
+                    </div>
+                    <div class="col-2 status-box-icon">
+                        <i class="pi pi-user-edit"/>
+                    </div>
+                </div>
+            </div>  
+            
+            <div class="col-12 xl:col-3 md:col-6">
+                <div class="grid grid-nogutter status-box status-box-2">
+                    <div class="col-4 status-box-image">
+                        <p:graphicImage name="images/dashboard/icon-filessynced.png" library="siberia-layout"/>
+                    </div>
+                    <div class="col-6 status-box-text">
+                        <h5>Placements réussis</h5>
+                        <span>1 020</span>
+                    </div>
+                    <div class="col-2 status-box-icon">
+                        <i class="pi pi-folder"/>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 xl:col-3 md:col-6">
+                <div class="grid grid-nogutter status-box status-box-4">
+                    <div class="col-4 status-box-image">
+                        <p:graphicImage name="images/dashboard/icon-useronline.png" library="siberia-layout"/>
+                    </div>
+                    <div class="col-6 status-box-text">
+			            <h5>Formations suivies</h5>
+			            <span>450</span>
+                    </div>
+                    <div class="col-2 status-box-icon">
+                        <i class="pi pi-folder-open"/>
+                    </div>
+                </div>
+            </div>  
+            
+			<div class="col-12 xl:col-3 md:col-6">
+                <div class="grid grid-nogutter status-box status-box-1">
+                    <div class="col-4 status-box-image">
+                        <p:graphicImage name="images/dashboard/icon-message.png" library="siberia-layout"/>
+                    </div>
+                    <div class="col-6 status-box-text">
+                        <h5>Offres disponibles</h5>
+                        <span>3 215</span>
+                    </div>
+                    <div class="col-2 status-box-icon">
+                        <i class="pi pi-users"/>
+                    </div>
+                </div>
+            </div>
+            
+            
+			   <div class="col-12">
+			   
+			     <div class="grid">
+	                <div class="col-12">
+	                    <p:dataTable var="item" value="#{dashboardBean.dummyData}" 
+	                                 styleClass="p-datatable-gridlines p-datatable-sm" 
+	                                 scrollable="true" scrollHeight="300px">
+
+	                        <p:column headerText="Indicateur">
+	                            <h:outputText value="#{item.indicator}" />
+	                        </p:column>
+	
+	                        <p:column headerText="Valeur">
+	                            <h:outputText value="#{item.value}" />
+	                        </p:column>
+	
+	                        <p:column headerText="Indice">
+	                            <h:outputText value="#{item.indice}" />
+	                        </p:column>
+	
+	                        <p:column headerText="Statut">
+	                            <h:outputText value="#{item.status}" />
+	                        </p:column>
+	
+	                    </p:dataTable>
+	                </div>
+            	</div>
+            
+              <div class="col-12">
+	           	<div class="grid" style="margin-bottom:2rem; background-color:white; padding:1rem; border-radius:5px;">
+				    <div class="col-12">
+				        <canvas id="dashboard-chart" style="width:100%; height:300px; background-color:white;"></canvas>
+				    </div>
+				</div>
+			  </div>  
+			   
+			</div>        
+            
+        </div>
+    </ui:define>
+</ui:composition>

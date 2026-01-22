@@ -1,0 +1,169 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" >
+
+    <div class="layout-topbar">
+        <div class="layout-topbar-wrapper" >
+            <div class="layout-topbar-left">
+                <div class="menu-button">
+                    <i class="pi pi-bars" />
+                </div>
+                <h:link id="logolink"  class="layout-topbar-logo">
+                    <img src="/scan/#{referentielService.structure.logo}" alt=""/>
+                </h:link>
+            </div>
+
+            <ui:include src="./menu.xhtml"/>
+
+            <h:form class="layout-topbar-right" >
+                <ul class="layout-topbar-actions">
+                    
+                    
+                    <li class="topbar-item search-item">
+                        <a href="#" >
+                            <i class="topbar-icon pi pi-search" />
+                        </a>
+                        <ul>
+                            <li class="layout-submenu-item search-item" >
+                                <h:form onsubmit="return false;">
+                                    <h:panelGroup styleClass="ui-input-icon-right">
+                                        <p:inputText placeholder="Search..."/>
+                                        <i class="pi pi-search" />
+                                    </h:panelGroup>
+                                </h:form>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="topbar-item messages">
+                        <a href="#">
+                            <i class="topbar-icon pi pi-comment" />
+                        </a>
+                        <ul>
+                            <li class="layout-submenu-header">
+                                <h4>Messages <span>4</span></h4>
+                                <span> Mark All as Read</span>
+                            </li>
+                            <li class="layout-submenu-item">
+                                <div class="menu-text">
+                                    <p:graphicImage name="images/topbar/avatar-profile-1.png" library="siberia-layout"/>
+                                    <p>Hey there! Give me a call...</p>
+                                </div>
+                            </li>
+                            <li class="layout-submenu-item">
+                                <div class="menu-text">
+                                    <p:graphicImage name="images/topbar/avatar-profile-2.png" library="siberia-layout"/>
+                                    <p>Reports attached</p>
+                                </div>
+                            </li>
+                            <li class="layout-submenu-item">
+                                <div class="menu-text">
+                                    <p:graphicImage name="images/topbar/avatar-profile-3.png" library="siberia-layout"/>
+                                    <p>About your invoice</p>
+                                </div>
+                            </li>
+                            <li class="layout-submenu-item">
+                                <div class="menu-text">
+                                    <p:graphicImage name="images/topbar/avatar-profile-4.png" library="siberia-layout"/>
+                                    <p>Meeting today</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>                    
+                    <li class="topbar-item notifications">
+                        <a href="#">
+                            <i class="topbar-icon pi pi-bell" />
+                        </a>
+                        <ul>
+                            <li class="layout-submenu-header">
+                                <h4>Notifications </h4>
+                                <span> Mark All as Read</span>
+                            </li>
+                            <li class="layout-submenu-item">
+                                <div class="menu-text">
+                                    <div>
+                                        <p:graphicImage name="images/topbar/topbar-carmen.png"
+                                                        library="siberia-layout"/>
+                                        <p><strong>Carmen Beltrán </strong>mentioned you in a comment in PrimeFaces </p>
+                                    </div>
+
+                                    <span class="time"> <i class="pi pi-clock"/> 3h</span>
+                                </div>
+                            </li>
+                            <li class="layout-submenu-item">
+                                <div class="menu-text">
+                                    <div>
+                                        <p:graphicImage name="images/topbar/topbar-chun.png" library="siberia-layout"/>
+                                        <p><strong>Yi Chun-Hwa</strong> marked himself safe during <strong>The Getty
+                                            Fire</strong></p>
+                                    </div>
+
+                                    <span class="time"> <i class="pi pi-clock"/> 2d</span>
+                                </div>
+                            </li>
+                            <li class="layout-submenu-item">
+                                <div class="menu-text">
+                                    <div>
+                                        <p:graphicImage name="images/topbar/topbar-primefaces.png"
+                                                        library="siberia-layout"/>
+                                        <p><strong>PrimeFaces</strong> has a new post from
+                                            <strong>Chineze Uchechey</strong></p>
+                                    </div>
+                                    <span class="time"> <i class="pi pi-clock"/> 4w</span>
+                                </div>
+                            </li>
+                            <li class="layout-submenu-item">
+                                <div class="menu-text">
+                                    <div>
+                                        <p:graphicImage name="images/topbar/topbar-cermodern.png"
+                                                        library="siberia-layout"/>
+                                        <p><strong>CerModern</strong> added 2 new events near you </p>
+                                    </div>
+
+                                    <span class="time"> <i class="pi pi-clock"/> 5w</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>                    
+                    <li class="topbar-item profile-item">
+                        <a href="#">
+                            <span class="profile-image-wrapper">
+                            <i class="pi pi-user" />
+                            </span>
+                            <div class="profile-info-wrapper">
+                                <h3>#{login.userConnecte.login}</h3>
+                                <span>#{login.userConnecte.site.libelle}</span>
+                            </div>
+                        </a>
+                        <ul>
+                            <li class="layout-submenu-header">
+                                <h4>#{login.userConnecte.prenom} #{login.userConnecte.nom}</h4>
+                            </li>
+                            <li class="layout-submenu-item">
+                                <h:commandLink action="#{utilisateurService.versMyAccount()}" class="menu-text">
+                                    <i class="pi pi-user"/>
+                                    <p>Mon compte</p>
+                                    <i class="pi pi-angle-right angle-icon"/>
+                                </h:commandLink>
+                            </li>
+                          
+                            <li class="layout-submenu-item">
+                                <h:commandLink action="#{login.logout()}" class="menu-text">
+                                    <i class="pi pi-sign-out"/>
+                                    <p>Déconnexion</p>
+                                    <i class="pi pi-angle-right angle-icon"/>
+                                </h:commandLink>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+	            <p:commandLink action="#{loginBean.logout()}" class="layout-rightpanel-button">
+	                <i class="pi pi-power-off" />
+	            </p:commandLink>                
+            </h:form>
+           
+        </div>
+    </div>
+
+</ui:composition>

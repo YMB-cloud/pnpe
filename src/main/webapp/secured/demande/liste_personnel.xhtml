@@ -1,0 +1,162 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="title">Gestion du Personnel</ui:define>
+
+    <ui:define name="content">
+
+        <!-- ================= WIDGETS RÉCAPITULATIFS ================= -->
+        <div class="grid mb-4">
+
+            <div class="col-12 md:col-3">
+                <div class="card p-shadow-3 text-center">
+                    <h6>Salariés permanents</h6>
+                    <h2>3</h2>
+                    <i class="pi pi-users" style="font-size:2rem;color:#2563eb;"></i>
+                </div>
+            </div>
+
+            <div class="col-12 md:col-3">
+                <div class="card p-shadow-3 text-center">
+                    <h6>Stagiaires</h6>
+                    <h2>2</h2>
+                    <i class="pi pi-id-card" style="font-size:2rem;color:#10b981;"></i>
+                </div>
+            </div>
+
+            <div class="col-12 md:col-3">
+                <div class="card p-shadow-3 text-center">
+                    <h6>Main-d’œuvre non permanente</h6>
+                    <h2>2</h2>
+                    <i class="pi pi-briefcase" style="font-size:2rem;color:#f59e0b;"></i>
+                </div>
+            </div>
+
+            <div class="col-12 md:col-3">
+                <div class="card p-shadow-3 text-center">
+                    <h6>Effectif total</h6>
+                    <h2>7</h2>
+                    <i class="pi pi-chart-bar" style="font-size:2rem;color:#7c3aed;"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ================= TABLE DU PERSONNEL ================= -->
+        <p:panel header="Liste du Personnel" styleClass="p-shadow-3 mb-4">
+
+    <p:dataTable value="#{demandeBean.personnel}" var="p"
+                 scrollable="true" scrollHeight="350"
+                 styleClass="p-datatable-sm p-datatable-gridlines">
+
+        <p:column headerText="Matricule">
+            <h:outputText value="#{p.matricule}"/>
+        </p:column>
+
+        <p:column headerText="Nom &amp; Prénom">
+            <h:outputText value="#{p.nomPrenom}"/>
+        </p:column>
+
+
+        <p:column headerText="Fonction">
+            <h:outputText value="#{p.fonction}"/>
+        </p:column>
+
+        <p:column headerText="Date d'entrée">
+            <h:outputText value="#{p.dateEntree}"/>
+        </p:column>
+
+        <p:column headerText="Statut">
+            <p:tag value="#{p.statut}"
+                   severity="#{p.statut eq 'Salariés permanents' ? 'success' :
+                               p.statut eq 'Stagiaire' ? 'info' : 'warning'}"/>
+        </p:column>
+
+    </p:dataTable>
+
+</p:panel>
+        
+
+        <!-- ================= FICHE PERSONNEL ================= -->
+<!--         <div class="grid">
+
+            <div class="col-12 xl:col-6">
+                <p:panel header="Fiche Personnel" styleClass="p-shadow-3">
+
+                    <h:panelGrid columns="2" cellpadding="6" style="width:100%">
+                        <h:outputText value="Matricule :" />
+                        <h:outputText value="EMP-0012"/>
+
+                        <h:outputText value="Nom :" />
+                        <h:outputText value="NGUEMA"/>
+
+                        <h:outputText value="Prénom :" />
+                        <h:outputText value="Alain"/>
+
+                        <h:outputText value="Catégorie :" />
+                        <h:outputText value="Salarié permanent"/>
+
+                        <h:outputText value="Fonction :" />
+                        <h:outputText value="Comptable"/>
+
+                        <h:outputText value="Type de contrat :" />
+                        <h:outputText value="CDI"/>
+
+                        <h:outputText value="Situation CNSS :" />
+                        <h:outputText value="Déclaré"/>
+                    </h:panelGrid>
+
+                </p:panel>
+            </div>
+
+            ================= ACTIONS =================
+            <div class="col-12 xl:col-6">
+                <h:form>
+                    <p:panel header="Actions spéciaux" styleClass="p-shadow-3">
+
+                        <div class="grid p-fluid">
+
+                            <div class="col-12">
+                                <p:selectOneMenu label="Action">
+                                    <f:selectItem itemLabel="Mettre à jour" itemValue="update"/>
+                                    <f:selectItem itemLabel="Suspendre" itemValue="suspend"/>
+                                    <f:selectItem itemLabel="Radier" itemValue="radier"/>
+                                </p:selectOneMenu>
+                            </div>
+
+                            <div class="col-12">
+                                <p:inputTextarea rows="4"
+                                                 label="Commentaire"
+                                                 value="Personnel conforme aux déclarations"/>
+                            </div>
+
+                        </div>
+
+                        <p:separator/>
+
+                        <div class="grid">
+                            <div class="col-6">
+                                <p:button value="Valider"
+                                          icon="pi pi-check"
+                                          styleClass="p-button-success"/>
+                            </div>
+                            <div class="col-6">
+                                <p:button value="Retour"
+                                          icon="pi pi-arrow-left"
+                                          styleClass="p-button-secondary"/>
+                            </div>
+                        </div>
+
+                    </p:panel>
+                </h:form>
+            </div>
+
+        </div> -->
+
+    </ui:define>
+
+</ui:composition>

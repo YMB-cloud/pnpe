@@ -1,0 +1,173 @@
+.layout-wrapper {
+    .menu-wrapper {
+        background-color: $menuBgColor;
+        border: solid 1px $menuBorderColor;
+    
+        .layout-menu {
+            > li {
+                > a {
+                    .layout-menuitem-text {
+                        color: $rootMenuitemTextColor;
+                    }
+    
+                    i {
+                        color: $rootMenuitemIconColor;
+                    }
+    
+                    &:hover {
+                        .layout-menuitem-text {
+                            color: $rootMenuitemTextColor;
+                        }
+    
+                        i {
+                            color: $rootMenuitemIconColor;
+                        }
+                    }
+                }
+    
+                &.active-menuitem {
+                    > a {
+                        border-color:  $activeRootMenuitemBorderColor;
+    
+                        .layout-menuitem-text {
+                            color: $activeRootMenuitemTextColor;
+                        }
+    
+                        i {
+                            color: $activeRootMenuitemIconColor;
+                        }
+                    }
+                }
+    
+                > ul {
+                    background-color: $horizontalSubmenuBgColor;
+    
+                    li {
+                        a {
+                            .layout-menuitem-text {
+                                color: $submenuItemTextColor;
+                            }
+    
+                            i {
+                                color: $submenuItemIconColor;
+                            }
+    
+                            &:hover {
+                                .layout-menuitem-text {
+                                    color: $submenuItemHoverTextColor;
+                                }
+    
+                                i {
+                                    color: $submenuItemHoverTextColor;
+                                }
+                            }
+                        }
+    
+                        &.active-menuitem {
+                            > a {
+                                border-color:  $activeSubMenuitemBorderColor;
+    
+                                .layout-menuitem-text {
+                                    color: $activeSubmenuItemTextColor;
+                                }
+    
+                                i {
+                                    color: $activeSubmenuItemIconColor;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    &.layout-horizontal {
+        @media (min-width: 993px) {
+            .layout-topbar {
+                .menu-wrapper {
+                    background-color: transparent;
+                    
+                    .layout-menu {
+                        > li {
+                            > a {
+                                .layout-menuitem-text {
+                                    color: $rootMenuitemTextColor;
+                                }
+        
+                                i {
+                                    color: $rootMenuitemIconColor;
+                                }
+        
+                                &:hover {
+                                    .layout-menuitem-text {
+                                        color: $rootMenuitemHoverTextColor;
+                                    }
+            
+                                    i {
+                                        color: $rootMenuitemHoverTextColor;
+                                    }
+                                }
+                            }
+        
+                            &.active-menuitem {
+                                border-color: $activeRootMenuitemBorderColor;
+    
+                                > a {
+                                    .layout-menuitem-text {
+                                        color: $activeRootMenuitemTextColor;
+                                    }
+            
+                                    i {
+                                        color: $activeRootMenuitemIconColor;
+                                    }
+                                }
+                            }
+        
+                            > ul {
+                                background-color: $horizontalSubmenuBgColor;
+        
+                                li {
+                                    a {
+                                        .layout-menuitem-text {
+                                            color: $submenuItemTextColor;
+                                        }
+        
+                                        i {
+                                            color: $submenuItemIconColor;
+                                        }
+    
+                                        &:hover {
+                                            .layout-menuitem-text {
+                                                color: $submenuItemHoverTextColor;
+                                            }
+                
+                                            i {
+                                                color: $submenuItemHoverTextColor;
+                                            }
+                                        }
+                                    }
+        
+                                    &.active-menuitem {
+                                        > a {
+                                            border-color:  $activeSubMenuitemBorderColor;
+    
+                                            .layout-menuitem-text {
+                                                color: $activeSubmenuItemTextColor;
+                                            }
+        
+                                            i {
+                                                color: $activeSubmenuItemIconColor;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+         
+        }
+    }
+}

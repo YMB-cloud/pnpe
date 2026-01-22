@@ -1,0 +1,189 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="title">Dashboard Administratif</ui:define>
+
+    <ui:define name="content">
+        <div class="grid" style="margin-bottom:2rem;">
+
+            <!-- ================= KPI CARDS ================= -->
+            <div class="col-12 xl:col-3 md:col-6">
+                <div class="card p-shadow-3" style="text-align:center; background:#f8f9fa;">
+                    <h5>Total Cotisations</h5>
+                    <h2>12 450</h2>
+                    <i class="pi pi-wallet" style="font-size:2rem; color:#4caf50;"></i>
+                </div>
+            </div>
+
+            <div class="col-12 xl:col-3 md:col-6">
+                <div class="card p-shadow-3" style="text-align:center; background:#f8f9fa;">
+                    <h5>Total Fiscalité</h5>
+                    <h2>8 200</h2>
+                    <i class="pi pi-file" style="font-size:2rem; color:#ff9800;"></i>
+                </div>
+            </div>
+
+            <div class="col-12 xl:col-3 md:col-6">
+                <div class="card p-shadow-3" style="text-align:center; background:#f8f9fa;">
+                    <h5>Employés</h5>
+                    <h2>320</h2>
+                    <i class="pi pi-users" style="font-size:2rem; color:#2196f3;"></i>
+                </div>
+            </div>
+
+            <div class="col-12 xl:col-3 md:col-6">
+                <div class="card p-shadow-3" style="text-align:center; background:#f8f9fa;">
+                    <h5>Placements réalisés</h5>
+                    <h2>1 020</h2>
+                    <i class="pi pi-check-circle" style="font-size:2rem; color:#9c27b0;"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ================= LISTE & FORMULAIRE COTISATION ================= -->
+        <div class="grid" style="margin-bottom:2rem;">
+            <div class="col-12 xl:col-6">
+                <p:panel header="Liste des Cotisations" style="background:white;" styleClass="p-shadow-3">
+                    <p:dataTable styleClass="p-datatable-gridlines p-datatable-sm" scrollable="true" scrollHeight="300px">
+                        <p:column headerText="ID">
+                            <h:outputText value="COT001"/>
+                        </p:column>
+                        <p:column headerText="Employé">
+                            <h:outputText value="Jean Dupont"/>
+                        </p:column>
+                        <p:column headerText="Montant">
+                            <h:outputText value="50 000"/>
+                        </p:column>
+                        <p:column headerText="Mois">
+                            <h:outputText value="Janvier 2026"/>
+                        </p:column>
+                        <p:column headerText="Statut">
+                            <h:outputText value="Payée"/>
+                        </p:column>
+                    </p:dataTable>
+                </p:panel>
+            </div>
+
+            <div class="col-12 xl:col-6">
+                <h:form>
+                    <p:panel header="Formulaire Cotisation" style="background:white;" styleClass="p-shadow-3">
+                        <div class="grid p-fluid">
+                            <div class="col-12 md:col-6">
+                                <p:inputText value="Jean Dupont" label="Employé"/>
+                            </div>
+                            <div class="col-12 md:col-6">
+                                <p:inputText value="50 000" label="Montant"/>
+                            </div>
+                            <div class="col-12 md:col-6">
+                                <p:selectOneMenu label="Mois">
+                                    <f:selectItem itemLabel="Janvier 2026" itemValue="Janvier 2026"/>
+                                    <f:selectItem itemLabel="Février 2026" itemValue="Février 2026"/>
+                                    <f:selectItem itemLabel="Mars 2026" itemValue="Mars 2026"/>
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="col-12 md:col-6">
+                                <p:selectOneMenu label="Statut">
+                                    <f:selectItem itemLabel="Payée" itemValue="Payée"/>
+                                    <f:selectItem itemLabel="En attente" itemValue="En attente"/>
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="col-12">
+                                <p:inputTextarea value="Cotisation mensuelle" label="Observations" rows="3"/>
+                            </div>
+                        </div>
+                        <p:separator/>
+                        <div class="grid">
+                            <div class="col-6">
+                                <p:button value="Enregistrer" icon="pi pi-save" styleClass="p-button-success"/>
+                            </div>
+                            <div class="col-6">
+                                <p:button value="Annuler" icon="pi pi-times" styleClass="p-button-secondary"/>
+                            </div>
+                        </div>
+                    </p:panel>
+                </h:form>
+            </div>
+        </div>
+
+        <!-- ================= LISTE & FORMULAIRE FISCALITÉ ================= -->
+        <div class="grid" style="margin-bottom:2rem;">
+            <div class="col-12 xl:col-6">
+                <p:panel header="Liste Fiscalité" style="background:white;" styleClass="p-shadow-3">
+                    <p:dataTable styleClass="p-datatable-gridlines p-datatable-sm" scrollable="true" scrollHeight="300px">
+                        <p:column headerText="ID">
+                            <h:outputText value="FIS001"/>
+                        </p:column>
+                        <p:column headerText="Employé">
+                            <h:outputText value="Jean Dupont"/>
+                        </p:column>
+                        <p:column headerText="Type d'impôt">
+                            <h:outputText value="Impôt sur le revenu"/>
+                        </p:column>
+                        <p:column headerText="Montant">
+                            <h:outputText value="15 000"/>
+                        </p:column>
+                        <p:column headerText="Mois">
+                            <h:outputText value="Janvier 2026"/>
+                        </p:column>
+                        <p:column headerText="Statut">
+                            <h:outputText value="Payé"/>
+                        </p:column>
+                    </p:dataTable>
+                </p:panel>
+            </div>
+
+            <div class="col-12 xl:col-6">
+                <h:form>
+                    <p:panel header="Formulaire Fiscalité" style="background:white;" styleClass="p-shadow-3">
+                        <div class="grid p-fluid">
+                            <div class="col-12 md:col-6">
+                                <p:inputText value="Jean Dupont" label="Employé"/>
+                            </div>
+                            <div class="col-12 md:col-6">
+                                <p:selectOneMenu label="Type d'impôt">
+                                    <f:selectItem itemLabel="Impôt sur le revenu" itemValue="Impôt sur le revenu"/>
+                                    <f:selectItem itemLabel="CNSS" itemValue="CNSS"/>
+                                    <f:selectItem itemLabel="Autres" itemValue="Autres"/>
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="col-12 md:col-6">
+                                <p:inputText value="15 000" label="Montant"/>
+                            </div>
+                            <div class="col-12 md:col-6">
+                                <p:selectOneMenu label="Mois">
+                                    <f:selectItem itemLabel="Janvier 2026" itemValue="Janvier 2026"/>
+                                    <f:selectItem itemLabel="Février 2026" itemValue="Février 2026"/>
+                                    <f:selectItem itemLabel="Mars 2026" itemValue="Mars 2026"/>
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="col-12 md:col-6">
+                                <p:selectOneMenu label="Statut">
+                                    <f:selectItem itemLabel="Payé" itemValue="Payé"/>
+                                    <f:selectItem itemLabel="En attente" itemValue="En attente"/>
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="col-12">
+                                <p:inputTextarea value="Fiscalité mensuelle" label="Observations" rows="3"/>
+                            </div>
+                        </div>
+                        <p:separator/>
+                        <div class="grid">
+                            <div class="col-6">
+                                <p:button value="Enregistrer" icon="pi pi-save" styleClass="p-button-success"/>
+                            </div>
+                            <div class="col-6">
+                                <p:button value="Annuler" icon="pi pi-times" styleClass="p-button-secondary"/>
+                            </div>
+                        </div>
+                    </p:panel>
+                </h:form>
+            </div>
+        </div>
+
+    </ui:define>
+</ui:composition>

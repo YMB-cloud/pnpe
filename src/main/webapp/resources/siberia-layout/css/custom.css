@@ -1,0 +1,38 @@
+@charset "ISO-8859-1";
+
+/* Conteneur principal du menu */
+.dark-menu.ui-menu {
+    width: 200px !important;
+    background-color: #064779;
+    border: 1px solid #3a3a3a;
+}
+
+/* Items du menu */
+.dark-menu .ui-menuitem-link,
+.dark-menu .ui-menuitem-text{
+    color: #ffffff !important;
+    padding: 10px 14px;
+}
+
+/* Icônes */
+.dark-menu .ui-menuitem-icon {
+    color: #ffffff !important;
+}
+
+/* Hover */
+.dark-menu .ui-menuitem-link:hover {
+    background-color: #3a3a3a !important;
+    color: #ffffff !important;
+}
+
+/* Séparateur */
+.dark-menu .ui-menu-separator {
+    border-top: 1px solid #444;
+}
+
+/* Sous-menu (si présent) */
+.dark-menu .ui-submenu-list {
+    background-color: #2b2b2b !important;;
+}
+
+

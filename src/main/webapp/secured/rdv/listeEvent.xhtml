@@ -1,0 +1,248 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+                
+
+    <ui:define name="title">Evenement</ui:define>
+
+    <ui:define name="head">
+        
+    </ui:define>
+
+    <ui:define name="content">
+    
+        <style>
+        /* DASHBOARD PANELS */
+.card {
+    border-radius: 12px;
+    border-left: 6px solid transparent;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: all 0.25s ease;
+    padding: 1.5rem;
+}
+
+/* Hover effect */
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
+/* Bordures colorées selon l’icône */
+.card .pi-calendar {
+    color: var(--primary-color);
+}
+.card:has(.pi-calendar) {
+    border-left-color: var(--primary-color);
+}
+
+.card:has(.pi-clock) {
+    border-left-color: #2196f3;
+}
+
+.card:has(.pi-check-circle) {
+    border-left-color: #4caf50;
+}
+
+.card:has(.pi-times-circle) {
+    border-left-color: #f44336;
+}
+
+/* Titres */
+.card h6 {
+    margin: 0.5rem 0;
+    font-weight: 600;
+    color: #6c757d;
+}
+
+/* Valeurs */
+.card h3 {
+    margin: 0;
+    font-weight: 700;
+}
+        
+        </style>
+    
+		<div class="grid">
+            
+			<div class="col-12">
+                <h:form  class="card">
+                <!-- DASHBOARD -->
+						<div class="grid mb-4">
+						
+						    <div class="col-12 md:col-3">
+						        <div class="card text-center">
+						            <i class="pi pi-calendar text-4xl text-primary mb-2"></i>
+						            <h6>Total événements</h6>
+						            <h3>#{rendezVousBean.totalRendezvous}</h3>
+						        </div>
+						    </div>
+						
+						    <div class="col-12 md:col-3">
+						        <div class="card text-center">
+						            <i class="pi pi-clock text-4xl text-info mb-2"></i>
+						            <h6>Initiés</h6>
+						            <h3>#{rendezVousBean.nbInities}</h3>
+						        </div>
+						    </div>
+						
+						    <div class="col-12 md:col-3">
+						        <div class="card text-center">
+						            <i class="pi pi-check-circle text-4xl text-success mb-2"></i>
+						            <h6>Clôturés</h6>
+						            <h3>#{rendezVousBean.nbClotures}</h3>
+						        </div>
+						    </div>
+						
+						    <div class="col-12 md:col-3">
+						        <div class="card text-center">
+						            <i class="pi pi-times-circle text-4xl text-danger mb-2"></i>
+						            <h6>Annulés</h6>
+						            <h3>#{rendezVousBean.nbAnnules}</h3>
+						        </div>
+						    </div>
+						
+						</div>
+                
+                    <div class="flex align-items-center justify-content-between">
+                        <h5>Gestion des rendez-vous</h5><p:commandButton action="#{rendezVousBean.versCreateRendezVous()}"  value="Nouveau rendez-vous"  icon="pi pi-plus-circle" styleClass="rounded-button ui-button-success mr-2 mb-2" />
+                    </div>
+                    	
+                    <p>Liste des rendez-vous. </p>
+                    <div class="ui-fluid formgrid grid">
+                        <p:dataTable id="list" widgetVar="listData"  var="obj" value="#{rendezVousBean.listeRendeVous}"   scrollable="true" scrollHeight="500" 
+                        styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines">
+                            
+                            <p:column headerText="Code" sortBy="#{obj.id}" width="10%" >
+                                <h:outputText value="#{obj.id}" />
+                            </p:column>
+                            
+                            <p:column headerText="Date "  sortBy="#{obj.dateHeureRdv}" width="10%"  >
+                                <h:outputText value="#{obj.dateHeureRdv}" />
+                            </p:column>  
+                            
+                                                         
+                            
+                            <p:column headerText="Statut"  styleClass="text-right"  width="5%" >
+                            	<p:badge 
+								    value="#{obj.etatRdv == 0 ? 'Initié' : (obj.etatRdv == 1 ? 'Cloturé' : 'Annulé')}"
+								    severity="#{obj.etatRdv == 0 ? 'info' : (obj.etatRdv == 1 ? 'success' : 'danger')}"/>
+                            	
+                            </p:column>                        
+                                                                           
+                            <p:column headerText=""  styleClass="text-right"  width="10%" >
+                            
+		                        <p:menuButton value="Actions" icon="pi pi-bars" styleClass="ui-button-primary">
+    
+    
+										    <p:menuitem 
+										        value="Modifier" 
+										        icon="pi pi-pencil" 
+										        update="form" 
+										        />
+										
+										    <!-- Annuler / Supprimer l'événement -->
+										    <p:menuitem 
+										        value="Annuler" 
+										        icon="pi pi-trash" 
+										       
+										        />
+										
+										    <!-- Clôturer l'événement -->
+										    <p:menuitem 
+										        value="Clôturer" 
+										        icon="pi pi-check-circle" 
+										      
+										        />
+										
+										    <!-- Voir les détails de l'événement -->
+										    <p:menuitem 
+										        value="Détails" 
+										        icon="pi pi-info-circle" 
+										         />
+										
+										</p:menuButton>
+		                         
+
+                            </p:column>
+                          
+                        </p:dataTable>                    
+                    
+                    </div>
+                                      	
+                    	
+                    
+                    
+
+                </h:form>
+            </div>    
+            
+			             
+                      
+        </div>
+        
+        <!-- *************************************FORM USER****************************************** -->
+		<p:dialog header="Créer / Modifier un utilisateur" widgetVar="pop" modal="true" width="50%">
+		    <h:form id="form">
+		    
+                    <div class="ui-fluid formgrid grid">
+                        <div class="field col-12 md:col-4">
+                            <p:outputLabel value="Identifiant" />
+                            <p:inputText required="true" requiredMessage="Identifiant ?" value="#{utilisateurBean.utilisateur.username}" />
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <p:outputLabel value="Nom" />
+                            <p:inputText required="true" requiredMessage="Nom ?" value="#{utilisateurBean.utilisateur.nom}" />
+                        </div>   
+                        <div class="field col-12 md:col-4">
+                            <p:outputLabel value="Prénom" />
+                            <p:inputText required="true" requiredMessage="Prénom ?" value="#{utilisateurBean.utilisateur.prenom}" />
+                        </div>    
+
+                        <div class="field col-12 md:col-4">
+                            <p:outputLabel value="Site" />
+        					<p:selectOneMenu id="site" value="#{utilisateurBean.utilisateur.siteId}" required="true">
+					            <f:selectItem itemLabel="-- Choisir --" itemValue="#{null}"/>
+					            <f:selectItems value="#{utilisateurBean.sites}"
+					                           var="s"
+					                           itemLabel="#{s.libelle}"
+					                           itemValue="#{s.id}"/>
+					        </p:selectOneMenu>                        
+        				</div>   
+                                              
+                        <div class="field col-12 md:col-1">
+                            <p:outputLabel value="Actif" />
+                            <br/><p:selectBooleanCheckbox value="#{utilisateurBean.utilisateur.active}" />
+                        </div>          				
+        				
+                        <div class="field col-12 md:col-12">
+                            <p:outputLabel value="Profiles" />
+						     <p:selectCheckboxMenu value="#{utilisateurBean.selectedProfileIds}" label="Profils"  multiple="true"  filter="true">
+						            <f:selectItems value="#{utilisateurBean.profiles}"
+						                           var="p" 
+						                           itemLabel="#{p.libelle}"
+						                           itemValue="#{p.id}"/>
+						     </p:selectCheckboxMenu>                            
+                            
+                            
+                        </div>        				                      
+                       
+                         
+                                                                                          
+                    </div>	
+                    <p:remoteCommand update="form" name="updateForm"/>	    
+		    		<p:commandButton rendered="#{utilisateurBean.utilisateur.id eq null}" update=":growl" action="#{utilisateurBean.creer()}" oncomplete="updateList();PF('pop').hide();"  value="Enregistrer"   />
+		    		<p:commandButton rendered="#{utilisateurBean.utilisateur.id ne null}" update=":growl" action="#{utilisateurBean.modifier()}" oncomplete="updateList();PF('pop').hide();"  value="Mettre à jour"   />
+		    </h:form>
+		</p:dialog>      
+		<!-- **************************************************************************************** -->   
+		
+     
+    
+    
+        
+    </ui:define>
+</ui:composition>

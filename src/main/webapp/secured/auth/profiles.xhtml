@@ -1,0 +1,241 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+                
+
+    <ui:define name="title">Profiles</ui:define>
+
+    <ui:define name="head">
+        
+    </ui:define>
+
+    <ui:define name="content">
+    
+        
+    
+		<div class="grid">
+            
+			<div class="col-12">
+                <h:form  class="card">
+                    <div class="flex align-items-center justify-content-between">
+                        <h5>Gestion des profils et des roles</h5>
+                    </div>
+                    
+                    <p:tabView>
+                    	<p:tab title="Profiles">
+                    	
+		                    <p>Créer ou modifier les profils. <p:commandButton action="#{profileBean.initProfile()}"  value="Nouveau profile" update="form" icon="pi pi-plus" oncomplete="PF('pop').show();" styleClass="rounded-button ui-button-secondary mr-2 mb-2" /></p>
+		                    <div class="ui-fluid formgrid grid">
+		                        <p:dataTable id="list" widgetVar="listData"  var="obj" value="#{profileBean.profiles}"   scrollable="true" scrollHeight="500" 
+		                        styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines">
+		                            
+		                            <p:column headerText="Code" sortBy="#{obj.code}" width="10%" >
+		                                <h:outputText value="#{obj.code}" />
+		                            </p:column>
+		                            
+		                            <p:column headerText="Libellé"  sortBy="#{obj.libelle}" width="75%"  >
+		                                <h:outputText value="#{obj.libelle}" />
+		                            </p:column>    
+		                            
+		                            <p:column headerText="Statut"  styleClass="text-right"  width="5%" >
+		                            	<p:badge value="#{obj.actif?'Actif':'Désactivé'}" severity="#{obj.actif?'success':'danger'}"/>
+		                            </p:column>                        
+		                                                                           
+		                            <p:column headerText=""  styleClass="text-right"  width="10%" >
+		                            
+				                        <p:menuButton value="Actions" icon="pi pi-user-edit">
+				                            <p:menuitem update="form" action="#{profileBean.chargerProfileToUpdate(obj)}"  styleClass="ui-button-info" icon="pi pi-pencil" oncomplete="PF('pop').show();" value="Mise à jour"/>
+				                        </p:menuButton> 
+		
+		                            </p:column>
+		                          
+		                        </p:dataTable>                    
+		                    
+		                    </div>
+		                    <p:remoteCommand update="list" name="updateList"/>                    	
+                    	
+                    	</p:tab>
+                    
+                    	<p:tab title="Roles">
+                    	
+                   	
+		                    <p>Créer ou modifier les roles. <p:commandButton action="#{profileBean.initRole()}" value="Nouveau role" update="form2" icon="pi pi-plus" oncomplete="PF('pop2').show();" styleClass="rounded-button ui-button-secondary mr-2 mb-2" /></p>
+		                    <div class="ui-fluid formgrid grid">
+		                        <p:dataTable id="list2" widgetVar="listDataRole"  var="obj" value="#{profileBean.roles}"   scrollable="true" scrollHeight="500" 
+		                        styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines">
+		                            
+		                            <p:column headerText="Code" sortBy="#{obj.code}" width="10%" >
+		                                <h:outputText value="#{obj.code}" />
+		                            </p:column>
+		                            
+		                            <p:column headerText="Libellé"  sortBy="#{obj.libelle}" width="75%"  >
+		                                <h:outputText value="#{obj.libelle}" />
+		                                
+		                                <ui:repeat var="child" value="#{obj.childrenList}">
+								            <ul>
+								                <li style="color:#{child.actif?'#000':'red'}">#{child.libelle} ( #{child.redirection} ) <p:commandLink update="form2" action="#{profileBean.chargerRoleToUpdate(child)}"  oncomplete="PF('pop2').show();"><i class="pi pi-pencil"></i></p:commandLink><h:outputText value=" "/> <p:commandLink action="#{profileBean.retirerRole(child)}" oncomplete="updateList2()" style="color:red"><i class="pi pi-times"></i></p:commandLink></li>
+								            </ul>		                                	
+		                                </ui:repeat>
+		                            </p:column>    
+		                            
+		                            <p:column headerText="Statut"  styleClass="text-right"  width="5%" >
+		                            	<p:badge value="#{obj.actif?'Actif':'Désactivé'}" severity="#{obj.actif?'success':'danger'}"/>
+		                            </p:column>                        
+		                                                                           
+		                            <p:column headerText=""  styleClass="text-right"  width="10%" >
+		                            
+				                        <p:menuButton value="Actions" icon="pi pi-user-edit">
+				                            <p:menuitem update="form3" action="#{profileBean.chargerRoleToAddChild(obj)}"  styleClass="ui-button-info" icon="pi pi-sitemap" oncomplete="PF('pop3').show();" value="Ajouter un sous role"/>
+				                            <p:menuitem update="form2" action="#{profileBean.chargerRoleToUpdate(obj)}"  styleClass="ui-button-info" icon="pi pi-pencil" oncomplete="PF('pop2').show();" value="Modifier"/>
+				                            <p:menuitem update="list2" action="#{profileBean.retirerRole(obj)}"  icon="pi pi-times" value="Désactiver"/>
+				                            
+				                        </p:menuButton> 
+		
+		                            </p:column>
+		                          
+		                        </p:dataTable>                    
+		                    
+		                    </div>
+		                    <p:remoteCommand update="list2" name="updateList2"/>                    	
+                    	                    	
+                    	
+                    	</p:tab>
+                    </p:tabView>
+                    
+
+                </h:form>
+            </div>    
+            
+			             
+                      
+        </div>
+        
+        <!-- *************************************FORM PROFILE****************************************** -->
+		<p:dialog header="Créer / Modifier un profile" widgetVar="pop" modal="true" width="50%">
+		    <h:form id="form">
+		    
+                    <div class="ui-fluid formgrid grid">
+                        <div class="field col-12 md:col-2">
+                            <p:outputLabel value="Code" />
+                            <p:inputMask required="true" requiredMessage="Code ?" value="#{profileBean.profile.code}" />
+                        </div>
+                        <div class="field col-12 md:col-8">
+                            <p:outputLabel value="Libellé" />
+                            <p:inputText required="true" requiredMessage="Libellé ?" value="#{profileBean.profile.libelle}" />
+                        </div>   
+                        <div class="field col-12 md:col-2">
+                            <p:outputLabel value="Actif" />
+                            <br/><p:selectBooleanCheckbox value="#{profileBean.profile.actif}" />
+                        </div>                         
+                         
+                        <div class="field col-12 md:col-12">
+                            <p:outputLabel value="Roles autorisés" />
+
+
+						    <p:tree value="#{profileBean.root}"
+						            var="role"
+						            selectionMode="checkbox"
+						            selection="#{profileBean.selectedNodes}"
+						            showCheckbox="true">
+						
+						        <p:treeNode>
+						            <h:outputText value="#{role.libelle}" />
+						        </p:treeNode>
+						
+						    </p:tree>   							                
+						</div>                                                                             
+                    </div>	
+                    <p:remoteCommand update="form" name="updateForm"/>	    
+		    		<p:commandButton rendered="#{profileBean.profile.id eq null}" update=":growl" action="#{profileBean.enregistrer()}" oncomplete="updateList();PF('pop').hide();"  value="Enregistrer"   />
+		    		<p:commandButton rendered="#{profileBean.profile.id ne null}" update=":growl" action="#{profileBean.modifierProfile()}" oncomplete="updateList();PF('pop').hide();"  value="Mettre à jour"   />
+		    </h:form>
+		</p:dialog>      
+		<!-- **************************************************************************************** -->   
+		
+        <!-- *************************************FORM ROLE****************************************** -->
+		<p:dialog header="Créer / Modifier un role" widgetVar="pop2" modal="true" width="50%">
+		    <h:form id="form2">
+		    
+                    <div class="ui-fluid formgrid grid">
+                        <div class="field col-12 md:col-2">
+                            <p:outputLabel value="Code" />
+                            <p:inputMask required="true" requiredMessage="Code ?" value="#{profileBean.role.code}" />
+                        </div>
+                        <div class="field col-12 md:col-8">
+                            <p:outputLabel value="Libellé" />
+                            <p:inputText required="true" requiredMessage="Libellé ?" value="#{profileBean.role.libelle}" />
+                        </div>   
+                        <div class="field col-12 md:col-2">
+                            <p:outputLabel value="Actif" />
+                            <br/><p:selectBooleanCheckbox value="#{profileBean.role.actif}" />
+                        </div>                        
+                        <div class="field col-12 md:col-12">
+                            <p:outputLabel value="Méthode de redirection" />
+                            <p:inputText disabled="#{profileBean.role.roleParentId eq null}" required="false" requiredMessage="Méthode de redirection ?" value="#{profileBean.role.redirection}" />
+                        </div>                         
+                         
+                         
+                                                                                            
+                    </div>	
+                    <p:remoteCommand update="form2" name="updateForm2"/>	    
+		    		<p:commandButton rendered="#{profileBean.role.id eq null}" update=":growl" action="#{profileBean.enregistrerRole()}" oncomplete="updateList2();PF('pop2').hide();"  value="Enregistrer"   />
+		    		<p:commandButton rendered="#{profileBean.role.id ne null}" update=":growl" action="#{profileBean.modifierRole()}" oncomplete="updateList2();PF('pop2').hide();"  value="Mettre à jour"   />
+		    </h:form>
+		</p:dialog>      
+		<!-- **************************************************************************************** -->	
+		
+        <!-- *************************************FORM SITE****************************************** -->
+		<p:dialog header="Créer un sous role" widgetVar="pop3" modal="true" width="50%">
+		    <h:form id="form3">
+		    
+                    <div class="ui-fluid formgrid grid">
+                        <div class="field col-12 md:col-3">
+                            <p:outputLabel value="Code" />
+                            <p:inputMask required="true" requiredMessage="Code ?" value="#{profileBean.childRole.code}" />
+                        </div>
+                        <div class="field col-12 md:col-9">
+                            <p:outputLabel value="Libellé" />
+                            <p:inputText required="true" requiredMessage="Libellé ?" value="#{profileBean.childRole.libelle}" />
+                        </div>   
+                         
+                        <div class="field col-12 md:col-12">
+                            <p:outputLabel value="Méthode de redirection" />
+                            <p:inputText  value="#{profileBean.childRole.redirection}" />
+                        </div>                             
+                                                                                            
+                    </div>	
+                    <p:remoteCommand update="form3" name="updateForm3"/>	    
+		    		<p:commandButton rendered="#{profilBean.role.id eq null}" update=":growl" action="#{profileBean.enregistrerChildRole()}" oncomplete="updateList2();PF('pop3').hide();"  value="Enregistrer"   />
+		    </h:form>
+		</p:dialog>      
+		<!-- **************************************************************************************** -->			
+		
+		<!-- *************************************POP USERS PROFIL****************************************** -->
+        <p:dialog  widgetVar="popUsersProfil" modal="true" responsive="true" width="50%" showEffect="fade" hideEffect="fade">
+            <h:form id="usersProfil" >
+                   <p:dataTable  var="obj2" value="#{utilisateurService.list}" rows="5" paginator="true"  >
+                       <f:facet name="header">
+                           <div class="customers-table-header">
+                               <span style="font-weight: bold">UTILISATEURS AYANT LE PROFIL DE #{profilBean.profile.libelle.toUpperCase()}</span>
+                           </div>
+                       </f:facet>                   
+                       <p:column headerText="Identifiant">
+                           <h:outputText value="#{obj2.login}" />
+                       </p:column>                       
+                       <p:column headerText="Nom">
+                           <h:outputText value="#{obj2.nom}" />
+                       </p:column>
+                       <p:column headerText="Prénom">
+                           <h:outputText value="#{obj2.prenom}" />
+                       </p:column>                                       
+                   </p:dataTable>
+            </h:form>
+        </p:dialog>      
+    
+    
+        
+    </ui:define>
+</ui:composition>

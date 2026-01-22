@@ -1,0 +1,1221 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+                
+
+    <ui:define name="title">Dashboard</ui:define>
+
+    <ui:define name="head">
+        <h:outputScript name="js/chart.js" library="demo"/>
+        <script type="text/javascript">
+            $(function () {
+                new Chart(document.getElementById("dashboard-chart"), {
+                    type: 'bubble',
+                    data: {
+                        labels: "Sales",
+                        datasets: [
+                            {
+                                label: [""],
+                                backgroundColor: "rgba(0,0,0,0)",
+                                borderColor: "rgba(0,0,0,0)",
+                                data: [{
+                                    x: 5,
+                                    y: 20,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 10,
+                                    y: 20,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 20,
+                                    y: 30,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 35,
+                                    y: 90,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 35,
+                                    y: 150,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 45,
+                                    y: 130,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 50,
+                                    y: 140,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 60,
+                                    y: 100,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 65,
+                                    y: 90,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 75,
+                                    y: 130,
+                                    r: 10
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 85,
+                                    y: 120,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 85,
+                                    y: 150,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 90,
+                                    y: 160,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 90,
+                                    y: 100,
+                                    r: 10
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 100,
+                                    y: 180,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 110,
+                                    y: 150,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 120,
+                                    y: 100,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 120,
+                                    y: 190,
+                                    r: 10
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 130,
+                                    y: 200,
+                                    r: 15
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 135,
+                                    y: 220,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 145,
+                                    y: 200,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: [""],
+                                backgroundColor: "rgba(0,0,0,0)",
+                                borderColor: "rgba(0,0,0,0)",
+                                data: [{
+                                    x: 30,
+                                    y: 350,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Mirage"],
+                                backgroundColor: "#41cec6",
+                                borderColor: "#41cec6",
+                                data: [{
+                                    x: 15,
+                                    y: 40,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Mirage"],
+                                backgroundColor: "#41cec6",
+                                borderColor: "#41cec6",
+                                data: [{
+                                    x: 20,
+                                    y: 45,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Mirage"],
+                                backgroundColor: "#41cec6",
+                                borderColor: "#41cec6",
+                                data: [{
+                                    x: 40,
+                                    y: 50,
+                                    r: 10
+                                }]
+                            },
+                            {
+                                label: ["Mirage"],
+                                backgroundColor: "#41cec6",
+                                borderColor: "#41cec6",
+                                data: [{
+                                    x: 50,
+                                    y: 30,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Mirage"],
+                                backgroundColor: "#41cec6",
+                                borderColor: "#41cec6",
+                                data: [{
+                                    x: 60,
+                                    y: 80,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Mirage"],
+                                backgroundColor: "#41cec6",
+                                borderColor: "#41cec6",
+                                data: [{
+                                    x: 70,
+                                    y: 120,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Mirage"],
+                                backgroundColor: "#41cec6",
+                                borderColor: "#41cec6",
+                                data: [{
+                                    x: 90,
+                                    y: 150,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Mirage"],
+                                backgroundColor: "#41cec6",
+                                borderColor: "#41cec6",
+                                data: [{
+                                    x: 100,
+                                    y: 200,
+                                    r: 10
+                                }]
+                            },
+                            {
+                                label: ["Mirage"],
+                                backgroundColor: "#41cec6",
+                                borderColor: "#41cec6",
+                                data: [{
+                                    x: 110,
+                                    y: 190,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Mirage"],
+                                backgroundColor: "#41cec6",
+                                borderColor: "#41cec6",
+                                data: [{
+                                    x: 120,
+                                    y: 250,
+                                    r: 15
+                                }]
+                            },
+                            {
+                                label: ["Mirage"],
+                                backgroundColor: "#41cec6",
+                                borderColor: "#41cec6",
+                                data: [{
+                                    x: 140,
+                                    y: 200,
+                                    r: 5
+                                }]
+                            },
+                        ]
+                    },
+                    options: {
+                        title: {
+                            display: false,
+                        },
+                        legend: {
+                            display: false
+                        },
+                        scales: {
+                            yAxes: [{
+                                scaleLabel: {
+                                    display: false,
+                                }
+                            }],
+                            xAxes: [{
+                                scaleLabel: {
+                                    display: false,
+                                }
+                            }]
+                        }
+                    }
+                });
+            });
+        </script>
+    </ui:define>
+
+    <ui:define name="content">
+    
+        
+    
+    
+    
+    
+        <div class="grid layout-dashboard">
+            <div class="col-12">
+                <div class="card status">
+                    <div class="status-header">
+                        <div class="title">
+                            Bienvenu #{securityContextImpl.utilisateur.nomprenom}
+                        </div>
+                        <div class="icons">
+                            <div class="icon">
+                                <i class="pi pi-comments"/>
+                            </div>
+                            <div class="icon">
+                                <i class="pi pi-window-maximize"/>
+                            </div>
+                            <div class="icon">
+                                <i class="pi pi-bookmark"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="status-content">
+                        <div class="status-item-wrapper not-active-status">
+                            <div class="status-item"></div>
+                            <span>0 Code Reviews</span>
+                        </div>
+                        <div class="status-item-wrapper not-active-status">
+                            <div class="status-item"></div>
+                            <span>0 Code Reviews</span>
+                        </div>
+                        <div class="status-item-wrapper not-active-status">
+                            <div class="status-item"></div>
+                            <span>0 Code Reviews</span>
+                        </div>
+                        <div class="status-item-wrapper active-status">
+                            <div class="status-item"></div>
+                            <span>4 Code Reviews</span>
+                        </div>
+                        <div class="status-item-wrapper">
+                            <div class="status-item"></div>
+                            <span>7 Code Reviews</span>
+                        </div>
+                        <div class="status-item-wrapper">
+                            <div class="status-item"></div>
+                            <span>2 Code Reviews</span>
+                        </div>
+                        <div class="status-item-wrapper">
+                            <div class="status-item"></div>
+                            <span>7 Code Reviews</span>
+                        </div>
+                        <div class="status-item-wrapper">
+                            <div class="status-item"></div>
+                            <span>3 Code Reviews</span>
+                        </div>
+                        <div class="status-item-wrapper">
+                            <div class="status-item"></div>
+                            <span>9 Code Reviews</span>
+                        </div>
+                        <div class="status-summary-wrapper">
+                            <div class="status-item-progress">
+                                <span>32 Code Reviews</span>
+                            </div>
+                            <div class="status-item"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 md:col-6 lg:col-3">
+                <div class="card overview-box checkins">
+                    <div class="box-header">
+                        <div class="title">
+                            <h5>Check-ins</h5>
+                            <span>2522-new</span>
+                        </div>
+                        <i class="pi pi-chart-bar"/>
+                    </div>
+                    <div class="box-content">
+                        <p:graphicImage name="images/dashboard/asset-bars.png" library="siberia-layout"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 md:col-6 lg:col-3">
+                <div class="card overview-box users">
+                    <div class="box-header">
+                        <div class="title">
+                            <h5>Users</h5>
+                            <span>79244 online</span>
+                        </div>
+                        <i class="pi pi-chart-line"/>
+                    </div>
+                    <div class="box-content">
+                        <p:graphicImage name="images/dashboard/asset-graph.png" library="siberia-layout"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 md:col-6 lg:col-3">
+                <div class="card overview-box views">
+                    <div class="box-header">
+                        <div class="title">
+                            <h5>Views</h5>
+                            <span>55.123</span>
+                        </div>
+                        <i class="pi pi-chart-bar"/>
+                    </div>
+                    <div class="box-content">
+                        <div class="progress-bar-wrapper">
+                            <p:graphicImage name="demo/images/car/BMW.png"/>
+                            <div class="progress-bar">
+                                <span class="progress"></span>
+                                <span class="progress-bar-background"></span>
+                            </div>
+                        </div>
+                        <div class="progress-bar-wrapper">
+                            <p:graphicImage name="demo/images/car/Volkswagen.png"/>
+                            <div class="progress-bar">
+                                <span class="progress" style="width: 40%;"></span>
+                                <span class="progress-bar-background"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 md:col-6 lg:col-3">
+                <div class="card overview-box sales">
+                    <div class="box-header">
+                        <div class="title">
+                            <h5>Sales</h5>
+                        </div>
+                        <i class="pi pi-chart-bar"/>
+                    </div>
+                    <div class="box-content">
+                        <h5>$24.480</h5>
+                        <span>7% more than yesterday </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 lg:col-6">
+                <div class="card news">
+                    <div class="news-image">
+                        <p:graphicImage name="images/dashboard/asset-blog.jpg" library="siberia-layout"/>
+                    </div>
+                    <div class="news-content">
+                        <span class="date">21 OCT 2019 - 3 MIN READ</span>
+                        <p>Miami Beach unanimously declares a climate emergency: “It’s not just us holding up signs now.
+                        </p>
+                        <span class="best">BEST OF</span>
+                        <span>by Walter White</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 lg:col-6">
+                <div class="card sales">
+                    <h5>Top Sales</h5>
+                    <div class="grid map-info-wrapper">
+                        <div class="col-6 map-info">
+                            <div class="map-info-header">
+                                <h5>10.953</h5>
+                                <p:graphicImage name="images/dashboard/1-f-1-fa-1-f-1-f-2.png"
+                                                library="siberia-layout"/>
+                            </div>
+                            <span>Most customers in US </span>
+                            <ul class="info-list">
+                                <li>
+                                    <p><i class="pi pi-circle-on intense"/> Intense</p>
+                                    <span>56k</span>
+                                </li>
+                                <li>
+                                    <p><i class="pi pi-circle-on high"/> High</p>
+                                    <span>25.8k</span>
+                                </li>
+                                <li>
+                                    <p><i class="pi pi-circle-on moderate"/> Moderate</p>
+                                    <span>14k</span>
+                                </li>
+                                <li>
+                                    <p><i class="pi pi-circle-on low"/> Low</p>
+                                    <span>3k</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-6 sales-map">
+                            <p:graphicImage name="images/dashboard/world-low.png" library="siberia-layout"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 lg:col-4 md:col-6">
+                <div class="card tasks">
+                    <div class="tasks-header">
+                        <h5>Today’s Tasks</h5>
+                        <div class="progress-bar-wrapper">
+                            <span>%50</span>
+                            <div class="progress-bar">
+                                <span class="progress"></span>
+                                <span class="progress-bar-background"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tasks-content">
+                        <ul class="checkboxes">
+                            <li class="checkbox-row">
+                                <div class="grid">
+                                    <div class="col-6 checkbox">
+                                        <p:selectBooleanCheckbox value="true"/>
+                                        <p>Sales Report</p>
+                                    </div>
+                                    <div class="col-6 checkbox-row-info">
+                                        <span class="time"><i class="pi pi-calendar"/>Today</span>
+                                        <p:graphicImage name="images/dashboard/avatar-sofia.png"
+                                                        library="siberia-layout"/>
+                                        <span class="name">Sofia</span>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="checkbox-row even">
+                                <div class="grid">
+                                    <div class="col-6 checkbox">
+                                        <p:selectBooleanCheckbox value="true"/>
+                                        <p>Pay Invoices</p>
+                                    </div>
+                                    <div class="col-6 checkbox-row-info">
+                                        <span class="time"><i class="pi pi-calendar"/> Today</span>
+                                        <p:graphicImage name="images/dashboard/avatar-foroogh.png"
+                                                        library="siberia-layout"/>
+                                        <span class="name">Foroogh</span>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="checkbox-row">
+                                <div class="grid">
+                                    <div class="col-6 checkbox">
+                                        <p:selectBooleanCheckbox/>
+                                        <p>Birthday Party</p>
+                                    </div>
+                                    <div class="col-6 checkbox-row-info">
+                                        <span class="time later"><i class="pi pi-calendar"/> Today</span>
+                                        <p:graphicImage name="images/dashboard/avatar-jube.png"
+                                                        library="siberia-layout"/>
+                                        <span class="name">Jube</span>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="checkbox-row even">
+                                <div class="grid">
+                                    <div class="col-6 checkbox">
+                                        <p:selectBooleanCheckbox/>
+                                        <p>Client Meeting</p>
+                                    </div>
+                                    <div class="col-6 checkbox-row-info">
+                                        <span class="time later"><i class="pi pi-calendar"/> Today</span>
+                                        <p:graphicImage name="images/dashboard/avatar-winny.png"
+                                                        library="siberia-layout"/>
+                                        <span class="name">Winny</span>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="checkbox-row">
+                                <div class="grid">
+                                    <div class="col-6 checkbox">
+                                        <p:selectBooleanCheckbox/>
+                                        <p>New Themes</p>
+                                    </div>
+                                    <div class="col-6 checkbox-row-info">
+                                        <span class="time later"><i class="pi pi-calendar"/> Tomorrow</span>
+                                        <p:graphicImage name="images/dashboard/avatar-quin.png"
+                                                        library="siberia-layout"/>
+                                        <span class="name">Qin</span>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="checkbox-row even">
+                                <div class="grid">
+                                    <div class="col-6 checkbox">
+                                        <p:selectBooleanCheckbox/>
+                                        <p>Fight Ticket</p>
+                                    </div>
+                                    <div class="col-6 checkbox-row-info">
+                                        <span class="time later"><i class="pi pi-calendar"/> Tomorrow</span>
+                                        <p:graphicImage name="images/dashboard/avatar-sofia.png"
+                                                        library="siberia-layout"/>
+                                        <span class="name">Sofia</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 lg:col-4 md:col-6">
+                <div class="card support">
+                    <div class="support-header">
+                        <h5>Hi there! 👋</h5>
+                        <span>Just let us know if you need anything.</span>
+
+                        <div class="support-request-wrapper">
+                            <div class="support-team-status">
+                                <h5>Start a conversation</h5>
+                                <span><i class="pi pi-clock"/> Back Tomorrow</span>
+                                <div class="profiles">
+                                    <p:graphicImage name="images/dashboard/avatar-support2.png"
+                                                    library="siberia-layout"/>
+                                    <p:graphicImage name="images/dashboard/avatar-support1.png"
+                                                    library="siberia-layout"/>
+                                </div>
+                            </div>
+
+                            <p:commandButton type="button" icon="pi pi-send" value="New Support Request"/>
+
+                        </div>
+                    </div>
+                    <div class="support-content">
+                        <div class="support-search">
+                            <h5>Find a solution yourself</h5>
+                            <p:inputText placeholder="Search on documentation" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 lg:col-4">
+                <div class="card team">
+                    <div class="team-header">
+                        <h5>Team </h5>
+                        <div class="team-status">
+                            <div class="team-status-item">
+                                <div class="circle"></div>
+                                4 Online
+                            </div>
+                            <div class="team-status-item">
+                                <div class="circle offline"></div>
+                                2 Away
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-content">
+                        <ul>
+                            <li>
+                                <div class="grid member">
+                                    <div class="col-7 team-box">
+                                        <div class="profile-image">
+                                            <p:graphicImage name="images/dashboard/avatar-lara.png"
+                                                            library="siberia-layout"/>
+                                            <div class="circle"></div>
+                                        </div>
+                                        <div>
+                                            <h5 class="team-member">Lara Madrigal</h5>
+                                            <span class="team-member-role">8531 followers</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-5 icons">
+                                        <h:form>
+                                            <p:menuButton icon="pi pi-ellipsis-h">
+                                                <p:menuitem value="Save" icon="pi pi-save"/>
+                                                <p:menuitem value="Update" icon="pi pi-refresh"/>
+                                                <p:menuitem value="Delete" icon="pi pi-times"/>
+                                            </p:menuButton>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="grid member">
+                                    <div class="col-7 team-box">
+                                        <div class="profile-image">
+                                            <p:graphicImage name="images/dashboard/avatar-sergio.png"
+                                                            library="siberia-layout"/>
+                                            <div class="circle"></div>
+                                        </div>
+                                        <div>
+                                            <h5 class="team-member">Sergio Pliego</h5>
+                                            <span class="team-member-role">401 followers</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-5 icons">
+                                        <h:form>
+                                            <p:menuButton icon="pi pi-ellipsis-h">
+                                                <p:menuitem value="Save" icon="pi pi-save"/>
+                                                <p:menuitem value="Update" icon="pi pi-refresh"/>
+                                                <p:menuitem value="Delete" icon="pi pi-times"/>
+                                            </p:menuButton>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="grid member">
+                                    <div class="col-7 team-box">
+                                        <div class="profile-image">
+                                            <p:graphicImage name="images/dashboard/avatar-chineze.png"
+                                                            library="siberia-layout"/>
+                                            <div class="circle"></div>
+                                        </div>
+                                        <div>
+                                            <h5 class="team-member">Chineze Uchechey</h5>
+                                            <span class="team-member-role">99 followers</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-5 icons">
+                                        <h:form>
+                                            <p:menuButton icon="pi pi-ellipsis-h">
+                                                <p:menuitem value="Save" icon="pi pi-save"/>
+                                                <p:menuitem value="Update" icon="pi pi-refresh"/>
+                                                <p:menuitem value="Delete" icon="pi pi-times"/>
+                                            </p:menuButton>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="grid member">
+                                    <div class="col-7 team-box">
+                                        <div class="profile-image">
+                                            <p:graphicImage name="images/dashboard/avatar-charles.png"
+                                                            library="siberia-layout"/>
+                                            <div class="circle offline"></div>
+                                        </div>
+                                        <div>
+                                            <h5 class="team-member">Charles Davies</h5>
+                                            <span class="team-member-role">420 followers</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-5 icons">
+                                        <h:form>
+                                            <p:menuButton icon="pi pi-ellipsis-h">
+                                                <p:menuitem value="Save" icon="pi pi-save"/>
+                                                <p:menuitem value="Update" icon="pi pi-refresh"/>
+                                                <p:menuitem value="Delete" icon="pi pi-times"/>
+                                            </p:menuButton>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="grid member">
+                                    <div class="col-7 team-box">
+                                        <div class="profile-image">
+                                            <p:graphicImage name="images/dashboard/avatar-aneta.png"
+                                                            library="siberia-layout"/>
+                                            <div class="circle offline"></div>
+                                        </div>
+                                        <div>
+                                            <h5 class="team-member">Aneta Škodová</h5>
+                                            <span class="team-member-role">89072 followers</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-5 icons">
+                                        <h:form>
+                                            <p:menuButton icon="pi pi-ellipsis-h">
+                                                <p:menuitem value="Save" icon="pi pi-save"/>
+                                                <p:menuitem value="Update" icon="pi pi-refresh"/>
+                                                <p:menuitem value="Delete" icon="pi pi-times"/>
+                                            </p:menuButton>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 lg:col-8">
+                <div class="card inventory">
+                    <p:dataTable id="productsTable" var="product" value="#{dataTableDemoView.products1}" reflow="true"
+                                 paginatorPosition="bottom"
+                                 rowKey="#{product.id}" paginator="true" rows="5">
+                        <f:facet name="header">
+                            <h:outputText value="Inventory" />
+                            <p:outputPanel>
+                                <h:outputText value="Search all fields:" />
+                                <p:inputText id="globalFilter" onkeyup="PF('dashboardCarTable').filter()" style="width:150px" placeholder="Enter keyword"/>
+                            </p:outputPanel>
+                        </f:facet>
+                        <p:column headerText="Id" sortBy="#{product.id}">
+                            <h:outputText value="#{product.id}"/>
+                        </p:column>
+                        <p:column headerText="Category" sortBy="#{product.category}">
+                            <h:outputText value="#{product.category}"/>
+                        </p:column>
+                        <p:column headerText="Price" sortBy="#{product.price}">
+                            <h:outputText value="#{product.price}">
+                                <f:convertNumber currencySymbol="$" type="currency"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Status" sortBy="#{product.inventoryStatus}">
+                            <span class="product-badge status-#{product.inventoryStatus.name().toLowerCase()}">#{product.inventoryStatus}</span>
+                        </p:column>
+                        <p:column style="text-align: center">
+                            <p:commandButton icon="pi pi-search"/>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+            </div>
+            <div class="col-12 lg:col-4">
+                <div class="card profile">
+                    <div class="profile-header">
+                        <p:graphicImage name="images/dashboard/avatar-profile.png" library="siberia-layout"/>
+                    </div>
+                    <div class="profile-content">
+                        <div class="content-header">
+                            <h5><i class="pi pi-circle-on"/> Melissa Morillo</h5>
+                            <span>Executive Administrator</span>
+                        </div>
+                        <div class="progress-bar-wrapper">
+                            <span>Sales Performance</span>
+                            <div class="progress-bar">
+                                <span class="progress" style="width:70%; background-color:#4a79a6;"></span>
+                                <span class="progress-bar-background"></span>
+                            </div>
+                        </div>
+                        <div class="progress-bar-wrapper">
+                            <span>Motivation</span>
+                            <div class="progress-bar">
+                                <span class="progress" style="width:20%;"></span>
+                                <span class="progress-bar-background"></span>
+                            </div>
+                        </div>
+                        <div class="progress-bar-wrapper">
+                            <span>Conversations</span>
+                            <div class="progress-bar">
+                                <span class="progress" style="width:30%;"></span>
+                                <span class="progress-bar-background"></span>
+                            </div>
+                        </div>
+                        <div class="content-footer">
+                            <p:commandButton type="button" value="Follow" icon="pi pi-plus"/>
+                            <p:commandButton type="button" value="Message" icon="pi pi-envelope"/>
+                            <p:commandButton type="button" value="Ping" icon="pi pi-send"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 xl:col-3 md:col-6">
+                <div class="grid grid-nogutter status-box status-box-1">
+                    <div class="col-4 status-box-image">
+                        <p:graphicImage name="images/dashboard/icon-message.png" library="siberia-layout"/>
+                    </div>
+                    <div class="col-6 status-box-text">
+                        <h5>Messages</h5>
+                        <span>152 Unread</span>
+                    </div>
+                    <div class="col-2 status-box-icon">
+                        <i class="pi pi-arrow-right"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 xl:col-3 md:col-6">
+                <div class="grid grid-nogutter status-box status-box-2">
+                    <div class="col-4 status-box-image">
+                        <p:graphicImage name="images/dashboard/icon-checkins.png" library="siberia-layout"/>
+                    </div>
+                    <div class="col-6 status-box-text">
+                        <h5>Checkins</h5>
+                        <span>532 Unique Locations</span>
+                    </div>
+                    <div class="col-2 status-box-icon">
+                        <i class="pi pi-arrow-right"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 xl:col-3 md:col-6">
+                <div class="grid grid-nogutter status-box status-box-3">
+                    <div class="col-4 status-box-image">
+                        <p:graphicImage name="images/dashboard/icon-filessynced.png" library="siberia-layout"/>
+                    </div>
+                    <div class="col-6 status-box-text">
+                        <h5>Files Synced</h5>
+                        <span>28GB/100GB</span>
+                    </div>
+                    <div class="col-2 status-box-icon">
+                        <i class="pi pi-arrow-right"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 xl:col-3 md:col-6">
+                <div class="grid grid-nogutter status-box status-box-4">
+                    <div class="col-4 status-box-image">
+                        <p:graphicImage name="images/dashboard/icon-useronline.png" library="siberia-layout"/>
+                    </div>
+                    <div class="col-6 status-box-text">
+                        <h5>Users Online</h5>
+                        <span>256</span>
+                    </div>
+                    <div class="col-2 status-box-icon">
+                        <i class="pi pi-arrow-right"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 lg:col-6">
+                <div class="card map">
+                    <div class="map-image">
+                        <p:graphicImage name="images/dashboard/asset-map.jpg" library="siberia-layout"/>
+                        <hr/>
+                    </div>
+                    <div class="map-locations">
+                        <div class="location-card">
+                            <div class="location-icon">
+                                <p:graphicImage name="images/dashboard/location-coffee.png" library="siberia-layout"/>
+                            </div>
+                            <p:graphicImage name="images/dashboard/asset-espresso.jpg" library="siberia-layout"/>
+                            <h5>Espresso</h5>
+                            <span>WF BISTRO</span>
+                            <p:rating/>
+                        </div>
+                        <div class="location-card">
+                            <div class="location-icon">
+                                <p:graphicImage name="images/dashboard/location-warehouse.png"
+                                                library="siberia-layout"/>
+                            </div>
+                            <p:graphicImage name="images/dashboard/asset-besiktas.jpg" library="siberia-layout"/>
+                            <h5>Warehouse</h5>
+                            <span>BESIKTAS LOGISTICS</span>
+                            <p:rating/>
+                        </div>
+                        <div class="location-card">
+                            <div class="location-icon">
+                                <p:graphicImage name="images/dashboard/location-game.png" library="siberia-layout"/>
+                            </div>
+                            <p:graphicImage name="images/dashboard/asset-play.jpg" library="siberia-layout"/>
+                            <h5>Playstation 5</h5>
+                            <span>CHILL.PLAY</span>
+                            <p:rating/>
+                        </div>
+                        <div class="location-card">
+                            <div class="location-icon">
+                                <p:graphicImage name="images/dashboard/location-coffee.png" library="siberia-layout"/>
+                            </div>
+                            <p:graphicImage name="images/dashboard/asset-americano.jpg" library="siberia-layout"/>
+                            <h5>Americano</h5>
+                            <span>PRIME</span>
+                            <p:rating/>
+                        </div>
+                        <div class="location-card">
+                            <div class="location-icon">
+                                <p:graphicImage name="images/dashboard/location-coffee.png" library="siberia-layout"/>
+                            </div>
+                            <p:graphicImage name="images/dashboard/asset-tkwy.jpg" library="siberia-layout"/>
+                            <h5>Cappuccino</h5>
+                            <span>TKWY</span>
+                            <p:rating/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 lg:col-6">
+                <div class="card  timeline">
+                    <h5>Timeline</h5>
+                    <ul>
+                        <li>
+                            <div class="activity-link"></div>
+                            <div class="timeline-icon">
+                                <p:graphicImage name="images/dashboard/icon-image.png" library="siberia-layout"/>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-content-header">
+                                    <div>
+                                        <h3>Latherina May</h3>
+                                        <span>Shared 4 images on company social network account</span>
+                                    </div>
+                                    <span>4 minutes ago</span>
+                                </div>
+                                <div class="grid">
+                                    <div class="col-3">
+                                        <p:graphicImage name="images/dashboard/asset-view.jpg"
+                                                        library="siberia-layout"/>
+                                    </div>
+                                    <div class="col-3">
+                                        <p:graphicImage name="images/dashboard/asset-statues.jpg"
+                                                        library="siberia-layout"/>
+                                    </div>
+                                    <div class="col-3">
+                                        <p:graphicImage name="images/dashboard/asset-plant.jpg"
+                                                        library="siberia-layout"/>
+                                    </div>
+                                    <div class="col-3">
+                                        <p:graphicImage name="images/dashboard/asset-sound.jpg"
+                                                        library="siberia-layout"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="activity-link"></div>
+                            <div class="timeline-icon">
+                                <p:graphicImage name="images/dashboard/icon-energy.png" library="siberia-layout"/>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-content-header">
+                                    <div>
+                                        <h3>Nayara Delafuente</h3>
+                                        <span>Ab nobis, magnam sunt eum. Laudantium, repudiandae, similique!</span>
+                                    </div>
+                                    <span>8 minutes ago</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="activity-link"></div>
+                            <div class="timeline-icon">
+                                <p:graphicImage name="images/dashboard/icon-dropbox.png" library="siberia-layout"/>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-content-header">
+                                    <div>
+                                        <h3>Uruewa Himona</h3>
+                                        <span>Shared 4 images on Dropbox Shared Folder</span>
+                                    </div>
+                                    <span>12 minutes ago</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="activity-link"></div>
+                            <div class="timeline-icon">
+                                <p:graphicImage name="images/dashboard/icon-github.png" library="siberia-layout"/>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-content-header">
+                                    <div>
+                                        <h3>Tao Yi</h3>
+                                        <span>1 commit to master: <a href="#">a2a230f</a></span>
+                                    </div>
+                                    <span>24 minutes ago</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="activity-link"></div>
+                            <div class="timeline-icon">
+                                <p:graphicImage name="images/dashboard/iconlocation.png" library="siberia-layout"/>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-content-header">
+                                    <div>
+                                        <h3>Mbe Tshinguta</h3>
+                                        <span>Location updated</span>
+                                    </div>
+                                    <span>1 hours ago</span>
+                                </div>
+                                <p:graphicImage name="images/dashboard/asset-stoneheads.jpg" library="siberia-layout"/>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="timeline-footer">
+                        <p:commandButton type="button" value="Load More..." styleClass="load-button"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 lg:col-6">
+                <div class="card sales">
+                    <div class="sales-header">
+                        <div>
+                            <h5>Sales Report</h5>
+                            <p:selectOneMenu id="oneMenu">
+                                <f:selectItem itemLabel="OCTOBER 2020" itemValue="OCTOBER 2020"/>
+                                <f:selectItem itemLabel="NOVEMBER 2020" itemValue="NOVEMBER 2020"/>
+                                <f:selectItem itemLabel="DECEMBER 2020" itemValue="DECEMBER 2020"/>
+                            </p:selectOneMenu>
+                        </div>
+
+                        <div class="chart-items">
+                            <div class="chart-item">
+                                <i class="pi pi-circle-on"/> Sapphire
+                            </div>
+                            <div class="chart-item">
+                                <i class="pi pi-circle-on"/> Mirage
+                            </div>
+                        </div>
+                    </div>
+                    <canvas id="dashboard-chart"></canvas>
+                </div>
+            </div>
+            <div class="col-12 lg:col-6">
+                <div class="card chat">
+                    <h5>Chat</h5>
+                    <div class="grid grid-nogutter message-row">
+                        <div class="col-fixed message-profile profile1">
+                            <span>SP</span>
+                        </div>
+                        <div class="col message">
+                            <div class="message-header">
+                                <h3>Sergio Pliego</h3>
+                                <span>15.08 PM</span>
+                            </div>
+                            <div class="message-content">
+                                <p>Hey Charles And Micheal, I heard there is a task about unexpected event occured
+                                    near San Mateo recently. Here is the accident report. Can you handle today?</p>
+                                <div class="message-atachment">
+                                    <p:graphicImage name="images/dashboard/file-excel.png" library="siberia-layout"/>
+                                    <div class="atachment-info">
+                                        <p>San_Mateo_Accident_Report.xls</p>
+                                        <span>24mb Spreadsheet file</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-nogutter message-row">
+                        <div class=" col-fixed message-profile profile2">
+                            <span>CD</span>
+                        </div>
+                        <div class=" col message">
+                            <div class="message-header">
+                                <h3>Charles Davies</h3>
+                                <span>15.08 PM</span>
+                            </div>
+                            <div class="message-content">
+                                <p>Sounds good for me.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-nogutter message-row">
+                        <div class=" col-fixed message-profile profile3">
+                            <span>SP</span>
+                        </div>
+                        <div class="col message">
+                            <div class="message-header">
+                                <h3>Sergio Pliego</h3>
+                                <span>15.08 PM</span>
+                            </div>
+                            <div class="message-content">
+                                <p>Great! See you on Sunday. Don't forget the bring coffee ☕️</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="new-message">
+                        <p:inputText placeholder="Enter your message"/>
+                        <i class="pi pi-plus"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

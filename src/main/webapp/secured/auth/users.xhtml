@@ -1,0 +1,133 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+                
+
+    <ui:define name="title">Utilisateurs</ui:define>
+
+    <ui:define name="head">
+        
+    </ui:define>
+
+    <ui:define name="content">
+    
+        
+    
+		<div class="grid">
+            
+			<div class="col-12">
+                <h:form  class="card">
+                    <div class="flex align-items-center justify-content-between">
+                        <h5>Gestion des utilisateurs</h5><p:commandButton action="#{utilisateurBean.initUser()}"  value="Nouvel utilisateur" update="form" icon="pi pi-user-plus" oncomplete="PF('pop').show();" styleClass="rounded-button ui-button-secondary mr-2 mb-2" />
+                    </div>
+                    	
+                    <p>Créer ou modifier les utilisateurs. </p>
+                    <div class="ui-fluid formgrid grid">
+                        <p:dataTable id="list" widgetVar="listData"  var="obj" value="#{utilisateurBean.utilisateurs}"   scrollable="true" scrollHeight="500" 
+                        styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines">
+                            
+                            <p:column headerText="Identifiant" sortBy="#{obj.username}" width="10%" >
+                                <h:outputText value="#{obj.username}" />
+                            </p:column>
+                            
+                            <p:column headerText="Nom et prénom"  sortBy="#{obj.nom}" width="55%"  >
+                                <h:outputText value="#{obj.nomprenom}" />
+                            </p:column>  
+                            
+                            <p:column headerText="Site" sortBy="#{obj.site.libelle}" width="20%" >
+                                <h:outputText value="#{obj.site.libelle}" />
+                            </p:column>                              
+                            
+                            <p:column headerText="Statut"  styleClass="text-right"  width="5%" >
+                            	<p:badge value="#{obj.active?'Actif':'Désactivé'}" severity="#{obj.active?'success':'danger'}"/>
+                            </p:column>                        
+                                                                           
+                            <p:column headerText=""  styleClass="text-right"  width="10%" >
+                            
+		                        <p:menuButton value="Actions" icon="pi pi-user-edit">
+		                            <p:menuitem update="form" action="#{utilisateurBean.chargerUserToUpdate(obj)}"  icon="pi pi-pencil" oncomplete="PF('pop').show();" value="Mise à jour"/>
+		                            <p:menuitem action="#{utilisateurBean.resetPassword(obj)}"  icon="pi pi-refresh" value="Réinitialiser le mot de passe"/>
+		                        </p:menuButton> 
+
+                            </p:column>
+                          
+                        </p:dataTable>                    
+                    
+                    </div>
+                    <p:remoteCommand update="list" name="updateList"/>                    	
+                    	
+                    
+                    
+
+                </h:form>
+            </div>    
+            
+			             
+                      
+        </div>
+        
+        <!-- *************************************FORM USER****************************************** -->
+		<p:dialog header="Créer / Modifier un utilisateur" widgetVar="pop" modal="true" width="50%">
+		    <h:form id="form">
+		    
+                    <div class="ui-fluid formgrid grid">
+                        <div class="field col-12 md:col-4">
+                            <p:outputLabel value="Identifiant" />
+                            <p:inputText required="true" requiredMessage="Identifiant ?" value="#{utilisateurBean.utilisateur.username}" />
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <p:outputLabel value="Nom" />
+                            <p:inputText required="true" requiredMessage="Nom ?" value="#{utilisateurBean.utilisateur.nom}" />
+                        </div>   
+                        <div class="field col-12 md:col-4">
+                            <p:outputLabel value="Prénom" />
+                            <p:inputText required="true" requiredMessage="Prénom ?" value="#{utilisateurBean.utilisateur.prenom}" />
+                        </div>    
+
+                        <div class="field col-12 md:col-4">
+                            <p:outputLabel value="Site" />
+        					<p:selectOneMenu id="site" value="#{utilisateurBean.utilisateur.siteId}" required="true">
+					            <f:selectItem itemLabel="-- Choisir --" itemValue="#{null}"/>
+					            <f:selectItems value="#{utilisateurBean.sites}"
+					                           var="s"
+					                           itemLabel="#{s.libelle}"
+					                           itemValue="#{s.id}"/>
+					        </p:selectOneMenu>                        
+        				</div>   
+                                              
+                        <div class="field col-12 md:col-1">
+                            <p:outputLabel value="Actif" />
+                            <br/><p:selectBooleanCheckbox value="#{utilisateurBean.utilisateur.active}" />
+                        </div>          				
+        				
+                        <div class="field col-12 md:col-12">
+                            <p:outputLabel value="Profiles" />
+						     <p:selectCheckboxMenu value="#{utilisateurBean.selectedProfileIds}" label="Profils"  multiple="true"  filter="true">
+						            <f:selectItems value="#{utilisateurBean.profiles}"
+						                           var="p" 
+						                           itemLabel="#{p.libelle}"
+						                           itemValue="#{p.id}"/>
+						     </p:selectCheckboxMenu>                            
+                            
+                            
+                        </div>        				                      
+                       
+                         
+                                                                                          
+                    </div>	
+                    <p:remoteCommand update="form" name="updateForm"/>	    
+		    		<p:commandButton rendered="#{utilisateurBean.utilisateur.id eq null}" update=":growl" action="#{utilisateurBean.creer()}" oncomplete="updateList();PF('pop').hide();"  value="Enregistrer"   />
+		    		<p:commandButton rendered="#{utilisateurBean.utilisateur.id ne null}" update=":growl" action="#{utilisateurBean.modifier()}" oncomplete="updateList();PF('pop').hide();"  value="Mettre à jour"   />
+		    </h:form>
+		</p:dialog>      
+		<!-- **************************************************************************************** -->   
+		
+     
+    
+    
+        
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,1027 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+                
+
+    <ui:define name="title">Contrat</ui:define>
+
+    <ui:define name="head">
+    
+        <h:outputScript name="js/chart.js" library="demo"/>
+        
+        <script type="text/javascript">
+        
+		$(function () {
+		    new Chart(document.getElementById("dashboard-chart"), {
+		        type: 'bubble',
+		        data: {
+		            datasets: [
+		                {
+		                    label: "Demandeurs d'emploi",
+		                    backgroundColor: "#36a2eb",
+		                    borderColor: "#36a2eb",
+		                    data: [
+		                        { x: 1, y: 12450, r: 15 } // r = taille de la bulle
+		                    ]
+		                },
+		                {
+		                    label: "Offres d'emploi",
+		                    backgroundColor: "#4bc0c0",
+		                    borderColor: "#4bc0c0",
+		
+		                    data: [
+		                        { x: 2, y: 3215, r: 10 }
+		                    ]
+		                },
+		                {
+		                    label: "Placements réussis",
+		                    backgroundColor: "#ffce56",
+		                    borderColor: "#ffce56",
+		                    data: [
+		                        { x: 3, y: 1020, r: 8 }
+		                    ]
+		                },
+		                {
+		                    label: "Formations suivies",
+		                    backgroundColor: "#ff6384",
+		                    borderColor: "#ff6384",
+		                    data: [
+		                        { x: 4, y: 450, r: 6 }
+		                    ]
+		                }
+		            ]
+		        },
+		        options: {
+		            responsive: true,
+		            plugins: {
+		                legend: {
+		                    display: true,
+		                    position: 'bottom'
+		                },
+		                title: {
+		                    display: true,
+		                    text: 'Tableau de performance des indicateurs',
+		                    font: {
+		                        size: 16
+		                    }
+		                }
+		            },
+		            scales: {
+		                x: {
+		                    title: {
+		                        display: true,
+		                        text: 'Indicateurs'
+		                    },
+		                    ticks: {
+		                        callback: function(value, index) {
+		                            const labels = ["Demandeurs", "Offres", "Placements", "Formations"];
+		                            return labels[index] || '';
+		                        }
+		                    }
+		                },
+		                y: {
+		                    title: {
+		                        display: true,
+		                        text: 'Nombre'
+		                    },
+		                    beginAtZero: true
+		                }
+		            },
+		            layout: {
+		                padding: 20
+		            }
+		        }
+		    });
+		});
+</script>
+        
+    </ui:define>
+
+    <ui:define name="content">
+    
+        
+    
+        <div class="grid layout-dashboard">
+        
+        
+        
+            <div class="col-12">
+                <div class="card status">
+                    <div class="status-header">
+                        <div class="title">
+                            <!-- 
+                            Bienvenu #{securityContextImpl.utilisateur.nomprenom}
+                             -->
+                             ::: Contrat
+                        </div>
+                        <div class="icons">
+                            
+                            
+                            
+                            <!-- ouvrir sous forme de popUp -->
+                            
+                            
+                            
+                            
+                            <div class="icon">
+                                <i class="pi pi-comments"/>
+                            </div>
+                            <div class="icon">
+                                <i class="pi pi-window-maximize"/>
+                            </div>
+                            <div class="icon">
+                                <i class="pi pi-bookmark"/>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+<!--            
+             <div class="col-12 xl:col-3 md:col-6">
+                <div class="grid grid-nogutter status-box status-box-3">
+                    <div class="col-4 status-box-image">
+                        <p:graphicImage name="images/dashboard/icon-checkins.png" library="siberia-layout"/>
+                    </div>
+                    <div class="col-6 status-box-text">
+                        <h5>Demandeurs inscrits</h5>
+                        <span>12 450</span>
+                    </div>
+                    <div class="col-2 status-box-icon">
+                        <i class="pi pi-user-edit"/>
+                    </div>
+                </div>
+            </div>  
+            
+            <div class="col-12 xl:col-3 md:col-6">
+                <div class="grid grid-nogutter status-box status-box-2">
+                    <div class="col-4 status-box-image">
+                        <p:graphicImage name="images/dashboard/icon-filessynced.png" library="siberia-layout"/>
+                    </div>
+                    <div class="col-6 status-box-text">
+                        <h5>Placements réussis</h5>
+                        <span>1 020</span>
+                    </div>
+                    <div class="col-2 status-box-icon">
+                        <i class="pi pi-folder"/>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 xl:col-3 md:col-6">
+                <div class="grid grid-nogutter status-box status-box-4">
+                    <div class="col-4 status-box-image">
+                        <p:graphicImage name="images/dashboard/icon-useronline.png" library="siberia-layout"/>
+                    </div>
+                    <div class="col-6 status-box-text">
+			            <h5>Formations suivies</h5>
+			            <span>450</span>
+                    </div>
+                    <div class="col-2 status-box-icon">
+                        <i class="pi pi-folder-open"/>
+                    </div>
+                </div>
+            </div>  
+            
+			<div class="col-12 xl:col-3 md:col-6">
+                <div class="grid grid-nogutter status-box status-box-1">
+                    <div class="col-4 status-box-image">
+                        <p:graphicImage name="images/dashboard/icon-message.png" library="siberia-layout"/>
+                    </div>
+                    <div class="col-6 status-box-text">
+                        <h5>Offres disponibles</h5>
+                        <span>3 215</span>
+                    </div>
+                    <div class="col-2 status-box-icon">
+                        <i class="pi pi-users"/>
+                    </div>
+                </div>
+            </div>
+ 
+
+ --> 
+ 
+            
+<!--  -->  
+
+			<div class="card">
+			<h:form  class="card" id="form">
+
+
+<p:fieldset legend="Options de Recherche et Filtres" toggleable="true" toggleSpeed="500">
+            
+    
+        <div class="ui-fluid formgrid grid">
+            <div class="field col-12 md:col-4">
+                <p:outputLabel for="@next" value=": Statut"/>
+                <p:selectOneMenu id="option" value="#">
+                    <f:selectItem itemLabel="Select One" itemValue=""/>
+                    <f:selectItem itemLabel="Option1" itemValue="Option1"/>
+                    <f:selectItem itemLabel="Option2" itemValue="Option2"/>
+                    <f:selectItem itemLabel="Option3" itemValue="Option3"/>
+                    <f:facet name="footer">
+                        <p:divider styleClass="mt-0" />
+                        <h:outputText value="3 options" style="font-weight:bold;"/>
+                    </f:facet>
+                </p:selectOneMenu>
+            </div>
+
+            <div class="field col-12 md:col-4">
+                <p:outputLabel for="@next" value=": Type"/>
+                <p:selectOneMenu id="option2" value="#">
+                    <f:selectItem itemLabel="Select One" itemValue=""/>
+                    <f:selectItem itemLabel="Option1" itemValue="Option1"/>
+                    <f:selectItem itemLabel="Option2" itemValue="Option2"/>
+                    <f:selectItem itemLabel="Option3" itemValue="Option3"/>
+                    <f:facet name="footer2">
+                        <p:divider styleClass="mt-0" />
+                        <h:outputText value="3 options" style="font-weight:bold;"/>
+                    </f:facet>
+                </p:selectOneMenu>
+            </div>
+            
+            <div class="field col-12 md:col-4">
+            <p:outputLabel for="@next" value=": Contient le mot clé :"/>
+                <div class="ui-inputgroup">               	
+                    <p:inputText placeholder="Keyboard"/>
+                    <p:commandButton icon="pi pi-search" styleClass="ui-button-warning"/>
+                </div>
+            </div>            
+            
+            
+            
+         </div>
+      
+            
+            
+</p:fieldset>
+
+<p:toolbar>
+     <p:toolbarGroup align="right">
+		
+       
+             
+            <p:commandButton 
+                 action="#{evenementBean.nouvelEvenement()}"  
+                 value="Nouveau"  icon="pi pi-plus-circle"                             	
+                 oncomplete="PF('popCreate').show()"
+                 update="form"
+                 styleClass="rounded-button ui-button-success mr-2 mb-2" />
+       
+	</p:toolbarGroup>
+</p:toolbar>       
+       
+       
+       
+			   <div class="col-12">
+			     <div class="grid">
+	                <div class="col-12">
+	                    
+	                    
+	                    <p:dataTable var="obj" value="#{evenementBean.listeEvenement}" 
+	                                 styleClass="p-datatable-gridlines p-datatable-sm" 
+	                                 scrollable="true" scrollHeight="300px">
+	                                 
+	                                 
+
+                            <p:column headerText="Code" sortBy="#{obj.id}" width="10%" >
+                                <h:outputText value="#{obj.id}" />
+                            </p:column>
+                            
+                            <p:column headerText="Date debut"  sortBy="#{obj.dateDebut}" width="10%"  >
+                                <h:outputText value="#{obj.dateDebut}" />
+                            </p:column>  
+                            
+                            <p:column headerText="Date fin" sortBy="#{obj.dateFin}" width="10%" >
+                                <h:outputText value="#{obj.dateFin}" />
+                            </p:column>                              
+                            
+                            <p:column headerText="Statut"  styleClass="text-right"  width="5%" >
+                            	<p:badge 
+								    value="#{obj.etat == 0 ? 'Initié' : (obj.etat == 1 ? 'Cloturé' : 'Annulé')}"
+								    severity="#{obj.etat == 0 ? 'info' : (obj.etat == 1 ? 'success' : 'danger')}"/>
+                            	
+                            </p:column>                              
+                            <p:column headerText=""  styleClass="text-right"  width="10%" >
+                                <div style="text-align:right">
+								    <p:commandButton
+								        value="Détails"
+								        action="#{evenementBean.evenementCapte(obj)}"
+								        icon="pi pi-info-circle"
+								        update="form"
+								        oncomplete="PF('popUp').show()" />
+								
+								    <p:menuButton value="Actions" icon="pi pi-bars" styleClass="ui-button-primary" style="margin-left: 10px;">
+								        <p:menuitem value="Modifier" icon="pi pi-pencil" action="#{evenementBean.versPopUpdate(obj)}" update="form" oncomplete="PF('popUpdate').show()" />
+								        <p:menuitem value="Annuler" icon="pi pi-trash" action="#{evenementBean.annuleEvenement(obj)}" />
+								        <p:menuitem value="Clôturer" icon="pi pi-check-circle" action="#{evenementBean.clotureEvenement(obj)}" update="form"/>
+								    </p:menuButton>
+								</div>
+                                
+                            </p:column>                          
+                                                                           
+	                    </p:dataTable>
+	                    
+<!-- MODAL POP UP -->
+
+
+	                    
+<!-- Fin MODAL POP UP -->	
+
+                    
+	                </div>
+            	</div>
+			</div>          	    
+		    		          
+<!-- popUp NOUVEL EVENEMENT -->		          
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		<p:dialog header=" ::: MODIFICATION> Atelier et Evenements"
+			          widgetVar="popUpdate"
+			          modal="true"
+			          width="80%"
+			          height="460px">
+
+
+<p:toolbar>
+
+
+   <p:toolbarGroup align="right">
+   
+   <p:outputLabel value="" />
+  
+            <!--  <div class="field col-12 md:col-12"> -->
+            
+                <h5><p:outputLabel for="@next" value="Choix du dispositif : "/></h5>
+               
+                 <p:selectOneMenu 
+                 value="#{evenementBean.dispositifChoisi}"
+                 filter="true"
+                 converter="evenementConverter">
+
+			    <f:selectItem itemLabel="Sélectionner" itemValue="-1" noSelectionOption="true"/>
+			    <f:selectItems value="#{evenementBean.listeDispositif}" var="obj"
+			                   itemLabel="#{obj.libelle}" itemValue="#{obj}"/>
+			
+			    
+			</p:selectOneMenu>
+			
+			
+               
+               
+               
+   
+   </p:toolbarGroup>
+
+
+   <p:toolbarGroup align="right">
+                    <div  style="text-align:right">  
+                        <p:commandButton  oncomplete="PF('popUpdate').hide()"
+                            value="Annuler"  icon="pi pi-bars" styleClass="rounded-button ui-button-danger mr-2 mb-2" />
+                     
+                        <p:commandButton value="Valider"
+                            action="#{evenementBean.updateEvenement()}" styleClass="rounded-button ui-button-success"/>
+                    </div>
+	</p:toolbarGroup>
+</p:toolbar>
+
+   					<p:tabView dynamic="true" cache="true" id="tabviewUpdate">
+
+        <!-- ================= ONGLET Général ================= -->
+              
+              <p:tab title="Général" >
+              
+              <div><HR /></div>
+
+                              <div class="ui-fluid formgrid grid">
+                       
+						 
+                         
+
+    <!-- Date du rendez-vous -->
+    <div class="field col-12 md:col-3">
+        <b>Date debut :</b>
+        <p:calendar 
+            value="#{evenementBean.evenementUpdate.dateDebut}"
+            pattern="dd/MM/yyyy"
+            showIcon="true"
+        />
+    </div>
+<div class="field col-12 md:col-3">
+        <b>Date fin :</b>
+        <p:calendar 
+            value="#{evenementBean.evenementUpdate.dateFin}"
+            pattern="dd/MM/yyyy"
+            showIcon="true"
+        />
+    </div>
+    
+
+
+    <!-- Lieu -->
+    <div class="field col-12 md:col-6">
+        <b>Lieu :</b>
+        <p:inputText 
+            value="#{evenementBean.evenementUpdate.lieu}"
+            placeholder="Lieu "
+        />
+    </div>
+
+    <!-- Objectif -->
+    <div class="field col-12 md:col-12">
+        <b>Objectif :</b>
+        <p:inputTextarea 
+            value="#{evenementBean.evenementUpdate.objectif}"
+            rows="3"
+            autoResize="true"
+        />
+    </div>
+
+</div>
+       
+             </p:tab>
+           
+        
+        <p:tab title="Participants ">
+                   <div class="ui-fluid formgrid grid">
+
+                <!-- Liste Demandeurs -->
+                <div class="field col-12 md:col-6">
+                    <p:dataTable id="listaDemandeurUpdate"
+                                 var="obj"
+                                 value="#{evenementBean.listeDemandeur}"
+                                 rows="10"
+                                 scrollable="true"
+                                 scrollHeight="300"
+                                 paginator="true"
+                                 paginatorPosition="bottom"
+                                 styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines"
+                                 reflow="true">
+
+                        <p:column headerText="Nom et prénom"
+                                  sortBy="#{obj.demandeur.personne.nom}"
+                                  filterBy="#{obj.demandeur.personne.nom}">
+                            <h:outputText
+                                value="#{obj.demandeur.personne.nom} #{obj.demandeur.personne.prenom}"/>
+                        </p:column>
+
+                        <p:column style="text-align:center; width:150px">
+                            <p:commandButton icon="pi pi-plus"
+                                            
+                                             update="form:tabviewUpdate:listbDemandeurUpdate"
+                                             action="#{evenementBean.ajouterDemandeur(obj)}"
+                                             styleClass="rounded-button ui-button-primary"/>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+
+                <!-- Liste Demandeurs conviés -->
+                <div class="field col-12 md:col-6">
+                    <p:dataTable id="listbDemandeurUpdate"
+                                 var="obj"
+                                 value="#{evenementBean.listeDemandeurConvies}"
+                                 rows="10"
+                                 scrollable="true"
+                                 scrollHeight="300"
+                                 paginator="true"
+                                 paginatorPosition="bottom"
+                                 styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines"
+                                 reflow="true">
+
+                        <p:column headerText="Nom et prénom"
+                                  sortBy="#{obj.demandeur.personne.nom}"
+                                  filterBy="#{obj.demandeur.personne.nom}">
+                            <h:outputText
+                                value="#{obj.demandeur.personne.nom} #{obj.demandeur.personne.prenom}"/>
+                        </p:column>
+
+                        <p:column style="text-align:center; width:150px">
+                            <p:commandButton icon="pi pi-minus"
+                                            
+                                             update="form:tabviewUpdate:listbDemandeurUpdate"
+                                             action="#{evenementBean.retirerDemandeur(obj)}"
+                                             styleClass="rounded-button ui-button-danger"/>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+
+            </div>
+        </p:tab>
+
+        <!-- ================= ONGLET PARTENAIRES ================= -->
+        
+        <p:tab title="Partenaires externes">
+
+              <div class="ui-fluid formgrid grid">
+
+                <!-- Liste Partenaires -->
+                <div class="field col-12 md:col-6">
+                    <p:dataTable id="listaPartenaireUpdate"
+                                 var="obj"
+                                 value="#{evenementBean.listePartenaire}"
+                                 rows="10"
+                                 scrollable="true"
+                                 scrollHeight="300"
+                                 paginator="true"
+                                 paginatorPosition="bottom"
+                                 styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines"
+                                 reflow="true">
+
+                        <p:column headerText="Nom et prénom"
+                                  sortBy="#{obj.personne.nom}"
+                                  filterBy="#{obj.personne.nom}">
+                            <h:outputText
+                                value="#{obj.personne.nom} #{obj.personne.prenom}"/>
+                        </p:column>
+
+                        <p:column style="text-align:center; width:150px">
+                            <p:commandButton icon="pi pi-plus"
+                                           
+                                             update="form:tabviewUpdate:listbPartenaireUpdate"
+                                             action="#{evenementBean.ajouterPartenaire(obj)}"
+                                             styleClass="rounded-button ui-button-primary"/>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+
+                <!-- Liste Partenaires conviés -->
+                <div class="field col-12 md:col-6">
+                    <p:dataTable id="listbPartenaireUpdate"
+                                 var="obj"
+                                 value="#{evenementBean.listePartenaireConvie}"
+                                 rows="10"
+                                 scrollable="true"
+                                 scrollHeight="300"
+                                 paginator="true"
+                                 paginatorPosition="bottom"
+                                 styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines"
+                                 reflow="true">
+
+                        <p:column headerText="Nom et prénom"
+                                  sortBy="#{obj.personne.nom}"
+                                  filterBy="#{obj.personne.nom}">
+                            <h:outputText
+                                value="#{obj.personne.nom} #{obj.personne.prenom}"/>
+                        </p:column>
+
+                        <p:column style="text-align:center; width:150px">
+                            <p:commandButton icon="pi pi-minus"
+                                           
+                                             update="form:tabviewUpdate:listbPartenaireUpdate"
+                                             action="#{evenementBean.retirerPartenaire(obj)}"
+                                             styleClass="rounded-button ui-button-danger"/>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+
+            </div>
+        </p:tab>
+
+    </p:tabView>
+         
+ <!-- command bouttons -->
+                         
+</p:dialog> 
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		          
+		          
+               <p:dialog header=" ::: NOUVEAU > Atelier et Evenements"
+			          widgetVar="popCreate"
+			          modal="true"
+			          width="80%"
+			          height="460px">
+
+
+<p:toolbar>
+
+
+   <p:toolbarGroup align="right">
+   
+   <p:outputLabel value="" />
+  
+            <!--  <div class="field col-12 md:col-12"> -->
+            
+                <h5><p:outputLabel for="@next" value="Choix du dispositif : "/></h5>
+               
+                 <p:selectOneMenu id="dispositif"
+                 value="#{evenementBean.dispositifChoisi}"
+                 filter="true"
+                 converter="evenementConverter">
+
+			    <f:selectItem itemLabel="Sélectionner" itemValue="-1" noSelectionOption="true"/>
+			    <f:selectItems value="#{evenementBean.listeDispositif}" var="obj"
+			                   itemLabel="#{obj.libelle}" itemValue="#{obj}"/>
+			
+			    
+			</p:selectOneMenu>
+			
+			
+               
+               
+               
+   
+   </p:toolbarGroup>
+
+
+   <p:toolbarGroup align="right">
+                    <div  style="text-align:right">  
+                        <p:commandButton  oncomplete="PF('popCreate').hide()"
+                            value="Annuler"  icon="pi pi-bars" styleClass="rounded-button ui-button-danger mr-2 mb-2" />
+                     
+                        <p:commandButton value="Créer l'evenement"
+                            action="#{evenementBean.creeEvenement()}" styleClass="rounded-button ui-button-success"/>
+                    </div>
+	</p:toolbarGroup>
+</p:toolbar>
+
+   					<p:tabView dynamic="true" cache="true" id="tabview">
+
+        <!-- ================= ONGLET Général ================= -->
+              
+              <p:tab title="Général" >
+              
+              <div><HR /></div>
+
+                  <div class="ui-fluid formgrid grid">
+				    
+				    <!-- Titre de la reunion... -->             
+				    
+				    <div class="field col-12 md:col-12">
+				        <b>: Titre</b>
+				        <p:inputText value="#{evenementBean.titre}"  placeholder="Titre de l'evenement... " />
+				    </div>				    
+				    
+				    <!-- Date du rendez-vous -->
+				    
+				    <div class="field col-12 md:col-3">
+				        <b>: Date debut</b>
+				        <p:calendar value="#{evenementBean.dateDebut}"
+				            pattern="dd/MM/yyyy" showIcon="true" 
+				            placeholder=" de: ? "/>
+				    </div>
+				    
+					<div class="field col-12 md:col-3">
+				        <b>: Date fin</b>
+				        <p:calendar value="#{evenementBean.dateFin}"
+				            pattern="dd/MM/yyyy" howIcon="true" 
+				            placeholder=" à: ? "/>
+				    </div>
+				    
+				    <!-- Lieu -->
+				    
+				    <div class="field col-12 md:col-6">
+				        <b>: Localisation</b>
+				        <p:inputText value="#{evenementBean.lieu}"
+				            placeholder="Où se déroule l'ateleir/événement ?" />
+				    </div>
+				
+				    <!-- Objectif -->
+				    
+				    <div class="field col-12 md:col-12">
+				        <b>: Description</b>
+				        <p:inputTextarea value="#{evenementBean.objectif}"
+				            rows="2" autoResize="true" 
+				            placeholder=" le contenu en quelques mots... "/>
+				    </div>
+
+				    <!-- Titre de la reunion... -->             
+				    
+				    <div class="field col-12 md:col-12">
+				        <b>: Lien visio</b>
+				        <p:inputText value="#{evenementBean.lienVisio}" placeholder="Créer le lien Visio créé sur les plateformes dédiees (Skype, Zoom) et coller ici..." />
+				    </div>					
+				</div>
+             </p:tab>
+           
+        
+        <p:tab title="Participants attendus">
+
+            <div class="ui-fluid formgrid grid">
+
+                <!-- Liste Demandeurs -->
+                
+                <div class="field col-12 md:col-6">
+                   <p:dataTable id="listaDemandeur"
+				             var="obj"
+				             value="#{evenementBean.listeDemandeur}"
+				             rows="10"
+				             scrollable="true"
+				             scrollHeight="300px"
+				             paginator="true"
+				             paginatorPosition="bottom"
+				             styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines listaTable"
+				             reflow="true">
+				
+				    <p:column headerText="Nom et prénom"
+				              sortBy="#{obj.demandeur.personne.nom}"
+				              filterBy="#{obj.demandeur.personne.nom}">
+				        <h:outputText
+				            value="#{obj.demandeur.personne.nom} #{obj.demandeur.personne.prenom}"/>
+				    </p:column>
+				
+				    <p:column style="text-align:center; width:30px">
+				        <p:commandButton icon="pi pi-plus"
+				                         disabled="#{evenementBean.demandeurDejaAjouter(obj)}"
+				                         process="@this"
+				                         update="listaDemandeur form:tabview:listbDemandeur"
+				                         action="#{evenementBean.ajouterDemandeur(obj)}"
+				                         styleClass="rounded-button ui-button-primary"/>
+				    </p:column>
+				
+				</p:dataTable>
+                   
+                </div>
+
+                <!-- Liste Demandeurs conviés -->
+                
+                <div class="field col-12 md:col-6">
+                    <p:dataTable id="listbDemandeur"
+                                 var="obj"
+                                 value="#{evenementBean.listeDemandeurConvies}"
+                                 rows="10"
+                                 scrollable="true"
+                                 scrollHeight="300"
+                                 
+                                 paginator="true"
+                                 paginatorPosition="bottom"
+                                 styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines convieTable"
+                                 reflow="true">
+
+                        <p:column style="text-align:center; width:30px">
+		                          <p:commandButton icon="pi pi-minus"
+		                 process="@this"
+		                 update="@(.listaTable) @(.convieTable)"
+		                 action="#{evenementBean.retirerDemandeur(obj)}"
+		                 styleClass="rounded-button ui-button-danger"/>
+
+
+                           
+                           
+                        </p:column>
+
+                        <p:column headerText="Nom et prénom"
+                                  sortBy="#{obj.demandeur.personne.nom}"
+                                  filterBy="#{obj.demandeur.personne.nom}">
+                            <h:outputText
+                                value="#{obj.demandeur.personne.nom} #{obj.demandeur.personne.prenom}"/>
+                        </p:column>
+
+
+                    </p:dataTable>
+                </div>
+
+            </div>
+        </p:tab>
+
+        <!-- ================= ONGLET PARTENAIRES ================= -->
+        
+        <p:tab title="Partenaires externes">
+
+            <div class="ui-fluid formgrid grid">
+
+                <!-- Liste Partenaires -->
+                <div class="field col-12 md:col-6">
+                    <p:dataTable id="listaPartenaire"
+                                 var="obj"
+                                 value="#{evenementBean.listePartenaie}"
+                                 rows="10"
+                                 scrollable="true"
+                                 scrollHeight="300"
+                                 paginator="true"
+                                 paginatorPosition="bottom"
+                                 styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines listcTable"
+                                 reflow="true">
+
+                        <p:column headerText="Nom et prénom"
+                                  sortBy="#{obj.personne.nom}"
+                                  filterBy="#{obj.personne.nom}">
+                            <h:outputText
+                                value="#{obj.personne.nom} #{obj.personne.prenom}"/>
+                        </p:column>
+
+                        <p:column style="text-align:center; width:30px">
+                        
+                        <p:commandButton icon="pi pi-plus"
+				                         disabled="#{evenementBean.partenaireDejaAjouter(obj)}"
+				                         process="@this"
+				                         update="listaPartenaire form:tabview:listbPartenaire"
+				                         action="#{evenementBean.ajouterPartenaire(obj)}"
+				                         styleClass="rounded-button ui-button-primary"/>
+                        
+                            
+                        </p:column>
+                    </p:dataTable>
+                </div>
+
+                <!-- Liste Partenaires conviés -->
+                
+                <div class="field col-12 md:col-6">
+                    <p:dataTable id="listbPartenaire"
+                                 var="obj"
+                                 value="#{evenementBean.listePartenaireConvie}"
+                                 rows="10"
+                                 scrollable="true"
+                                 scrollHeight="300"
+                                 paginator="true"
+                                 paginatorPosition="bottom"
+                                 styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines listdTable"
+                                 reflow="true">
+
+
+                        <p:column style="text-align:center; width:30px">
+                        
+                              <p:commandButton icon="pi pi-minus"
+		                 process="@this"
+		                 update="@(.listcTable) @(.listdTable)"
+		                 action="#{evenementBean.retirerPartenaire(obj)}"
+		                 styleClass="rounded-button ui-button-danger"/>
+                            
+                        </p:column>
+
+                        <p:column headerText="Nom et prénom"
+                                  sortBy="#{obj.personne.nom}"
+                                  filterBy="#{obj.personne.nom}">
+                            <h:outputText
+                                value="#{obj.personne.nom} #{obj.personne.prenom}"/>
+                        </p:column>
+
+                    </p:dataTable>
+                </div>
+
+            </div>
+        </p:tab>
+
+    </p:tabView>
+         
+ <!-- command bouttons -->
+                         
+</p:dialog>
+             
+
+                   			
+<!-- popUp DETAIL EVENEMENT? BOUTON détail-->	
+
+
+              <p:dialog header="::: Détail de l'évenement" widgetVar="popUp"  width="90%" >
+		         <h:panelGrid columns="1">
+			        <h:outputText value=" Intitulé : (N° #{evenementBean.evenementDetailCapte.id})"  styleClass="text-green-500 font-medium" />
+			     </h:panelGrid>
+		    
+                    <div class="ui-fluid formgrid grid">
+                 
+           <p:tabView dynamic="true" cache="true" >
+           
+             ================= ONGLET GENERAL =================
+             
+           <p:tab title="Général" >
+
+                    <div class="ui-fluid formgrid grid">
+ 
+    <!-- Date du rendez-vous -->
+    <div class="field col-12 md:col-3">
+        <b>Date debut :</b>
+        <p:calendar 
+            value="#{evenementBean.evenementDetailCapte.dateDebut}"
+            pattern="dd/MM/yyyy"
+            showIcon="true"
+            disabled="true" />
+    </div>
+
+    <div class="field col-12 md:col-3">
+        <b>Date fin :</b>
+        <p:calendar 
+            value="#{evenementBean.evenementDetailCapte.dateFin}"
+            pattern="dd/MM/yyyy"
+            showIcon="true"
+            disabled="true" />
+    </div>
+
+    <!-- Lieu -->
+    <div class="field col-12 md:col-6">
+        <b>Lieu :</b>
+        <p:inputText 
+            value="#{evenementBean.evenementDetailCapte.lieu}"
+            placeholder="Lieu"
+            disabled="true" />
+    </div>
+
+    <!-- Objectif -->
+    <div class="field col-12 md:col-12">
+        <b>Objectif :</b>
+        <p:inputTextarea 
+            value="#{evenementBean.evenementDetailCapte.objectif}"
+            rows="3"
+            autoResize="true"
+            disabled="true" />
+       </div>
+
+   </div>                           
+        </p:tab>
+           
+
+        ================= ONGLET DEMANDEURS =================
+        <p:tab title="Participants attendus" >
+
+            <div class="ui-fluid formgrid grid">
+
+               
+                <div class="field col-12 md:col-12">
+                    <p:dataTable 
+                                 var="obj"
+                                 value="#{evenementBean.listeDemandeurEvenement}"
+                                 rows="10"
+                                 scrollable="true"
+                                 scrollHeight="300"
+                                 paginator="true"
+                                 paginatorPosition="bottom"
+                                 styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines"
+                                 reflow="true" > 
+
+                        <p:column headerText="Nom et prénom"
+                                  sortBy="#{obj.personnelFonctionDemandeur.demandeur.personne.nom}"
+                                  filterBy="#{obj.personnelFonctionDemandeur.demandeur.personne.nom}">
+                            <h:outputText
+                                value="#{obj.personnelFonctionDemandeur.demandeur.personne.nom} #{obj.personnelFonctionDemandeur.demandeur.personne.prenom}"/>
+                        </p:column>
+                        <p:column headerText="Confirmé" styleClass="text-center">
+						    <p:selectBooleanCheckbox value="#{obj.confirmationBoolean}" disabled="true"/>
+						</p:column>                      
+                    </p:dataTable>
+                </div>
+            </div>
+        </p:tab>
+
+        ================= ONGLET PARTENAIRES =================
+        
+        <p:tab title="Partenaires externes" >
+
+            <div class="ui-fluid formgrid grid">
+
+             
+                <div class="field col-12 md:col-12">
+                    <p:dataTable 
+                                 var="obj"
+                                value="#{evenementBean.listePartenaireEvenement}"
+                                 rows="10"
+                                 scrollable="true"
+                                 scrollHeight="300"
+                                 paginator="true"
+                                 paginatorPosition="bottom"
+                                 styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines"
+                                 reflow="true" >
+
+                        <p:column headerText="Nom et prénom"
+                                  sortBy="#{obj.partenaire.personne.nom}"
+                                  filterBy="#{obj.partenaire.personne.nom}">
+                            <h:outputText
+                                value="#{obj.partenaire.personne.nom} #{obj.partenaire.personne.prenom}"/>
+                        </p:column>
+                         <p:column headerText="Confirmé" styleClass="text-center">
+						    <p:selectBooleanCheckbox value="#{obj.confirmationBoolean}" disabled="true"/>
+						</p:column>
+                    </p:dataTable>
+                </div>
+            </div>
+        </p:tab>
+
+    </p:tabView>
+                                                                                          
+    </div>	
+</p:dialog> 
+
+
+
+			
+		</h:form>	 
+		</div>	
+     
+        </div>
+    </ui:define>
+</ui:composition>

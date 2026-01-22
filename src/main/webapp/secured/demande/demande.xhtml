@@ -1,0 +1,471 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+                
+
+    <ui:define name="title">Dashboard</ui:define>
+
+    <ui:define name="head">
+        <h:outputScript name="js/chart.js" library="demo"/>
+        <script type="text/javascript">
+            $(function () {
+                new Chart(document.getElementById("dashboard-chart"), {
+                    type: 'bubble',
+                    data: {
+                        labels: "Sales",
+                        datasets: [
+                            {
+                                label: [""],
+                                backgroundColor: "rgba(0,0,0,0)",
+                                borderColor: "rgba(0,0,0,0)",
+                                data: [{
+                                    x: 5,
+                                    y: 20,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 10,
+                                    y: 20,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 20,
+                                    y: 30,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 35,
+                                    y: 90,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 35,
+                                    y: 150,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 45,
+                                    y: 130,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 50,
+                                    y: 140,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 60,
+                                    y: 100,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 65,
+                                    y: 90,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 75,
+                                    y: 130,
+                                    r: 10
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 85,
+                                    y: 120,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 85,
+                                    y: 150,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 90,
+                                    y: 160,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 90,
+                                    y: 100,
+                                    r: 10
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 100,
+                                    y: 180,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 110,
+                                    y: 150,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 120,
+                                    y: 100,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 120,
+                                    y: 190,
+                                    r: 10
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 130,
+                                    y: 200,
+                                    r: 15
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 135,
+                                    y: 220,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Sapphire"],
+                                backgroundColor: "#ffb16b",
+                                borderColor: "#ffb16b",
+                                data: [{
+                                    x: 145,
+                                    y: 200,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: [""],
+                                backgroundColor: "rgba(0,0,0,0)",
+                                borderColor: "rgba(0,0,0,0)",
+                                data: [{
+                                    x: 30,
+                                    y: 350,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Mirage"],
+                                backgroundColor: "#41cec6",
+                                borderColor: "#41cec6",
+                                data: [{
+                                    x: 15,
+                                    y: 40,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Mirage"],
+                                backgroundColor: "#41cec6",
+                                borderColor: "#41cec6",
+                                data: [{
+                                    x: 20,
+                                    y: 45,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Mirage"],
+                                backgroundColor: "#41cec6",
+                                borderColor: "#41cec6",
+                                data: [{
+                                    x: 40,
+                                    y: 50,
+                                    r: 10
+                                }]
+                            },
+                            {
+                                label: ["Mirage"],
+                                backgroundColor: "#41cec6",
+                                borderColor: "#41cec6",
+                                data: [{
+                                    x: 50,
+                                    y: 30,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Mirage"],
+                                backgroundColor: "#41cec6",
+                                borderColor: "#41cec6",
+                                data: [{
+                                    x: 60,
+                                    y: 80,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Mirage"],
+                                backgroundColor: "#41cec6",
+                                borderColor: "#41cec6",
+                                data: [{
+                                    x: 70,
+                                    y: 120,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Mirage"],
+                                backgroundColor: "#41cec6",
+                                borderColor: "#41cec6",
+                                data: [{
+                                    x: 90,
+                                    y: 150,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Mirage"],
+                                backgroundColor: "#41cec6",
+                                borderColor: "#41cec6",
+                                data: [{
+                                    x: 100,
+                                    y: 200,
+                                    r: 10
+                                }]
+                            },
+                            {
+                                label: ["Mirage"],
+                                backgroundColor: "#41cec6",
+                                borderColor: "#41cec6",
+                                data: [{
+                                    x: 110,
+                                    y: 190,
+                                    r: 5
+                                }]
+                            },
+                            {
+                                label: ["Mirage"],
+                                backgroundColor: "#41cec6",
+                                borderColor: "#41cec6",
+                                data: [{
+                                    x: 120,
+                                    y: 250,
+                                    r: 15
+                                }]
+                            },
+                            {
+                                label: ["Mirage"],
+                                backgroundColor: "#41cec6",
+                                borderColor: "#41cec6",
+                                data: [{
+                                    x: 140,
+                                    y: 200,
+                                    r: 5
+                                }]
+                            },
+                        ]
+                    },
+                    options: {
+                        title: {
+                            display: false,
+                        },
+                        legend: {
+                            display: false
+                        },
+                        scales: {
+                            yAxes: [{
+                                scaleLabel: {
+                                    display: false,
+                                }
+                            }],
+                            xAxes: [{
+                                scaleLabel: {
+                                    display: false,
+                                }
+                            }]
+                        }
+                    }
+                });
+            });
+        </script>
+    </ui:define>
+
+    <ui:define name="content">
+    
+        <div class="grid layout-dashboard">
+        
+                 <div class="grid">
+         
+			<div class="col-12">
+                <h:form  class="card"  id="formDemDbt">
+                    <div class="flex align-items-center justify-content-between">
+                        <h5>Demande en attente de traitement</h5>
+                    </div>
+                    	
+                  
+                                    <div class="ui-fluid formgrid grid">
+				                      
+								      <h:form id="formDemDbt">
+
+    <!-- Boutons radio pour filtrer le statut -->
+    <p:selectOneRadio value="#{demandeBean.statutFilter}" layout="lineDirection">
+        <f:selectItem itemLabel="Tous" itemValue="Tous"/>
+        <f:selectItem itemLabel="En attente" itemValue="En attente"/>
+        <f:selectItem itemLabel="Traité" itemValue="Traité"/>
+        <p:ajax update="tableDemande"/>
+    </p:selectOneRadio>
+
+    <!-- DataTable filtrée -->
+    <p:dataTable id="tableDemande"
+                 value="#{demandeBean.listeFiltrée}" var="obj"
+                 scrollable="true" scrollHeight="300"
+                 styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines">
+
+        <p:column headerText="N° Dossier">
+       <span style="background-color: lightblue; 
+             color: white; 
+             padding: 2px 6px; 
+             border-radius: 4px; 
+             font-weight: bold;">
+    #{obj['numeroDossier']}
+</span>
+       
+        </p:column>
+
+        <p:column headerText="Nom">
+            #{obj['nom']}
+        </p:column>
+
+        <p:column headerText="Prénom">
+            #{obj['prenom']}
+        </p:column>
+
+        <p:column headerText="Statut">
+            <span style="background-color: #{obj['statut'] eq 'Traité' ? 'green' : 'orange'};
+                         color:white; padding:2px 6px; border-radius:4px; font-weight:bold;">
+                #{obj['statut']}
+            </span>
+        </p:column>
+ 
+        <p:column headerText="Action" style="text-align:center; vertical-align:middle">
+            <p:commandButton
+                    icon="pi pi-pencil"
+                   value="Traiter"
+                    update="formDemDbt"
+                    styleClass="rounded-button ui-button-primary"
+                    action="#{demandeBean.versTraiteDemande}"/>
+        </p:column>
+
+    </p:dataTable>
+
+</h:form>
+								      
+           				          	      	    
+															    
+								                                         
+				                    
+				                    </div>
+				                                   	
+				                    	
+				                    
+				                    
+				
+				                </h:form>
+				            </div> 
+				       
+              
+           
+                      
+        </div>
+        
+        <!-- *************************************FORM USER****************************************** -->
+
+
+            
+        </div>
+    </ui:define>
+</ui:composition>

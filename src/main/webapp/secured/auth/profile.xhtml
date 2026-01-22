@@ -1,0 +1,81 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+                
+
+    <ui:define name="title">Mon compte</ui:define>
+
+    <ui:define name="head">
+        
+    </ui:define>
+
+    <ui:define name="content">
+    
+        <div class="grid">
+            <div class="col-12">
+                
+                <p:tabView>
+                	<p:tab title="Mes informations">
+                	
+						<h:form >
+								    
+		                    <div class="ui-fluid formgrid grid">
+		                        <div class="field col-12 md:col-3">
+		                            <p:outputLabel value="Identifiant" />
+		                            <p:inputText  readonly="true" value="#{securityContextImpl.utilisateur.username}" />
+		                        </div>
+		                        <div class="field col-12 md:col-3">
+		                            <p:outputLabel value="Nom" />
+		                            <p:inputText  readonly="true" value="#{securityContextImpl.utilisateur.nom}" />
+		                        </div>   
+		                        <div class="field col-12 md:col-3">
+		                            <p:outputLabel value="Prénom" />
+		                            <p:inputText readonly="true" value="#{securityContextImpl.utilisateur.prenom}" />
+		                        </div>    
+		                        <div class="field col-12 md:col-3">
+		                            <p:outputLabel value="Site" />
+		                            <p:inputText readonly="true" value="#{securityContextImpl.utilisateur.site.libelle}" />
+		                        </div> 						
+		                      
+		                    </div>	
+						</h:form>                	
+                	
+                	</p:tab>
+                	<p:tab title="Mot de passe">
+                	
+						<h:form id="pwdForm" >
+								    
+			                    <div class="ui-fluid formgrid grid">
+			                        <div class="field col-12 md:col-4">
+			                            <p:outputLabel value="Mot de passe actuel" />
+			                            <p:password required="true" requiredMessage="Mot de passe actuel ?" value="#{changePasswordBean.currentPassword}" />
+			                        </div>			                    
+			                        <div class="field col-12 md:col-4">
+			                            <p:outputLabel value="Nouveau mot de passe" />
+			                            <p:password  required="true" requiredMessage="Nouveau mot de passe ?" value="#{changePasswordBean.newPassword}" />
+			                        </div>
+			                        <div class="field col-12 md:col-4">
+			                            <p:outputLabel value="Confirmer le mot de passe" />
+			                            <p:password  required="true" requiredMessage="Confirmation du mot de passe ?" value="#{changePasswordBean.confirmPassword}" />
+			                        </div>   
+			                      
+			                    </div>	
+			                    
+								 <p:commandButton value="Mettre à jour"
+								                         icon="pi pi-check"
+								                         action="#{changePasswordBean.updatePassword}"
+								                         update=":growl,pwdForm"/>			                    
+					    </h:form>                   	
+                	
+                	</p:tab>
+                
+                </p:tabView>
+                
+            </div>
+            
+        </div>
+    </ui:define>
+</ui:composition>

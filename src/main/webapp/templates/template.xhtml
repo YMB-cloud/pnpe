@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      lang="en">
+
+    <h:head>
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+            <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/siberia-layout/images/favicon.ico" />
+        </f:facet>
+        <title><ui:insert name="title">Autosur SOFT</ui:insert></title>
+        <h:outputScript name="js/layout.js" library="siberia-layout" />
+        <h:outputScript name="js/prism.js" library="siberia-layout"/>
+        <h:outputScript name="js/sections.js" library="demo" />
+        <h:outputScript name="js/sweetalert2.all.min.js" library="siberia-layout" />
+        <script type="text/javascript" src="/resources/siberia-layout/js/sweetalert2.all.min.js"></script>
+        <ui:insert name="head"/>
+        
+        
+        <style>
+	       .bigbutton{
+	            width:100px;
+	            height:100px;
+	            padding: 30px;
+	        }       
+        </style>
+    </h:head>
+
+    <h:body styleClass="#{guestPreferences.inputStyleClass}">
+        <div class="layout-wrapper #{guestPreferences.menuMode} layout-#{guestPreferences.layout}
+        #{guestPreferences.menuMode eq 'layout-static' ? 'layout-static-active' : ''}">
+         
+            <ui:include src="./topbar.xhtml"/>
+
+            <div class="layout-main">     
+
+        
+            
+                <div class="layout-content">
+
+					<h:form>
+			            <div class="grid ui-fluid">
+			                <div class="col-12">
+			                    <div >
+			                        
+			                    </div>
+			                </div>
+			                
+			            </div>
+			        </h:form>  
+			                                    
+                	<p:tooltip />
+
+        			<p:growl id="growl" showDetail="false"/> 
+                    <ui:insert name="content"/>
+                </div>
+
+                <ui:include src="./footer.xhtml"/>
+                <div class="layout-mask"></div>
+            </div>
+         
+            <p:ajaxStatus style="width:32px;height:32px;position:fixed;right:7px;bottom:7px">
+                <f:facet name="start">
+                    <i class="pi pi-spin pi-spinner layout-ajax-loader-icon" aria-hidden="true"/>
+                </f:facet>
+
+                <f:facet name="complete">
+                    <h:outputText value=""/>
+                </f:facet>
+            </p:ajaxStatus>
+        </div>
+        
+
+        <!-- **************************************POP PRINT************************************ -->
+        <p:dialog header="Aperçu avant impression" widgetVar="preview" modal="true" closable="true" responsive="true" width="50%" showEffect="fade" hideEffect="fade" resizable="false">
+              <h:form id="detail">
+				<div  id="pmedia"  style="background-color: #525659">
+             		<p:media  value="#{referentielService.structure.app_adresse}pdfPreviewServlet" player="pdf"  cache="false" width="100%" height="400"></p:media>
+				</div>
+			
+		      </h:form>	
+        </p:dialog>  
+        <!-- *********************************************************************************************** --> 
+               
+        
+        <!-- **************************************POP SESSION INACTIVE************************************ -->
+        <p:dialog header="SESSION INACTIVE" widgetVar="sessionTimeOut" modal="true" closable="false" responsive="true" width="350" showEffect="fade" hideEffect="fade">
+            <h:form>
+	            <p>
+	                Votre session est inactive. Vous allez être déconnecté!
+	            </p>
+	            
+	            <p:commandButton  value="Re-connexion" type="button" icon="pi pi-lock-open" styleClass="ui-button-secondary" onclick="PF('sessionTimeOut').hide();location.reload();" />
+            </h:form>
+        </p:dialog>  
+        <!-- *********************************************************************************************** --> 
+        
+		<!-- *************************************POP CAISSES USER****************************************** -->
+        <p:dialog  widgetVar="popListCaisse" modal="true" responsive="true" width="50%" showEffect="fade" hideEffect="fade">
+            <h:form id="formListCaisse">
+                   <p:dataTable  var="obj2" value="#{caisseService.list}"  >
+                       <f:facet name="header">
+                           <div class="customers-table-header">
+                               <span style="font-weight: bold">MES CAISSES</span>
+                           </div>
+                       </f:facet>                   
+                       <p:column headerText="Code">
+                           <h:outputText value="#{obj2.code}" />
+                       </p:column>                       
+                       <p:column headerText="Libellé">
+                           <h:outputText value="#{obj2.libelle}" />
+                       </p:column>
+                       <p:column headerText=""  styleClass="text-right">
+                       		<p:commandButton action="#{caisseService.versOuvrirCaisse(obj2)}" icon="pi pi-dollar" styleClass="rounded-button ui-button-info mr-2 mb-2" />
+                       </p:column>                                                           
+                   </p:dataTable>
+            </h:form>
+        </p:dialog>  		   
+        <!-- ************************************************************************************************************************ -->              
+
+		<!-- *************************************CONFIRM GLOBAL DIALOG************************************************************** -->
+        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+        	<h:form>
+            	<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+            	<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" />
+            </h:form>
+        </p:confirmDialog>
+		<!-- ************************************************************************************************************************ -->
+        <h:outputStylesheet name="css/primeicons.css" library="siberia-layout"/>
+        <h:outputStylesheet name="css/sweetalert2.min.css" library="siberia-layout"/>
+        <h:outputStylesheet name="css/primeflex.min.css" library="siberia-layout"/>
+        <h:outputStylesheet name="css/demo.css" library="demo"/>
+        <h:outputStylesheet name="css/layout-#{guestPreferences.layout}.css" library="siberia-layout" />
+        <link href="/resources/siberia-layout/css/sweetalert2.min.css" rel="stylesheet" type="text/css"/>
+        <script>
+
+        function topPage(){ 
+        	$("html, body").animate({scrollTop: 0},"slow");
+        }
+
+        function basPage(){ 
+        	$("html, body").animate({scrollTop: 500},"slow");
+        }
+        
+		  	  function apercuPrint() {
+			       $('#pmedia').load(location.href + ' #pmedia');
+			 	  // $('#popApercu').modal('show');
+			 	  PF('preview').show();
+		      } 
+
+
+		   	var resetTime_int;
+			function resetTimer(){
+			    if(resetTime_int) window.clearTimeout(resetTime_int)
+			    resetTime_int=window.setTimeout(
+					function (){
+						PF('sessionTimeOut').show();
+				    }
+			    , 1000*60*4)
+			}
+
+			resetTimer();
+			//document.onmousemove=resetTimer;
+			document.onkeyup=resetTimer;		      
+        </script>        
+    </h:body>
+
+</html>

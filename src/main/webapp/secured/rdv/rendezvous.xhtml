@@ -1,0 +1,143 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="title">Gestion des rendez-vous</ui:define>
+
+    <ui:define name="content">
+
+        <!-- ================= FORMULAIRE OBLIGATOIRE ================= -->
+        <h:form id="formRdv">
+<p:messages showDetail="true" closable="true"/>
+
+            <p:panel header="Création d'un rendez-vous" styleClass="p-shadow-3">
+
+                <p:wizard flowListener="#{rendezVousBean.onFlowProcess}"
+                          showNavBar="true"
+                          nextLabel="Suivant"
+                          backLabel="Précédent">
+
+                    <!-- ================= ÉTAPE 1 ================= -->
+                    <p:tab id="participants" title="Participants">
+                        <p:inputText id="filtreSource"
+					                 value="#{rendezVousBean.filtreSource}"
+					                 placeholder="Rechercher une personne..."
+					                 style="width:100%">
+					        <p:ajax event="keyup"
+					                listener="#{rendezVousBean.filtrerSource}"
+					                update="personnes"/>
+					    </p:inputText>
+					     <br/>
+                        <p:pickList id="personnes"
+						            value="#{rendezVousBean.personnes}"
+						            var="p"
+						            itemLabel="#{p}"
+						            itemValue="#{p}"
+						            responsive="true"
+						
+						            >
+						           <p:ajax event="transfer"
+				            listener="#{rendezVousBean.syncListes}"
+				            update="@this"/>
+						     
+						    <f:facet name="sourceCaption">
+						        Portefeuille demandeurs
+						    </f:facet>
+						
+						    <f:facet name="targetCaption">
+						        Participants sélectionnés
+						    </f:facet>
+						
+						</p:pickList>
+                        
+
+                    </p:tab>
+
+                    <!-- ================= ÉTAPE 2 ================= -->
+                    <p:tab id="planning" title="Planification">
+
+                        <h:panelGrid columns="2" cellpadding="6" style="width:100%">
+
+                            <h:outputText value="Date du rendez-vous :" />
+                            <p:calendar value="#{rendezVousBean.dateRdv}"
+                                        pattern="dd/MM/yyyy"
+                                        showIcon="true"/>
+
+                            <h:outputText value="Heure début :" />
+                            <p:calendar value="#{rendezVousBean.heureDebut}"
+                                        timeOnly="true"
+                                        pattern="HH:mm"/>
+
+                            <h:outputText value="Heure fin :" />
+                            <p:calendar value="#{rendezVousBean.heureFin}"
+                                        timeOnly="true"
+                                        pattern="HH:mm"/>
+
+                            <h:outputText value="Description :" />
+                            <p:inputTextarea value="#{rendezVousBean.objectif}"
+                                             rows="3"
+                                             autoResize="false"
+                                             style="width:100%"/>
+
+                            <h:outputText value="Lieu :" />
+                            <p:inputText value="#{rendezVousBean.lieu}"
+                                         style="width:100%"/>
+                                         
+                                         
+                            
+
+                        </h:panelGrid>
+
+                    </p:tab>
+
+                    <!-- ================= ÉTAPE 3 ================= -->
+                    <p:tab id="confirmation" title="Confirmation">
+
+                        <p:panel header="Récapitulatif">
+
+                            <p>
+                                <b>Date :</b>
+                                <h:outputText value="#{rendezVousBean.dateRdv}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                </h:outputText>
+                            </p>
+
+                            <p>
+                                <b>Heure :</b>
+                                <h:outputText value="#{rendezVousBean.heureDebut}">
+                                    <f:convertDateTime pattern="HH:mm"/>
+                                </h:outputText>
+                                -
+                                <h:outputText value="#{rendezVousBean.heureFin}">
+                                    <f:convertDateTime pattern="HH:mm"/>
+                                </h:outputText>
+                            </p>
+
+                            <p><b>Objectif :</b> #{rendezVousBean.objectif}</p>
+                            <p><b>Lieu :</b> #{rendezVousBean.lieu}</p>
+
+                            <p><b>Participants :</b></p>
+                            <ui:repeat value="#{rendezVousBean.personnes.target}" var="p">
+                                • #{p}<br/>
+                            </ui:repeat>
+
+                        </p:panel>
+
+                        <p:commandButton value="Créer le rendez-vous"
+                                         icon="pi pi-check"
+                                         styleClass="p-button-success mt-3"/>
+
+                    </p:tab>
+
+                </p:wizard>
+
+            </p:panel>
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,146 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="title">Suivi des Contributions</ui:define>
+
+    <ui:define name="content">
+
+        <!-- ================= INDICATEURS CONTRIBUTIONS ================= -->
+        <div class="grid mb-4">
+
+            <div class="col-12 md:col-4">
+                <div class="card p-shadow-3 text-center">
+                    <h6>Contributions attendues</h6>
+                    <h2>22 000 000 FCFA</h2>
+                    <i class="pi pi-clock" style="font-size:2rem;color:#f59e0b;"></i>
+                </div>
+            </div>
+
+            <div class="col-12 md:col-4">
+                <div class="card p-shadow-3 text-center">
+                    <h6>Contributions payées</h6>
+                    <h2>20 500 000 FCFA</h2>
+                    <i class="pi pi-check-circle" style="font-size:2rem;color:#10b981;"></i>
+                </div>
+            </div>
+
+            <div class="col-12 md:col-4">
+                <div class="card p-shadow-3 text-center">
+                    <h6>Arriérés</h6>
+                    <h2>1 500 000 FCFA</h2>
+                    <i class="pi pi-exclamation-triangle" style="font-size:2rem;color:#ef4444;"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ================= TABLEAU CONTRIBUTIONS ================= -->
+        <p:panel header="Historique des Contributions" styleClass="p-shadow-3 mb-4">
+
+            <p:dataTable scrollable="true" scrollHeight="350"
+                         styleClass="p-datatable-sm p-datatable-gridlines">
+
+                <p:column headerText="Référence">
+                    <h:outputText value="CNSS-2026-001"/>
+                </p:column>
+
+                <p:column headerText="Entreprise">
+                    <h:outputText value="ETS GABON SERVICES"/>
+                </p:column>
+
+                <p:column headerText="Période">
+                    <h:outputText value="Janvier 2026"/>
+                </p:column>
+
+                <p:column headerText="Montant dû">
+                    <h:outputText value="5 500 000 FCFA"/>
+                </p:column>
+
+                <p:column headerText="Montant payé">
+                    <h:outputText value="5 500 000 FCFA"/>
+                </p:column>
+
+                <p:column headerText="Statut">
+                    <p:tag value="Régularisée" severity="success"/>
+                </p:column>
+
+            </p:dataTable>
+
+        </p:panel>
+
+        <!-- ================= DETAIL CONTRIBUTION ================= -->
+        <div class="grid">
+
+            <div class="col-12 xl:col-6">
+                <p:panel header="Détail Contribution" styleClass="p-shadow-3">
+
+                    <h:panelGrid columns="2" cellpadding="6" style="width:100%">
+                        <h:outputText value="Entreprise :" />
+                        <h:outputText value="ETS GABON SERVICES"/>
+
+                        <h:outputText value="Effectif déclaré :" />
+                        <h:outputText value="42 employés"/>
+
+                        <h:outputText value="Masse salariale :" />
+                        <h:outputText value="18 300 000 FCFA"/>
+
+                        <h:outputText value="Taux CNSS :" />
+                        <h:outputText value="16,5 %"/>
+
+                        <h:outputText value="Contribution totale :" />
+                        <h:outputText value="3 019 500 FCFA"/>
+                    </h:panelGrid>
+
+                </p:panel>
+            </div>
+
+            <!-- ================= VALIDATION ================= -->
+            <div class="col-12 xl:col-6">
+                <h:form>
+                    <p:panel header="Validation Contribution" styleClass="p-shadow-3">
+
+                        <div class="grid p-fluid">
+
+                            <div class="col-12">
+                                <p:selectOneMenu label="Décision">
+                                    <f:selectItem itemLabel="Valider" itemValue="Valider"/>
+                                    <f:selectItem itemLabel="Rejeter" itemValue="Rejeter"/>
+                                </p:selectOneMenu>
+                            </div>
+
+                            <div class="col-12">
+                                <p:inputTextarea rows="4"
+                                                 label="Commentaire"
+                                                 value="Contribution conforme"/>
+                            </div>
+
+                        </div>
+
+                        <p:separator/>
+
+                        <div class="grid">
+                            <div class="col-6">
+                                <p:button value="Confirmer"
+                                          icon="pi pi-check"
+                                          styleClass="p-button-success"/>
+                            </div>
+                            <div class="col-6">
+                                <p:button value="Retour"
+                                          icon="pi pi-arrow-left"
+                                          styleClass="p-button-secondary"/>
+                            </div>
+                        </div>
+
+                    </p:panel>
+                </h:form>
+            </div>
+
+        </div>
+
+    </ui:define>
+
+</ui:composition>
