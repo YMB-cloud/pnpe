@@ -1,27 +1,38 @@
 package com.app.evenement;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PersistenceContext;
 
 import com.app.entity.Demandeur;
 import com.app.entity.Dispositif;
 import com.app.entity.Evenement;
+import com.app.entity.Notification;
 import com.app.entity.Partenaire;
 import com.app.entity.PartenaireEvenement;
 import com.app.entity.PersonnelFonctionDemandeur;
 import com.app.entity.PersonnelFonctionDemandeurEvenement;
+import com.app.entity.PersonnelFonctionDemandeurNotification;
 import com.app.entity.RendeVous;
 import com.app.entity.RendezVousParticipant;
 import com.app.entity.TypeEvenement;
+import com.app.notification.NotificationBean;
 
 @Stateless
 public class EvenementService {
 
     @PersistenceContext
     private EntityManager em;
+    
+    @Inject 
+    EvenementBean  evenementBean  ;
 
     public List<Evenement> findAll() {
         return em.createQuery("SELECT r FROM Evenement r", Evenement.class)
@@ -87,15 +98,20 @@ public class EvenementService {
         .setParameter("id", ev.getId())
         .getResultList();
     }
-    
-    public Evenement evenementVoulu(Evenement ev) {
-        return em.createQuery(
-            "SELECT p FROM Evenement p WHERE p.id = :id",
+    public Evenement evenementVoulu(Evenement id) {
+
+        List<Evenement> result = em.createQuery(
+            "SELECT e FROM Evenement e " +
+            "LEFT JOIN FETCH e.dispositifEvenement " +
+            "WHERE e.id = :id",
             Evenement.class
         )
-        .setParameter("id", ev.getId())
-        .getSingleResult();
+        .setParameter("id", id.getId())
+        .getResultList();
+
+        return result.isEmpty() ? null : result.get(0);
     }
+
     
     public Evenement findAvecRelations(Long id) {
         Evenement e = em.createQuery(
@@ -223,7 +239,53 @@ public class EvenementService {
 				ev.getPartenaires().add(pr);
 				 
             }
+         
+            StringBuilder sb = new StringBuilder();
 
+            sb.append("Bonjour,\n\n")
+              .append("Vous êtes convié(e) à un événement avec les caractéristiques suivantes :\n");
+
+            if (ev.getDescription() != null) {
+                sb.append("- Description : ").append(ev.getDescription()).append("\n");
+            }
+            if (ev.getLieu() != null) {
+                sb.append("- Lieu : ").append(ev.getLieu()).append("\n");
+            }
+            if (ev.getObjectif() != null) {
+                sb.append("- Objectif : ").append(ev.getObjectif()).append("\n");
+            }
+            if (ev.getDateDebut() != null && ev.getDateFin() != null) {
+                sb.append("- Période : du ")
+                  .append(evenementBean.formatDateFr(ev.getDateDebut().toString()))
+                  .append(" au ")
+                  .append(evenementBean.formatDateFr(ev.getDateFin().toString()))
+                  .append("\n");
+            }
+           
+            sb.append("\nCordialement.");
+
+            Notification notification = new Notification();
+            notification.setMessage(sb.toString());
+            notification.setEvenement(ev);
+
+
+         
+
+            for (PersonnelFonctionDemandeur d : demandeurPersonnels) {
+            	PersonnelFonctionDemandeurNotification notif=new PersonnelFonctionDemandeurNotification();
+            	notif.setNotification(notification);
+            	notif.setPersonnelFonctionDemandeur(d);
+           
+            	notification.getPerFDN().add(notif);
+				
+		
+				 
+            }
+            List<Notification> listeNotif=new ArrayList<>();
+            listeNotif.add(notification);
+            ev.setListeNotif(listeNotif);
+          
+    
             em.persist(ev);   // cascade → persist RendezVousParticipant
             em.flush();       // force l’écriture en base
             

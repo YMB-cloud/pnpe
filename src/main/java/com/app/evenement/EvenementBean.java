@@ -2,9 +2,13 @@ package com.app.evenement;
 
 import java.io.Serializable;
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
@@ -25,6 +29,7 @@ import org.primefaces.model.DefaultScheduleModel;
 import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
 
+import com.app.auth.LoginBean;
 import com.app.auth.UiMessage;
 import com.app.entity.Demandeur;
 import com.app.entity.Dispositif;
@@ -37,6 +42,7 @@ import com.app.entity.RendeVous;
 import com.app.entity.RendezVousParticipant;
 import com.app.entity.RoleDTO;
 import com.app.entity.TypeEvenement;
+import com.app.notification.NotificationBean;
 
 @Named
 @SessionScoped
@@ -46,7 +52,10 @@ public class EvenementBean implements Serializable {
 
     @Inject
     private EvenementService evenementService; // service pur
-
+    @Inject
+    private NotificationBean notificationBean; // service pur
+    @Inject
+    private LoginBean loginBean; // service pur
     private ScheduleModel eventModel;
     private List<Evenement> listeEvenement;
     private ScheduleEvent<?> selectedEvent;
@@ -277,6 +286,13 @@ public class EvenementBean implements Serializable {
 	                );
 			  return;
 		  }
+		  if(listeDemandeurConvies.size()==0) {
+			  UiMessage.swalError(
+	                    "Gestion des evenements",
+	                    "Aucun demandeur renseigné"
+	                );
+			  return;
+		  }
 		   Evenement evenement = new Evenement();
 	        
 		    evenement.setDispositifEvenement(dispositifChoisi);
@@ -288,6 +304,7 @@ public class EvenementBean implements Serializable {
 	        evenement.setEtat(0);
 	        evenement.setLieu(lieu);
 	        evenement.setObjectif(objectif);
+	        evenement.setUtilisateur(loginBean.getConnectedUser());
 	        //evenement.setTypeEvenement(typeEvenementSeleced);
 
 	        boolean success = evenementService.creerEvenement(
@@ -433,7 +450,35 @@ public class EvenementBean implements Serializable {
 	}
 
  
- 
+ public String formatDateFr(String dateStr) {
+	    if (dateStr == null || dateStr.trim().isEmpty()) {
+	        return "";
+	    }
+
+	    try {
+	        Date date;
+
+	        if (dateStr.contains("T")) {
+	            // Cas : 2026-01-07T00:00
+	            SimpleDateFormat inputFormat =
+	                    new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+	            date = inputFormat.parse(dateStr);
+	        } else {
+	            // Cas : 2026-02-27
+	            SimpleDateFormat inputFormat =
+	                    new SimpleDateFormat("yyyy-MM-dd");
+	            date = inputFormat.parse(dateStr);
+	        }
+
+	        SimpleDateFormat outputFormat =
+	                new SimpleDateFormat("dd/MM/yyyy");
+	        return outputFormat.format(date);
+
+	    } catch (ParseException e) {
+	        return dateStr; // fallback propre
+	    }
+	}
+
  
  /*public void versPopUpdate(Evenement ev) {
 
@@ -860,6 +905,38 @@ public class EvenementBean implements Serializable {
 
 	public void setListeDispositif(List<Dispositif> listeDispositif) {
 		this.listeDispositif = listeDispositif;
+	}
+
+
+
+
+
+	public NotificationBean getNotificationBean() {
+		return notificationBean;
+	}
+
+
+
+
+
+	public void setNotificationBean(NotificationBean notificationBean) {
+		this.notificationBean = notificationBean;
+	}
+
+
+
+
+
+	public LoginBean getLoginBean() {
+		return loginBean;
+	}
+
+
+
+
+
+	public void setLoginBean(LoginBean loginBean) {
+		this.loginBean = loginBean;
 	}
 
 

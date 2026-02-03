@@ -77,41 +77,7 @@
                 <h5> Gestion des Evenements</h5>
                 </div>
                 <!-- DASHBOARD -->
-						<div class="grid mb-4">
-						
-						    <div class="col-12 md:col-3">
-						        <div class="card text-center">
-						            <i class="pi pi-calendar text-4xl text-primary mb-2"></i>
-						            <h6>Total événements</h6>
-						            <h3>#{evenementBean.totalEvenements}</h3>
-						        </div>
-						    </div>
-						
-						    <div class="col-12 md:col-3">
-						        <div class="card text-center">
-						            <i class="pi pi-clock text-4xl text-info mb-2"></i>
-						            <h6>Initiés</h6>
-						            <h3>#{evenementBean.nbInities}</h3>
-						        </div>
-						    </div>
-						
-						    <div class="col-12 md:col-3">
-						        <div class="card text-center">
-						            <i class="pi pi-check-circle text-4xl text-success mb-2"></i>
-						            <h6>Clôturés</h6>
-						            <h3>#{evenementBean.nbClotures}</h3>
-						        </div>
-						    </div>
-						
-						    <div class="col-12 md:col-3">
-						        <div class="card text-center">
-						            <i class="pi pi-times-circle text-4xl text-danger mb-2"></i>
-						            <h6>Annulés</h6>
-						            <h3>#{evenementBean.nbAnnules}</h3>
-						        </div>
-						    </div>
-						
-						</div>
+					
                 
                     <div class="flex align-items-center justify-content-between">
                         <h5> Liste des evenements</h5><p:commandButton action="#{evenementBean.versEvenement()}"  value="Nouvel evenement"  icon="pi pi-plus-circle" styleClass="rounded-button ui-button-success mr-2 mb-2" />
@@ -119,216 +85,59 @@
                     	
                     <p> </p>
                     
-                    <div class="ui-fluid formgrid grid">
-                    
-                        <p:dataTable  widgetVar="listData"  var="obj" value="#{evenementBean.listeEvenement}"   
-                        scrollable="true" scrollHeight="500" 
-                        styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines">
-                            
-                            <p:column headerText="Code" sortBy="#{obj.id}" width="10%" >
-                                <h:outputText value="#{obj.id}" />
-                            </p:column>
-                            
-                            <p:column headerText="Date debut"  sortBy="#{obj.dateDebut}" width="10%"  >
-                                <h:outputText value="#{obj.dateDebut}" />
-                            </p:column>  
-                            
-                            <p:column headerText="Date fin" sortBy="#{obj.dateFin}" width="10%" >
-                                <h:outputText value="#{obj.dateFin}" />
-                            </p:column>                              
-                            
-                            <p:column headerText="Statut"  styleClass="text-right"  width="5%" >
-                            	<p:badge 
-								    value="#{obj.etat == 0 ? 'Initié' : (obj.etat == 1 ? 'Cloturé' : 'Annulé')}"
-								    severity="#{obj.etat == 0 ? 'info' : (obj.etat == 1 ? 'success' : 'danger')}"/>
-                            	
-                            </p:column>                        
-                                                                           
-                            <p:column headerText=""  styleClass="text-right"  width="10%" >
-                            
-		                        <p:menuButton value="Actions" icon="pi pi-bars" styleClass="ui-button-primary">
-    
-    
-										    <p:menuitem 
-										        value="Modifier" 
-										        icon="pi pi-pencil" 
-										        action="#{evenementBean.versEvenementUpdate(obj)}"
-										        
-										      
-										        />
-										
-										    <!-- Annuler / Supprimer l'événement -->
-										    <p:menuitem 
-										        value="Annuler" 
-										        icon="pi pi-trash" 
-										        action="#{evenementBean.annuleEvenement(obj)}"
-										        update="form"
-										        />
-										
-										    <!-- Clôturer l'événement -->
-										    <p:menuitem 
-										    
-										        value="Clôturer" 
-										        icon="pi pi-check-circle" 
-										        action="#{evenementBean.clotureEvenement(obj)}"
-										        update="form"
-										        >
-										        
-										   </p:menuitem>
-										    <!-- Voir les détails de l'événement -->
-										    <p:menuitem 
-											    value="Détails"
-											    action="#{evenementBean.evenementCapte(obj)}"
-											    icon="pi pi-info-circle"
-											    update="form"
-											    oncomplete="PF('pop').show()" 
-											    />
-										    
-										
-										</p:menuButton>
-		                         
+                     <div class="ui-fluid formgrid grid">
+                        
+                        
+                        <h:form id="formAgenda">
 
-                            </p:column>
-                          
-                        </p:dataTable>                    
+    <p:schedule id="agenda"
+                value="#{agendaBean.eventModel}"
+                widgetVar="agendaWidget"
+                locale="fr"
+                initialView="dayGridMonth"
+                editable="false"
+                selectable="true"
+                showWeekends="true"
+                allDaySlot="false">
+
+        <!-- quand on clique sur un RDV -->
+        <p:ajax event="eventSelect"
+                listener="#{agendaBean.onEventSelect}"
+                update=":formAgenda:dlgEvent" />
+
+    </p:schedule>
+
+    <!-- Dialogue pour voir les détails -->
+    <p:dialog id="dlgEvent"
+              header="Détails du rendez-vous"
+              widgetVar="dlgEventWV"
+              modal="true"
+              resizable="false"
+              width="400">
+
+        <h:panelGrid columns="2" style="width:100%">
+
+            <h:outputLabel value="Titre :" />
+            <p:inputText value="#{agendaBean.selectedEvent.title}" readonly="true" />
+
+            <h:outputLabel value="Description :" />
+            <p:inputTextarea value="#{agendaBean.selectedEvent.description}" rows="4" cols="30" readonly="true"/>
+
+        </h:panelGrid>
+
+        <p:commandButton value="Fermer"
+                         onclick="PF('dlgEventWV').hide();"
+                         type="button" styleClass="ui-button-secondary"/>
+    </p:dialog>
+
+</h:form>
+                        
+                                         
                     
                     </div>
                                       	
                     	
-              <p:dialog header="Détail de l'evenement" widgetVar="pop"  width="90%" >
-		         <h:panelGrid columns="1">
-			        <h:outputText value=" N° #{evenementBean.evenementDetailCapte.id}"  styleClass="text-green-500 font-medium" />
-			     </h:panelGrid>
-		    
-                    <div class="ui-fluid formgrid grid">
-                 
-           <p:tabView dynamic="true" cache="true" id="tabview">
-           
-             ================= ONGLET DEMANDEURS =================
-           <p:tab title="Evenement" >
-
-                    <div class="ui-fluid formgrid grid">
-
-    <!-- Date du rendez-vous -->
-    <div class="field col-12 md:col-3">
-        <b>Date debut :</b>
-        <p:calendar 
-            value="#{evenementBean.evenementDetailCapte.dateDebut}"
-            pattern="dd/MM/yyyy"
-            showIcon="true"
-            disabled="true" />
-    </div>
-
-    <div class="field col-12 md:col-3">
-        <b>Date fin :</b>
-        <p:calendar 
-            value="#{evenementBean.evenementDetailCapte.dateFin}"
-            pattern="dd/MM/yyyy"
-            showIcon="true"
-            disabled="true" />
-    </div>
-
-    <!-- Lieu -->
-    <div class="field col-12 md:col-6">
-        <b>Lieu :</b>
-        <p:inputText 
-            value="#{evenementBean.evenementDetailCapte.lieu}"
-            placeholder="Lieu"
-            disabled="true" />
-    </div>
-
-    <!-- Objectif -->
-    <div class="field col-12 md:col-12">
-        <b>Objectif :</b>
-        <p:inputTextarea 
-            value="#{evenementBean.evenementDetailCapte.objectif}"
-            rows="3"
-            autoResize="true"
-            disabled="true" />
-       </div>
-
-   </div>
-                    
-        
-        </p:tab>
-           
-
-        ================= ONGLET DEMANDEURS =================
-        <p:tab title="Demandeurs" >
-
-            <div class="ui-fluid formgrid grid">
-
-               
-                <div class="field col-12 md:col-12">
-                    <p:dataTable 
-                                 var="obj"
-                                 value="#{evenementBean.listeDemandeurEvenement}"
-                                 rows="10"
-                                 scrollable="true"
-                                 scrollHeight="300"
-                                 paginator="true"
-                                 paginatorPosition="bottom"
-                                 styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines"
-                                 reflow="true" > 
-
-                        <p:column headerText="Nom et prénom"
-                                  sortBy="#{obj.personnelFonctionDemandeur.demandeur.personne.nom}"
-                                  filterBy="#{obj.personnelFonctionDemandeur.demandeur.personne.nom}">
-                            <h:outputText
-                                value="#{obj.personnelFonctionDemandeur.demandeur.personne.nom} #{obj.personnelFonctionDemandeur.demandeur.personne.prenom}"/>
-                        </p:column>
-                        <p:column headerText="Confirmé" styleClass="text-center">
-						    <p:selectBooleanCheckbox value="#{obj.confirmationBoolean}" disabled="true"/>
-						</p:column>
-
-                       
-                    </p:dataTable>
-                </div>
-
-
-            </div>
-        </p:tab>
-
-        ================= ONGLET PARTENAIRES =================
-        
-        <p:tab title="Partenaires" >
-
-            <div class="ui-fluid formgrid grid">
-
-             
-                <div class="field col-12 md:col-12">
-                    <p:dataTable 
-                                 var="obj"
-                                value="#{evenementBean.listePartenaireEvenement}"
-                                 rows="10"
-                                 scrollable="true"
-                                 scrollHeight="300"
-                                 paginator="true"
-                                 paginatorPosition="bottom"
-                                 styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines"
-                                 reflow="true" >
-
-                        <p:column headerText="Nom et prénom"
-                                  sortBy="#{obj.partenaire.personne.nom}"
-                                  filterBy="#{obj.partenaire.personne.nom}">
-                            <h:outputText
-                                value="#{obj.partenaire.personne.nom} #{obj.partenaire.personne.prenom}"/>
-                        </p:column>
-                         <p:column headerText="Confirmé" styleClass="text-center">
-						    <p:selectBooleanCheckbox value="#{obj.confirmationBoolean}" disabled="true"/>
-						</p:column>
-                    </p:dataTable>
-                </div>
-            </div>
-        </p:tab>
-
-    </p:tabView>
-                                                                                          
-                    </div>	
-                   
-		    
-		       </p:dialog>  
-                     
+       
 
                 </h:form>
             </div>    

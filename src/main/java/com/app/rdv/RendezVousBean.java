@@ -22,6 +22,7 @@ import org.primefaces.model.DefaultScheduleModel;
 import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
 
+import com.app.auth.LoginBean;
 import com.app.auth.UiMessage;
 import com.app.entity.Demandeur;
 import com.app.entity.RendeVous;
@@ -37,6 +38,9 @@ public class RendezVousBean implements Serializable {
     @Inject
     private RendezVousService rendezVousService; // service pur
 
+    @Inject
+    private LoginBean loginBean; // service pur
+    
     private ScheduleModel eventModel;
     private List<RendeVous> listeRendeVous;
     private ScheduleEvent<?> selectedEvent;
@@ -50,6 +54,7 @@ public class RendezVousBean implements Serializable {
     private List<Demandeur> listeParticipReelRdv;
     private List<Demandeur> listeParticipRdv;
 
+  
 
 	@PostConstruct
     public void init() {
@@ -123,6 +128,7 @@ public class RendezVousBean implements Serializable {
 	        rendezVous.setHeureFinRdv(heureFin);
 	        rendezVous.setLieu(lieu);
 	        rendezVous.setObservation(objectif);
+	        rendezVous.setUtilisateurEmetteur(loginBean.getConnectedUser());
 
 	        boolean success = rendezVousService.creerRendezVous(
 	                rendezVous,
@@ -316,6 +322,16 @@ public class RendezVousBean implements Serializable {
 
 	public void setHeureDebutRdv(Date heureDebutRdv) {
 		this.heureDebutRdv = heureDebutRdv;
+	}
+
+
+	public LoginBean getLoginBean() {
+		return loginBean;
+	}
+
+
+	public void setLoginBean(LoginBean loginBean) {
+		this.loginBean = loginBean;
 	}
 
 }

@@ -17,6 +17,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 
 @Entity
@@ -50,6 +51,17 @@ public class Evenement {
             fetch = FetchType.LAZY
         )
     private List<PersonnelFonctionDemandeurEvenement> personnelsDemandeur = new ArrayList<>();
+    
+    
+    @OneToMany(
+            mappedBy = "evenement",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+        )
+    private List<Notification> listeNotif = new ArrayList<>();
+    
+    
     
     @OneToMany(
             mappedBy = "evenement",
@@ -175,6 +187,12 @@ public class Evenement {
 	}
 	public void setLienVisio(String lienVisio) {
 		this.lienVisio = lienVisio;
+	}
+	public List<Notification> getListeNotif() {
+		return listeNotif;
+	}
+	public void setListeNotif(List<Notification> listeNotif) {
+		this.listeNotif = listeNotif;
 	}
 	
     

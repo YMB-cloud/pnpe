@@ -2,9 +2,12 @@ package com.app.entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,9 +16,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 
-@Entity
+@Entity  
 public class Notification {
 
     @Id
@@ -32,6 +37,16 @@ public class Notification {
     @ManyToOne
     @JoinColumn(name = "evenement_id",referencedColumnName = "id")
     private Evenement evenement;
+    
+    
+    @OneToMany(
+            mappedBy = "notification",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+        )
+    private List<PersonnelFonctionDemandeurNotification> perFDN = new ArrayList<>();
+    
     
     
     @ManyToOne
@@ -77,6 +92,12 @@ public class Notification {
 	}
 	public void setMessage(String message) {
 		this.message = message;
+	}
+	public List<PersonnelFonctionDemandeurNotification> getPerFDN() {
+		return perFDN;
+	}
+	public void setPerFDN(List<PersonnelFonctionDemandeurNotification> perFDN) {
+		this.perFDN = perFDN;
 	}
     
 }

@@ -1,6 +1,7 @@
 package com.app.entity;
 
 public class RoleDTO {
+	
 	private Long id;
     private String code;
     private String libelle;

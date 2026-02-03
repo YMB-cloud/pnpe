@@ -109,91 +109,97 @@
         
 
 
-			<div class="card">
+			<!-- <div class="card">  -->
 			<h:form  class="card" id="form">
 
+				<div class="grid">
+                    <div class="col-12 md:col-12 xl:col-12">
+                        <div class="grid">
+                            <div class="col-12 md:col-12 xl:col-4">
+                                <div class="card overview-box-1 blue">
+                                    <div class="card-header">
+                                        <h6>Dispositif et Période</h6>
+                                        <div class="header-buttons">
+                                            <a href="#"><i class="pi pi-arrow-up"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="overview-content">
+                                        <h5>
+                                            <h:outputText value=" > #{evenementBean.evenementUpdate.dispositifEvenement.libelle}"  styleClass="text-green-500 font-medium" />
+                                        </h5>
+                                        <h6>#{evenementBean.formatDateFr(evenementBean.evenementUpdate.dateDebut)} à #{evenementBean.formatDateFr(evenementBean.evenementUpdate.dateFin)}</h6>
+                                    </div>
+                                 </div>
+                            </div>
+                            <div class="col-12 md:col-12 xl:col-8">
 
+                                <div class="card overview-box-1 blue">
+                                    <div class="card-header">
+                                        <h6>Informations Générales</h6>
+                                        <div class="header-buttons">
+                                            <a href="#"><i class="pi pi-arrow-up"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="overview-content">
+                                        <h5>
+											<h:outputText value="#{evenementBean.evenementUpdate.titre}"  styleClass="text-green-500 font-medium" />                                                                                                                        
+                                        </h5>
+                                        <h6>Lieu : #{evenementBean.evenementUpdate.lieu}</h6>
+                                        
+                                    </div>
+                                 </div>
+                            </div>
+                            
+                         </div>
+                   </div>
+				</div>
+				
 
-           		    
-		    
+		<p:toolbar>		
+		   <p:toolbarGroup align="right">
+		                    <div  style="text-align:right">  
+		                        <p:commandButton  
+		                            value="Annuler"  action="#{evenementBean.versManageEvenements()}" icon="pi pi-bars" styleClass="rounded-button ui-button-danger mr-2 mb-2" />
+		                     
+		                        <p:commandButton value="Valider"
+		                            action="#{evenementBean.updateEvenement()}" styleClass="rounded-button ui-button-success"/>
+		                    </div>
+			</p:toolbarGroup>			
+		</p:toolbar>
 		
 
-
-      <p:toolbar>
-
-
- 
-
-
-   <p:toolbarGroup align="right">
-                    <div  style="text-align:right">  
-                        <p:commandButton  
-                            value="Annuler"  icon="pi pi-bars" styleClass="rounded-button ui-button-danger mr-2 mb-2" />
-                     
-                        <p:commandButton value="Valider"
-                            action="#{evenementBean.updateEvenement()}" styleClass="rounded-button ui-button-success"/>
-                    </div>
-	</p:toolbarGroup>
-</p:toolbar>
 <br></br>
 
-    
-                         <div class="ui-fluid formgrid grid">
-                       
-						 
-                         
-						
-						    <!-- Date du rendez-vous -->
-						    <div class="field col-12 md:col-3">
-						        <b>Date debut :</b>
-						        <p:calendar 
-						            value="#{evenementBean.evenementUpdate.dateDebut}"
-						            pattern="dd/MM/yyyy"
-						            showIcon="true"
-						        />
-						    </div>
-						<div class="field col-12 md:col-3">
-						        <b>Date fin :</b>
-						        <p:calendar 
-						            value="#{evenementBean.evenementUpdate.dateFin}"
-						            pattern="dd/MM/yyyy"
-						            showIcon="true"
-						        />
-						    </div>
-						    
-						
-						
-						    <!-- Lieu -->
-						    <div class="field col-12 md:col-6">
-						        <b>Lieu :</b>
-						        <p:inputText 
-						            value="#{evenementBean.evenementUpdate.lieu}"
-						            placeholder="Lieu "
-						        />
-						    </div>
-						
-						    <!-- Objectif -->
-						    <div class="field col-12 md:col-12">
-						        <b>Objectif :</b>
-						        <p:inputTextarea 
-						            value="#{evenementBean.evenementUpdate.objectif}"
-						            rows="3"
-						            autoResize="true"
-						        />
-						    </div>
-						
-						</div>
+				<div class="grid">
+                    <div class="col-12 md:col-12 xl:col-12">
+                        <div class="grid">
+                            <div class="col-12 md:col-12 xl:col-4">
+                            
+                            
 
+<p:panel styleClass="p-shadow-2 p-p-3 p-mb-12" header="Compte rendu" toggleable="false">
+		
+		<p:fileUpload id="upload" value="" mode="simple" />   <!-- {fileUploadView.file} -->
+		<br /><br />
+        <p:inputTextarea 
+            value="#{evenementBean.objectif}"
+            rows="15" cols="53" autoResize="false"/>
 
+</p:panel>                           
+                            
+                            
+                             
+                            
+                            </div>
+                            <div class="col-12 md:col-12 xl:col-8">
+                            
+                            
 
-   					<p:tabView id="tabviewUpdate" dynamic="false" cache="true">
-
+<p:tabView id="tabviewUpdate" dynamic="false" cache="true">
 
         <!-- ================= ONGLET Général ================= -->
-            
-           
-        
-        <p:tab title="Participants ">
+                    
+        <p:tab title="Participants : Présence effective">
                    <div class="ui-fluid formgrid grid">
 
                 <!-- Liste Demandeurs -->
@@ -237,14 +243,13 @@
               <div class="ui-fluid formgrid grid">
 
                 <!-- Liste Partenaires -->
+                
                 <div class="field col-12 md:col-12">
                     <p:dataTable id="listaPartenaireUpdate"
                                  var="obj"
                                   value="#{evenementBean.listePartenaireEvenement}"
-                                 rows="10"
-                                 scrollable="true"
-                                 scrollHeight="300"
-                                 paginator="true"
+                                 rows="10" scrollable="true"
+                                 scrollHeight="300" paginator="true"
                                  paginatorPosition="bottom"
                                  styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines"
                                  reflow="true">
@@ -255,64 +260,35 @@
                             <h:outputText
                                 value="#{obj.partenaire.personne.nom} #{obj.partenaire.personne.prenom}"/>
                         </p:column>
-                         <p:column headerText="Confirmé" styleClass="text-center">
+                         <p:column headerText="Catégorie" styleClass="text-center">
+                         	<!-- 
 						    <p:selectBooleanCheckbox value="#{obj.confirmationBoolean}" disabled="true"/>
+						     -->
 						</p:column>
                          <p:column headerText="Presence"  styleClass="text-center"  >
-                                
+                         	<!--        
                                <p:selectBooleanCheckbox value="#{obj.confirmationBooleanRespecte}" /> 
-                            </p:column> 
+                                -->
+                         </p:column> 
                        
                     </p:dataTable>
                 </div>
-
             
-
             </div>
         </p:tab>
-          <p:tab title="Joindre decument">
-               <p:dataTable 
-                                 var="obj"
-                                 value="#{evenementBean.listeDemandeurEvenement}"
-                                 rows="10"
-                                 scrollable="true"
-                                 scrollHeight="300"
-                                 paginator="true"
-                                 paginatorPosition="bottom"
-                                 styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines"
-                                 reflow="true">
-                                <p:column headerText="Type de document"
-                                  sortBy="#{obj.personnelFonctionDemandeur.demandeur.personne.nom}"
-                                  filterBy="#{obj.personnelFonctionDemandeur.demandeur.personne.nom}">
-                            <h:outputText
-                                value="#{obj.personnelFonctionDemandeur.demandeur.personne.nom} #{obj.personnelFonctionDemandeur.demandeur.personne.prenom}"/>
-                        </p:column>
-                        <p:column headerText="" styleClass="text-center">
-						    <p:commandButton  
-                            value="Annuler"  icon="pi pi-bars" styleClass="rounded-button ui-button-danger mr-2 mb-2" />
-                     
-						</p:column>
-
-                      
-                    </p:dataTable>
-          </p:tab>
-
     </p:tabView>
+
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                            
          
  <!-- command bouttons -->
-                         
-
-		    
-		    
-       
-			          	    
-          
-		    
-		    
-		   
-			
+ 
+                         		
 		</h:form>	 
-		</div>	
+		<!-- </div>	 -->
      
         </div>
     </ui:define>
