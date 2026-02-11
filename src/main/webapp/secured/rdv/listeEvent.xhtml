@@ -6,7 +6,7 @@
                 template="/WEB-INF/template.xhtml">
                 
 
-    <ui:define name="title">Evenement</ui:define>
+    <ui:define name="title">Agenda Planning</ui:define>
 
     <ui:define name="head">
         
@@ -16,116 +16,356 @@
     
         <style>
         /* DASHBOARD PANELS */
-.card {
-    border-radius: 12px;
-    border-left: 6px solid transparent;
-    background: #ffffff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    transition: all 0.25s ease;
-    padding: 1.5rem;
-}
-
-/* Hover effect */
-.card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
-}
-
-/* Bordures colorées selon l’icône */
-.card .pi-calendar {
-    color: var(--primary-color);
-}
-.card:has(.pi-calendar) {
-    border-left-color: var(--primary-color);
-}
-
-.card:has(.pi-clock) {
-    border-left-color: #2196f3;
-}
-
-.card:has(.pi-check-circle) {
-    border-left-color: #4caf50;
-}
-
-.card:has(.pi-times-circle) {
-    border-left-color: #f44336;
-}
-
-/* Titres */
-.card h6 {
-    margin: 0.5rem 0;
-    font-weight: 600;
-    color: #6c757d;
-}
-
-/* Valeurs */
-.card h3 {
-    margin: 0;
-    font-weight: 700;
-}
+			.card {
+			    border-radius: 12px;
+			    border-left: 6px solid transparent;
+			    background: #ffffff;
+			    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+			    transition: all 0.25s ease;
+			    padding: 1.5rem;
+			}
+			
+			/* Hover effect */
+			.card:hover {
+			    transform: translateY(-4px);
+			    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+			}
+			
+			/* Bordures colorées selon l’icône */
+			.card .pi-calendar {
+			    color: var(--primary-color);
+			}
+			.card:has(.pi-calendar) {
+			    border-left-color: var(--primary-color);
+			}
+			
+			.card:has(.pi-clock) {
+			    border-left-color: #2196f3;
+			}
+			
+			.card:has(.pi-check-circle) {
+			    border-left-color: #4caf50;
+			}
+			
+			.card:has(.pi-times-circle) {
+			    border-left-color: #f44336;
+			}
+			
+			/* Titres */
+			.card h6 {
+			    margin: 0.5rem 0;
+			    font-weight: 600;
+			    color: #6c757d;
+			}
+			
+			/* Valeurs */
+			.card h3 {
+			    margin: 0;
+			    font-weight: 700;
+			}
         
         </style>
-    
-		<div class="grid">
+        
+        
+        
+<div class="grid layout-dashboard">       
+ 
+<!-- Debut bandeau Titre -->   
+
+            <div class="col-12">
+                <!--  -->
+                <div class="card status">
+                    <div class="status-header">
+                        <div class="title">
+                            <!-- 
+                            Bienvenu #{securityContextImpl.utilisateur.nomprenom}
+                             -->
+                             ::: Agenda Planning
+                        </div>
+                        <div class="icons">
+                                                        
+                            
+                            <!-- ouvrir sous forme de popUp -->
+                             
+                                                                                
+                            <div class="icon">
+                                <i class="pi pi-comments"/>
+                            </div>
+                            <div class="icon">
+                                <i class="pi pi-window-maximize"/>
+                            </div>
+                            <div class="icon">
+                                <i class="pi pi-bookmark"/>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                <!--  -->
+                </div>
+            </div>
+
+<!-- Fin bandeau Titre -->  
+<!--  Debut widgets RECAP STAT -->
+                       
+             <div class="col-12 xl:col-3 md:col-6">
+                <div class="grid grid-nogutter status-box status-box-3">
+                    <div class="col-4 status-box-image">
+                        <p:graphicImage name="images/dashboard/icon-checkins.png" library="siberia-layout"/>
+                    </div>
+                    <div class="col-6 status-box-text">
+                        <h5>Demandeurs inscrits</h5>
+                        <span>12 450</span>
+                    </div>
+                    <div class="col-2 status-box-icon">
+                        <i class="pi pi-user-edit"/>
+                    </div>
+                </div>
+            </div>  
             
+            <div class="col-12 xl:col-3 md:col-6">
+                <div class="grid grid-nogutter status-box status-box-2">
+                    <div class="col-4 status-box-image">
+                        <p:graphicImage name="images/dashboard/icon-filessynced.png" library="siberia-layout"/>
+                    </div>
+                    <div class="col-6 status-box-text">
+                        <h5>Placements réussis</h5>
+                        <span>1 020</span>
+                    </div>
+                    <div class="col-2 status-box-icon">
+                        <i class="pi pi-folder"/>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 xl:col-3 md:col-6">
+                <div class="grid grid-nogutter status-box status-box-4">
+                    <div class="col-4 status-box-image">
+                        <p:graphicImage name="images/dashboard/icon-useronline.png" library="siberia-layout"/>
+                    </div>
+                    <div class="col-6 status-box-text">
+			            <h5>Formations suivies</h5>
+			            <span>450</span>
+                    </div>
+                    <div class="col-2 status-box-icon">
+                        <i class="pi pi-folder-open"/>
+                    </div>
+                </div>
+            </div>  
+            
+			<div class="col-12 xl:col-3 md:col-6">
+                <div class="grid grid-nogutter status-box status-box-1">
+                    <div class="col-4 status-box-image">
+                        <p:graphicImage name="images/dashboard/icon-message.png" library="siberia-layout"/>
+                    </div>
+                    <div class="col-6 status-box-text">
+                        <h5>Offres disponibles</h5>
+                        <span>3 215</span>
+                    </div>
+                    <div class="col-2 status-box-icon">
+                        <i class="pi pi-users"/>
+                    </div>
+                </div>
+            </div>
+ 
+<!--  fin widgets RECAP STAT -->
+
+  
+        
+<!--      
+		<div class="grid">		          
 			<div class="col-12">
-			   
+			<div class="card"> 
+			
+-->			
+
+			
+				
+                    <div class="col-12 md:col-12 xl:col-12">
+                    
+                    <h:form id="form">
+                        <div class="grid">
+                        
+                        
+                        
+                            <div class="col-12 md:col-12 xl:col-4">	
+                            
+	<p:tabView id="tabviewUpdate" dynamic="false" cache="true">
+
+        <!-- ================= ONGLET Général ================= -->
+                    
+        <p:tab title="Ateliers et Evenements (#{evenementBean.listeEvenement.size()})">
+                   <div class="ui-fluid formgrid grid">
+
+                <!-- Liste Demandeurs -->
+                
+                <div class="field col-12 md:col-12">
+                    <p:dataTable id="listaDemandeurUpdate"
+                                 var="obj"
+                                 value="#{evenementBean.listeEvenement}"
+                                 rows="10"
+                                 scrollable="true"
+                                 scrollHeight="300"
+                                 paginator="true"
+                                 paginatorPosition="bottom"
+                                 styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines"
+                                 reflow="true">
+                                <p:column headerText="Nom et prénom"
+                                  sortBy="#{obj.titre}"
+                                  filterBy="#{obj.titre}">
+                            <h:outputText
+                                value="#{obj.titre}"/>
+                        </p:column>
+                        <p:column headerText="Participants" styleClass="text-center" width="20%">
+						    <h:outputText value="#{obj.personnelsDemandeur.size()}" disabled="true"/>
+						</p:column>
+						<p:column headerText="..." styleClass="text-center" width="10%">
+						
+					<!-- 		
+							<p:commandButton action="#" icon="pi pi-info-circle"
+									        update="form" oncomplete="PF('popUp').show()" style="margin-left: 10px;"/>
+							
+					 -->			
+							<p:commandButton type="button" icon="pi pi-search" styleClass="rounded-button ui-button-success ui-button-outlined" />		
+						</p:column>							
+
+                    </p:dataTable>
+                </div>
+
+           
+
+            </div>
+        </p:tab>
+
+        <!-- ================= ONGLET PARTENAIRES ================= -->
+        
+        <p:tab title="Entretiens RDV (#{rendezVousBean.listeRendeVous.size()})">
+
+              <div class="ui-fluid formgrid grid">
+
+                <!-- Liste RDV -->
+                
+                <div class="field col-12 md:col-12">
+                	
+                	<!--  -->
+                	
+                    <p:dataTable id="listaPartenaireUpdate"
+                                 var="obj"
+                                  value="#{rendezVousBean.listeRendeVous}"
+                                 rows="10" scrollable="true"
+                                 scrollHeight="300" paginator="true"
+                                 paginatorPosition="bottom"
+                                 styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines"
+                                 reflow="true">
+
+                        <p:column headerText="Date"
+                                  sortBy="#{obj.dateHeureRdv}"
+                                  filterBy="#{obj.dateHeureRdv}">
+                            <h:outputText
+                                value="#{obj.dateHeureRdv} #{obj.heureFinRdv}"/>
+                        </p:column>
+                         <p:column headerText="..." styleClass="text-center" width="20%">
+                         
+						      <h:outputText value="#{obj.participants.size()}" disabled="true"/>
+						</p:column>
+						
+						<p:column headerText="..." styleClass="text-center" width="10%">
+						
+					<!-- 		
+							<p:commandButton action="#" icon="pi pi-info-circle"
+									        update="form" oncomplete="PF('popUp').show()" style="margin-left: 10px;"/>
+							
+					 -->			
+							<p:commandButton type="button" icon="pi pi-search" styleClass="rounded-button ui-button-success ui-button-outlined" />		
+						</p:column>	
+                    </p:dataTable>
+                    
+                </div>
+            
+            </div>
+        </p:tab>
+    </p:tabView>                            		
+			
+	</div>
+		
+	<div class="col-12 md:col-12 xl:col-8">	
+	
+		
+<!-- agenda calendrier -->
+
+
+			<div class="card">
+			 		
                  <h:form id="agendaForm">
 
-    <p:schedule id="agenda"
-                value="#{agendaBean.eventModel}"
-                widgetVar="agendaWidget"
-                view="month"
-                timeZone="Africa/Libreville"
-                allDaySlot="false">
+			    <p:schedule id="agenda"
+			                value="#{agendaBean.eventModel}"
+			                widgetVar="agendaWidget"
+			                view="month"
+			                timeZone="Africa/Libreville"
+			                allDaySlot="false">
+			
+			        <!-- Sélection d'un événement -->
+			        <p:ajax event="eventSelect"
+			                listener="#{agendaBean.onEventSelect}"
+			                update="rdvDialog"
+			                oncomplete="PF('rdvDialogWidget').show()" />
+			    </p:schedule>
+			
+			    <!-- Dialog détails RDV -->
+			    <p:dialog id="rdvDialog"
+			              widgetVar="rdvDialogWidget"
+			              header="Détails du rendez-vous"
+			              modal="true"
+			              closable="true"
+			              resizable="false"
+			              width="400">
+			
+			        <h:panelGrid columns="1" cellpadding="5">
+			
+			            <h:outputText value="Titre :" style="font-weight:bold"/>
+			            <h:outputText value="#{agendaBean.selectedEvent.title}" />
+			
+			            <h:outputText value="Description :" style="font-weight:bold"/>
+			            <h:outputText value="#{agendaBean.selectedEvent.description}" />
+			
+			            <h:outputText value="Début :" style="font-weight:bold"/>
+			            <h:outputText value="#{agendaBean.selectedEvent.startDate}" />
+			
+			            <h:outputText value="Fin :" style="font-weight:bold"/>
+			            <h:outputText value="#{agendaBean.selectedEvent.endDate}" />
+			
+			        </h:panelGrid>
+			    </p:dialog>
+			
+				</h:form>		
+			</div>		
+		</div>
+	</div>
+	
+	</h:form>
+	
+</div>
 
-        <!-- Sélection d'un événement -->
-        <p:ajax event="eventSelect"
-                listener="#{agendaBean.onEventSelect}"
-                update="rdvDialog"
-                oncomplete="PF('rdvDialogWidget').show()" />
-    </p:schedule>
-
-    <!-- Dialog détails RDV -->
-    <p:dialog id="rdvDialog"
-              widgetVar="rdvDialogWidget"
-              header="Détails du rendez-vous"
-              modal="true"
-              closable="true"
-              resizable="false"
-              width="400">
-
-        <h:panelGrid columns="1" cellpadding="5">
-
-            <h:outputText value="Titre :" style="font-weight:bold"/>
-            <h:outputText value="#{agendaBean.selectedEvent.title}" />
-
-            <h:outputText value="Description :" style="font-weight:bold"/>
-            <h:outputText value="#{agendaBean.selectedEvent.description}" />
-
-            <h:outputText value="Début :" style="font-weight:bold"/>
-            <h:outputText value="#{agendaBean.selectedEvent.startDate}" />
-
-            <h:outputText value="Fin :" style="font-weight:bold"/>
-            <h:outputText value="#{agendaBean.selectedEvent.endDate}" />
-
-        </h:panelGrid>
-    </p:dialog>
-
-</h:form>
+			
+			
+			
+			
+			
                      
-
+<!-- 
             
             </div>    
-            
-			             
-                      
+          </div>  			                                   
         </div>
         
-    
+ -->
+  
+ 
      
     
-    
+ </div>   
         
     </ui:define>
 </ui:composition>

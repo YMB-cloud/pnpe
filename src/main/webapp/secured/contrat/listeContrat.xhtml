@@ -4,81 +4,86 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/template.xhtml">
-                
-
+                               
     <ui:define name="title">Contrat</ui:define>
+    
+    
+    
 
     <ui:define name="head">
+         
          <style >
-           /* panel full width */
-.full-width-panel {
-    width: 100% !important;
-}
-
-/* scroll vertical pour la timeline */
-.timeline-scroll {
-    max-height: 500px; /* Hauteur du panel avant scroll */
-    overflow-y: auto;
-    padding-right: 10px; /* Pour éviter que la scrollbar chevauche le contenu */
-}
-
-/* timeline ligne verticale */
-.timeline-container, .timeline-scroll {
-    position: relative;
-    margin-left: 20px;
-    padding-left: 20px;
-    border-left: 3px solid #0d6efd;
-    width: 100%;
-}
-
-/* items */
-.timeline-item {
-    margin-bottom: 1.5rem;
-    position: relative;
-}
-
-.timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -10px;
-    top: 0;
-    width: 15px;
-    height: 15px;
-    background-color: #0d6efd;
-    border-radius: 50%;
-    border: 3px solid white;
-}
-
-.timeline-date {
-    font-size: 0.85rem;
-    color: #6c757d;
-    margin-bottom: 0.3rem;
-}
-
-.timeline-date .date-label {
-    font-weight: bold;
-    margin-right: 3px;
-}
-
-.timeline-content {
-    background: #f8f9fa;
-    padding: 1rem;
-    border-radius: 6px;
-    white-space: pre-line;
-    line-height: 1.5;
-    width: 100%;
-}
-
-.created-by {
-    font-weight: bold;
-    margin-right: 5px;
-}
-
-.note-text {
-    margin-top: 0.5rem;
-}
+			           /* panel full width */
+			.full-width-panel {
+			    width: 100% !important;
+			}
+			
+			/* scroll vertical pour la timeline */
+			.timeline-scroll {
+			    max-height: 500px; /* Hauteur du panel avant scroll */
+			    overflow-y: auto;
+			    padding-right: 10px; /* Pour éviter que la scrollbar chevauche le contenu */
+			}
+			
+			/* timeline ligne verticale */
+			.timeline-container, .timeline-scroll {
+			    position: relative;
+			    margin-left: 20px;
+			    padding-left: 20px;
+			    border-left: 3px solid #0d6efd;
+			    width: 100%;
+			}
+			
+			/* items */
+			.timeline-item {
+			    margin-bottom: 1.5rem;
+			    position: relative;
+			}
+			
+			.timeline-item::before {
+			    content: '';
+			    position: absolute;
+			    left: -10px;
+			    top: 0;
+			    width: 15px;
+			    height: 15px;
+			    background-color: #0d6efd;
+			    border-radius: 50%;
+			    border: 3px solid white;
+			}
+			
+			.timeline-date {
+			    font-size: 0.85rem;
+			    color: #6c757d;
+			    margin-bottom: 0.3rem;
+			}
+			
+			.timeline-date .date-label {
+			    font-weight: bold;
+			    margin-right: 3px;
+			}
+			
+			.timeline-content {
+			    background: #f8f9fa;
+			    padding: 1rem;
+			    border-radius: 6px;
+			    white-space: pre-line;
+			    line-height: 1.5;
+			    width: 100%;
+			}
+			
+			.created-by {
+			    font-weight: bold;
+			    margin-right: 5px;
+			}
+			
+			.note-text {
+			    margin-top: 0.5rem;
+			}
                        
          </style>
+         
+         
         <h:outputScript name="js/chart.js" library="demo"/>
         
         <script type="text/javascript">
@@ -164,14 +169,20 @@
 		            }
 		        }
 		    });
-		});
-</script>
-        
+		});		
+		</script>
+		
+	     
     </ui:define>
+    
+    
+    
+    
+    
 
     <ui:define name="content">
     
-        
+    
     
         <div class="grid layout-dashboard">
         
@@ -212,7 +223,7 @@
                 </div>
             </div>
             
-<!--            
+           
              <div class="col-12 xl:col-3 md:col-6">
                 <div class="grid grid-nogutter status-box status-box-3">
                     <div class="col-4 status-box-image">
@@ -274,7 +285,7 @@
             </div>
  
 
- --> 
+ 
  
             
 <!--  -->  

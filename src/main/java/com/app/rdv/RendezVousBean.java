@@ -210,7 +210,8 @@ public class RendezVousBean implements Serializable {
     
     
     public String versRendezVous() {
- 
+    	
+    	listeRendeVous = rendezVousService.findAll();
     	return "/secured/rdv/listeEvent.xhtml?faces-redirect=true";
     }
     

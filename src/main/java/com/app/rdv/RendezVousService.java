@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import com.app.entity.Demandeur;
+import com.app.entity.Evenement;
 import com.app.entity.RendeVous;
 import com.app.entity.RendezVousParticipant;
 
@@ -17,11 +18,16 @@ public class RendezVousService {
     private EntityManager em;
 
     public List<RendeVous> findAll() {
-        return em.createQuery("SELECT r FROM RendeVous r", RendeVous.class)
-                 .getResultList();
+        List<RendeVous> rendezVousList = em.createQuery("SELECT r FROM RendeVous r", RendeVous.class)
+                                           .getResultList();
+
+        // Force loading of the collection
+        for (RendeVous r : rendezVousList) {
+            r.getParticipants().size();
+        }
+
+        return rendezVousList;
     }
-    
-    
     
     public List<Demandeur> findAllDemandeurs() {
         return em.createQuery("SELECT r FROM Demandeur r", Demandeur.class)

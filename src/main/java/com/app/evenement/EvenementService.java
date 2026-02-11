@@ -35,8 +35,15 @@ public class EvenementService {
     EvenementBean  evenementBean  ;
 
     public List<Evenement> findAll() {
-        return em.createQuery("SELECT r FROM Evenement r", Evenement.class)
-                 .getResultList();
+    	List<Evenement> events = em.createQuery("SELECT e FROM Evenement e", Evenement.class)
+                .getResultList();
+					
+					for (Evenement e : events) {
+					 e.getPersonnelsDemandeur().size(); // forces loading
+					}
+
+          return events;
+
     }
     
     public List<Partenaire> findAllPartenaire() {
